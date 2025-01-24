@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbab71b6b2dfbe540987d573ab53eb23, type: 3}
+  m_Name: LGGraphTest
+  m_EditorClassIdentifier: 
+  m_nodes:
+  - rid: 4142552390581616640
+  m_connections: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 4142552390581616640
+      type: {class: LDMultipleChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: f33f6271-eb82-4ed1-bd58-abad24ebc8d2
+        m_position:
+          serializedVersion: 2
+          x: 333
+          y: 308
+          width: 0
+          height: 0
+        m_outputPortAmount: 3
+        m_nodeConnections: []
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDMultipleChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: Dialogue
+        ChoiceDatas:
+        - OutputIndex: 1
+          ChoiceText: Out
+        - OutputIndex: 2
+          ChoiceText: Out
+        - OutputIndex: 3
+          ChoiceText: Out
