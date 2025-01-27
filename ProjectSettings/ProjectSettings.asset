@@ -768,7 +768,7 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     Stadia: DOTWEEN
-    Standalone: DOTWEEN;LITTLE_GRAPH
+    Standalone: DOTWEEN;LITTLE_GRAPH;TranslationSystemImplemented
     VisionOS: DOTWEEN
     WebGL: DOTWEEN
     Windows Store Apps: DOTWEEN
