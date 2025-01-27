@@ -18,23 +18,17 @@ public class PlayerInputs : MonoBehaviour
     private void OnEnable()
     {
         PrimaryTouch.action.started += OnFingerSlideStarted;
-        //PrimaryTouch.action.performed += InputReceived;
         PrimaryTouch.action.canceled += OnFingerSlideEnded;
 
-        //TouchPosition.action.started += OnFingerSlideStarted;
         TouchPosition.action.performed += UpdateFingerPosition;
-        //TouchPosition.action.canceled += OnFingerSlideEnded;
     }
 
     private void OnDisable()
     {
         PrimaryTouch.action.started -= OnFingerSlideStarted;
-        //PrimaryTouch.action.performed -= InputReceived;
         PrimaryTouch.action.canceled -= OnFingerSlideEnded;
 
-        //TouchPosition.action.started -= OnFingerSlideStarted;
         TouchPosition.action.performed -= UpdateFingerPosition;
-        //TouchPosition.action.canceled -= OnFingerSlideEnded;
     }
 
     private void UpdateFingerPosition(InputAction.CallbackContext ctx)
@@ -58,7 +52,6 @@ public class PlayerInputs : MonoBehaviour
     private Vector2 DetectSlide()
     {
         Vector2 slideOffset = _slideEndPos - _slideStartPos;
-        //Debug.Log(slideOffset);
 
         if (Mathf.Abs(slideOffset.x) > Mathf.Abs(slideOffset.y) && Mathf.Abs(slideOffset.x) > _minimumDrag) //Si l'offset en x est plus grand qu'en y
         {
@@ -94,6 +87,4 @@ public class PlayerInputs : MonoBehaviour
         Debug.Log("BOUGE PAS");
         return Vector2.zero;
     }
-
-
 }
