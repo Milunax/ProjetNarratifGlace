@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,6 +28,7 @@ namespace LocalizationPackage
         [Header("Debug Parameters")]
         [SerializeField] bool refreshLogs = true;
         [SerializeField] bool returnDefaultLanguageIfPossible = false;
+        [SerializeField] bool refreshAtStart = true;
 
         public delegate void OnRefreshDelegate(SystemLanguage language);
         public static event OnRefreshDelegate OnRefresh;
@@ -152,7 +152,7 @@ namespace LocalizationPackage
             }
 
             CheckLanguageRoutine();
-            CallRefresh();
+            if (refreshAtStart) CallRefresh();
             yield return null;
         }
 

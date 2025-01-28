@@ -415,12 +415,12 @@ public class LocalizationComponent : MonoBehaviour
 
             if (langComp.isManager)
             {
-                Undo.RecordObject(langComp.TSVFile, "Change TSV File");
+                if (langComp.TSVFile) Undo.RecordObject(langComp.TSVFile, "Change TSV File");
                 langComp.TSVFile = EditorGUILayout.ObjectField("Language Selection TSV File", langComp.TSVFile, typeof(TextAsset), true) as TextAsset;
             }
             else
             {
-                Undo.RecordObject(langComp.TSVFile, "Change TSV File");
+                if (langComp.TSVFile) Undo.RecordObject(langComp.TSVFile, "Change TSV File");
                 langComp.TSVFile = EditorGUILayout.ObjectField("TSV File", langComp.TSVFile, typeof(TextAsset), true) as TextAsset;
 
                 if (GUILayout.Button("Get Text Assets In Scene"))
