@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talkKey: 101
+  talkKeyDelayed: 102
+  idStartDelayed: Delayed
 --- !u!114 &76802183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +184,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueContainer: {fileID: 11400000, guid: c915f3ca4eec3f146a4d7f1d755a620f, type: 2}
   dialogueController: {fileID: 0}
+  RefTsvLocalisation: DialogueIntegration
+--- !u!1001 &133356242
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463635504697309011, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403661684928080420, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
+      propertyPath: m_Name
+      value: LocalizationManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 995399d717c1ea24f9a5053fd212652a, type: 3}
 --- !u!1 &490382744
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +744,60 @@ Transform:
   - {fileID: 76802181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2024947325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4862311431558242071, guid: 128bd9258154f06449569db8928a6b5b, type: 3}
+  m_PrefabInstance: {fileID: 1408478127559497658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2049459063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2049459065}
+  - component: {fileID: 2049459064}
+  m_Layer: 0
+  m_Name: DialogsTSV
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2049459064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049459063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a8519b0ddb6154a83637d11e27a627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TSVFile: {fileID: -5403296532421656929, guid: 7467904d145590e4ea66e08683088c88, type: 3}
+  TMPList: []
+  TextList: []
+  TextMeshList: []
+  TextsKeys: []
+--- !u!4 &2049459065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049459063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 445.90387, y: 220.26291, z: -3.3910923}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1408478127559497658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,7 +857,7 @@ PrefabInstance:
     - target: {fileID: 1743007888280664485, guid: 128bd9258154f06449569db8928a6b5b, type: 3}
       propertyPath: dialogueUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2024947325}
     - target: {fileID: 1947044074692703256, guid: 128bd9258154f06449569db8928a6b5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -959.9684
@@ -849,3 +963,5 @@ SceneRoots:
   - {fileID: 1906463909}
   - {fileID: 490382748}
   - {fileID: 1081619453}
+  - {fileID: 133356242}
+  - {fileID: 2049459065}
