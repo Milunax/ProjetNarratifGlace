@@ -26,6 +26,17 @@ namespace GMSpace
         }
         #endregion
 
+        #region GameState
+        public enum GAME_STATE
+        {
+            WAKE_UP = 0,
+            DISCUSS = 1,
+            ROUTINE_TASK = 2,
+            SECONDARY_TASK = 3
+        }
+        #endregion
+
+
         #region Signal
         private float _wheelValue = 0f;
         private Vector2 _wheelClamp = new Vector3(0f, 100f);
@@ -49,7 +60,6 @@ namespace GMSpace
             return true;
         }
         #endregion
-
         #region Simon
         private bool _simonIsActive;
         private bool _simonIsSuccess;
@@ -66,7 +76,6 @@ namespace GMSpace
             set => _simonIsSuccess = value;
         }
         #endregion
-
         #region Labyrinthe
         private bool _labyrintheIsActive;
         private bool _labyrintheIsSuccess;
@@ -83,24 +92,6 @@ namespace GMSpace
             set => _labyrintheIsSuccess = value;
         }
         #endregion
-
-        #region Switchs
-        private bool _switchsIsActive;
-        private bool _switchsIsSuccess;
-
-        //Accessor for ergonomy and possible debug purposes
-        public bool GetSetSwitchsIsActive
-        {
-            get => _switchsIsActive;
-            set => _switchsIsActive = value;
-        }
-        public bool GetSetSwitchsIsSuccess
-        {
-            get => _switchsIsSuccess;
-            set => _switchsIsSuccess = value;
-        }
-        #endregion
-
         #region Wires
         private bool _wiresIsActive;
         private bool _wiresIsSuccess;

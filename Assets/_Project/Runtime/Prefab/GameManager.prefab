@@ -57,6 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc24f20a812bbba47a6fbab6e0d3540b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _primaryTouch: {fileID: -1151986714786456792, guid: f73229f12b3629b4b856fb9e41b2e191, type: 3}
-  _touchPosition: {fileID: 6668487878176963224, guid: f73229f12b3629b4b856fb9e41b2e191, type: 3}
+  primaryTouch: {fileID: -1151986714786456792, guid: f73229f12b3629b4b856fb9e41b2e191, type: 3}
+  touchPosition: {fileID: 6668487878176963224, guid: f73229f12b3629b4b856fb9e41b2e191, type: 3}
   _minimumDrag: 100
