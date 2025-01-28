@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputs : MonoBehaviour
 {
-    [SerializeField] private InputActionReference _primaryTouch;
-    [SerializeField] private InputActionReference _touchPosition;
+    public InputActionReference primaryTouch;
+    public InputActionReference touchPosition;
 
     [SerializeField] private float _minimumDrag;
 
@@ -14,18 +14,18 @@ public class PlayerInputs : MonoBehaviour
 
     private void OnEnable()
     {
-        _primaryTouch.action.started += OnFingerSlideStarted;
-        _primaryTouch.action.canceled += OnFingerSlideEnded;
+        primaryTouch.action.started += OnFingerSlideStarted;
+        primaryTouch.action.canceled += OnFingerSlideEnded;
 
-        _touchPosition.action.performed += UpdateFingerPosition;
+        touchPosition.action.performed += UpdateFingerPosition;
     }
 
     private void OnDisable()
     {
-        _primaryTouch.action.started -= OnFingerSlideStarted;
-        _primaryTouch.action.canceled -= OnFingerSlideEnded;
+        primaryTouch.action.started -= OnFingerSlideStarted;
+        primaryTouch.action.canceled -= OnFingerSlideEnded;
 
-        _touchPosition.action.performed -= UpdateFingerPosition;
+        touchPosition.action.performed -= UpdateFingerPosition;
     }
 
     private void UpdateFingerPosition(InputAction.CallbackContext ctx)
