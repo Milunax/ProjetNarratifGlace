@@ -1,46 +1,59 @@
+using GMSpace;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class WheelBehaviour : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] EventSystem _eventSystem;
+    [Header("Parameters")]
+    [SerializeField]float _minWheelVal = 0.0f;
+    [SerializeField]float _maxWheelVal = 0.0f;
+    [SerializeField] float _multiplyFactor = 1f;
 
-    private bool _isWeel = false;
-    private Vector2 _mousePos;
+    private Coroutine _UpdateWheel;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.playerInputs.primaryTouch.action.started += OnFingerSlideStarted;
+        GameManager.playerInputs.primaryTouch.action.canceled += OnFingerSlideEnded;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.playerInputs.primaryTouch.action.started -= OnFingerSlideStarted;
+        GameManager.playerInputs.primaryTouch.action.canceled -= OnFingerSlideEnded;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _mousePos = Input.mousePosition;
-            Detection();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
 
+    }
+
+    void OnFingerSlideStarted(InputAction.CallbackContext ctx) 
+    {
+        GameObject temp = GameManager.playerInputs.Detection();
+        if(temp == this && temp !=null)
+        {          
+            _UpdateWheel = StartCoroutine(UpdateWheel());
         }
     }
 
-    void Detection()
+    void OnFingerSlideEnded(InputAction.CallbackContext ctx)
     {
-        Ray ray = Camera.main.ScreenPointToRay(_mousePos);
-        if(Physics.Raycast(ray, out RaycastHit hit , Mathf.Infinity))
+        if(_UpdateWheel == null) StopCoroutine(_UpdateWheel);
+    }
+
+    IEnumerator UpdateWheel()
+    {
+        while (true)
         {
-            Debug.Log(hit.transform.position);
-            if(hit.collider == this)
-            {
-                Debug.Log("test");
-            }
+            GameManager.Instance.GetSetWheelValue = (GameManager.playerInputs.FingerPosition.y - GameManager.playerInputs.SlideStartPos.y) * _multiplyFactor;
+            yield return new WaitForFixedUpdate();
         }
+        yield return null;
     }
 }
