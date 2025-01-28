@@ -50,6 +50,5 @@ public class WheelBehaviour : MonoBehaviour
             GameManager.Instance.GetSetWheelValue = (GameManager.playerInputs.FingerPosition.y - GameManager.playerInputs.SlideStartPos.y) * _multiplyFactor;
             yield return new WaitForFixedUpdate();
         }
-        yield return null;
     }
 }
