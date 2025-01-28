@@ -1,16 +1,34 @@
 using UnityEngine;
 
-namespace GameManagerSpace
+namespace GMSpace
 {
     public class GameManager : MonoBehaviour
     {
         // Managers references //
         public static GameManager Instance;
+        public static PlayerInputs playerInputs;
 
         // Game Manager local variables //
+        #region NarrativeIA
+        private bool _narrativeIAIsActive;
+        private int _narrativeIALevel;
+
+        //Accessor for ergonomy and possible debug purposes
+        public bool GetSetNarrativeIAIsActive
+        {
+            get => _narrativeIAIsActive;
+            set => _narrativeIAIsActive = value;
+        }
+        public int GetSetNarrativeIALevel
+        {
+            get => _narrativeIALevel;
+            set => _narrativeIALevel = value;
+        }
+        #endregion
+
         #region Signal
-        private float _wheelValue;
-        private Vector2 _wheelClamp;
+        private float _wheelValue = 0f;
+        private Vector2 _wheelClamp = new Vector3(0f, 100f);
 
         public float GetSetWheelValue {
             get => _wheelValue;
@@ -33,24 +51,77 @@ namespace GameManagerSpace
         #endregion
 
         #region Simon
-        public bool _simonIsActive;
-        public bool _simonIsSuccess;
+        private bool _simonIsActive;
+        private bool _simonIsSuccess;
+
+        //Accessor for ergonomy and possible debug purposes
+        public bool GetSetSimonIsActive
+        {
+            get => _simonIsActive;
+            set => _simonIsActive = value;
+        }
+        public bool GetSetSimonIsSuccess
+        {
+            get => _simonIsSuccess;
+            set => _simonIsSuccess = value;
+        }
         #endregion
 
         #region Labyrinthe
-        public bool _labyrintheIsActive;
-        public bool _labyrintheIsSuccess;
+        private bool _labyrintheIsActive;
+        private bool _labyrintheIsSuccess;
+
+        //Accessor for ergonomy and possible debug purposes
+        public bool GetSetLabyrintheIsActive
+        {
+            get => _labyrintheIsActive;
+            set => _labyrintheIsActive = value;
+        }
+        public bool GetSetLabyrintheIsSuccess
+        {
+            get => _labyrintheIsSuccess;
+            set => _labyrintheIsSuccess = value;
+        }
         #endregion
 
         #region Switchs
-        public bool _switchsIsActive;
-        public bool _switchsIsSuccess;
+        private bool _switchsIsActive;
+        private bool _switchsIsSuccess;
+
+        //Accessor for ergonomy and possible debug purposes
+        public bool GetSetSwitchsIsActive
+        {
+            get => _switchsIsActive;
+            set => _switchsIsActive = value;
+        }
+        public bool GetSetSwitchsIsSuccess
+        {
+            get => _switchsIsSuccess;
+            set => _switchsIsSuccess = value;
+        }
         #endregion
 
         #region Wires
-        public bool _wiresIsActive;
-        public bool _wiresIsSuccess;
+        private bool _wiresIsActive;
+        private bool _wiresIsSuccess;
+
+        //Accessor for ergonomy and possible debug purposes
+        public bool GetSetWiresIsActive
+        {
+            get => _wiresIsActive;
+            set => _wiresIsActive = value;
+        }
+        public bool GetSetWiresIsSuccess
+        {
+            get => _wiresIsSuccess;
+            set => _wiresIsSuccess = value;
+        }
         #endregion
+
+        private void OnEnable()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
 
         private void Awake()
         {
@@ -63,8 +134,17 @@ namespace GameManagerSpace
             {
                 Debug.LogError("Too many GameManager instance ", gameObject);
             }
-        }
 
+            // Init Managers //
+            if (TryGetComponent<PlayerInputs>(out PlayerInputs inputComp))
+            {
+                playerInputs = inputComp;
+            }
+            else
+            { 
+                Debug.LogError("No PlayerInputs components was found in the GameManager", gameObject);
+            }
+        }
 
     }
 }
