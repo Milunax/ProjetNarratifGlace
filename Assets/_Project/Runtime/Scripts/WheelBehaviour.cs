@@ -10,7 +10,7 @@ public class WheelBehaviour : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField]float _minWheelVal = 0.0f;
-    [SerializeField]float _maxWheelVal = 0.0f;
+    [SerializeField]float _maxWheelVal = 100.0f;
     [SerializeField] float _multiplyFactor = 1f;
 
     private Coroutine _UpdateWheel;
@@ -19,18 +19,14 @@ public class WheelBehaviour : MonoBehaviour
     {
         GameManager.playerInputs.primaryTouch.action.started += OnFingerSlideStarted;
         GameManager.playerInputs.primaryTouch.action.canceled += OnFingerSlideEnded;
+
+        GameManager.Instance.SetWheelMinMax(_minWheelVal, _maxWheelVal);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.playerInputs.primaryTouch.action.started -= OnFingerSlideStarted;
         GameManager.playerInputs.primaryTouch.action.canceled -= OnFingerSlideEnded;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void OnFingerSlideStarted(InputAction.CallbackContext ctx) 
