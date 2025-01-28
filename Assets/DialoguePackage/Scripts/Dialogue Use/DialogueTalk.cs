@@ -126,7 +126,7 @@ public class DialogueTalk : DialogueGetData
         // donc en utilisant le tsv et le Localization package, je lui envoie la clé et recupère une valeur
         dialogueController.SetText(
             LocalizationManager.Instance.UniGetText(RefTsvLocalisation, nodeData.name),
-             LocalizationManager.Instance.UniGetText(RefTsvLocalisation, nodeData.key)
+            LocalizationManager.Instance.UniGetText(RefTsvLocalisation, nodeData.key)
             );
         dialogueController.SetImage(nodeData.sprite, nodeData.dialoguefaceimagetype);
         MakeButtons(nodeData.dialogueNodePorts);
@@ -159,7 +159,7 @@ public class DialogueTalk : DialogueGetData
     {
         if (nodeData.DialogueEventSo != null)
         {
-            nodeData.DialogueEventSo.RunEvent();
+            nodeData.DialogueEventSo.RunEvent(nodeData.tag);
         }
         CheckNodeType(GetNextNode(nodeData));
     }

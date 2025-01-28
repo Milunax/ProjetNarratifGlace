@@ -73,6 +73,7 @@ public class StartNodeData :BaseNodeData
 [System.Serializable]
 public class EventNodeData : BaseNodeData
 {
+    public string tag;
     public DialogueEventSO DialogueEventSo;
 }
 

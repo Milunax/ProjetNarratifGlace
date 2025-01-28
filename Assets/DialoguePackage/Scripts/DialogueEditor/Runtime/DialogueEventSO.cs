@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueEventSO : ScriptableObject
 {
-    public virtual void RunEvent()
+    public static event Action<string> DialogueEvent;
+
+    public virtual void RunEvent(string tag)
     {
-        Debug.Log("Event was called");
+        DialogueEvent?.Invoke(tag);
     }
 }

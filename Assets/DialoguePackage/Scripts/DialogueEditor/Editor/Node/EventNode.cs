@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -9,9 +7,13 @@ using UnityEngine.UIElements;
 public class EventNode : BaseNode
 {
     private DialogueEventSO dialogueEvent;
-    private ObjectField objectField;
+    private ObjectField eventField;
+
+    private string eventTag;
+    private TextField eventTagField; 
 
     public DialogueEventSO DialogueEvent { get => dialogueEvent; set => dialogueEvent = value; }
+    public string EventTag { get => eventTag; set => eventTag = value; }
 
     public EventNode()
     {
@@ -31,23 +33,42 @@ public class EventNode : BaseNode
         AddInputPort("Input", Port.Capacity.Multi);
         AddOutputPort("Output", Port.Capacity.Single);
 
-        objectField = new ObjectField()
+        eventField = new ObjectField()
         {
             objectType = typeof(DialogueEventSO),
             allowSceneObjects = false,
             value = dialogueEvent,
         };
         // Update value when value changed
-        objectField.RegisterValueChangedCallback(value =>
+        eventField.RegisterValueChangedCallback(value =>
         {
-            dialogueEvent = objectField.value as DialogueEventSO;
+            dialogueEvent = eventField.value as DialogueEventSO;
         });
-        objectField.SetValueWithoutNotify(dialogueEvent);
-        mainContainer.Add(objectField);
+        eventField.SetValueWithoutNotify(dialogueEvent);
+        mainContainer.Add(eventField);
+
+        //Tag Label
+        Label tagLabel = new Label("Event Tag");
+        tagLabel.AddToClassList("label_text");
+        tagLabel.AddToClassList("label");
+        mainContainer.Add(tagLabel);
+
+        //Tag field
+        eventTagField = new TextField("");
+        eventTagField.RegisterValueChangedCallback(value =>
+        {
+            eventTag = value.newValue;
+        });
+        eventTagField.AddToClassList("custom-text-field");
+        eventTagField.SetValueWithoutNotify(eventTag);
+        eventTagField.multiline = true;
+        eventTagField.AddToClassList("TextBox");
+        mainContainer.Add(eventTagField);
     }
 
     public override void LoadValueIntoField()
     {
-        objectField.SetValueWithoutNotify(dialogueEvent);
+        eventField.SetValueWithoutNotify(dialogueEvent);
+        eventTagField.SetValueWithoutNotify(eventTag);
     }
 }
