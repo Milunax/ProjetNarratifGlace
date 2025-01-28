@@ -12,6 +12,9 @@ public class PlayerInputs : MonoBehaviour
     private Vector2 _slideStartPos;
     private Vector2 _slideEndPos;
 
+    public Vector2 FingerPosition { get => _fingerPosition;}
+    public Vector2 SlideStartPos { get => _slideStartPos;}
+
     private void OnEnable()
     {
         primaryTouch.action.started += OnFingerSlideStarted;
@@ -83,5 +86,15 @@ public class PlayerInputs : MonoBehaviour
         // On bouge pas
         Debug.Log("BOUGE PAS");
         return Vector2.zero;
+    }
+
+    public GameObject Detection()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(_fingerPosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+        {
+            return hit.transform.gameObject;
+        }
+        return null;
     }
 }
