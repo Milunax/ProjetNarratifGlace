@@ -137,5 +137,10 @@ namespace GMSpace
             }
         }
 
+        private void Update()
+        {
+            Debug.Log(_wheelValue);
+        }
+
     }
 }
