@@ -40,14 +40,16 @@ public class WheelBehaviour : MonoBehaviour
 
     void OnFingerSlideEnded(InputAction.CallbackContext ctx)
     {
-        if(_UpdateWheel != null) StopCoroutine(_UpdateWheel);
+        if (_UpdateWheel != null) StopCoroutine(_UpdateWheel);
     }
 
     IEnumerator UpdateWheel()
     {
+        float startValue = GameManager.Instance.GetSetWheelValue;
+
         while (true)
         {
-            GameManager.Instance.GetSetWheelValue += GameManager.playerInputs.GetFingerDelta.y * _multiplyFactor;
+            GameManager.Instance.GetSetWheelValue = startValue + (GameManager.playerInputs.GetSlideDeltaV.y * _multiplyFactor);
             yield return new WaitForFixedUpdate();
         }
     }
