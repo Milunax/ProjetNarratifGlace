@@ -21,11 +21,12 @@ public class PlayerInputs : MonoBehaviour
     /// </summary>
     private Vector2 _slideDeltaV;
 
-    public Vector2 FingerPosition { get => _fingerPosition;}
-    public Vector2 SlideStartPos { get => _slideStartPos;}
+    public Vector2 GetFingerPosition { get => _fingerPosition;}
+    public Vector2 GetSlideStartPos { get => _slideStartPos;}
+    public Vector2 GetSlideEndPos { get => _slideEndPos; }
 
-    public Vector2 FingerPosition { get => _fingerPosition;}
-    public Vector2 SlideStartPos { get => _slideStartPos;}
+    public Vector2 GetFingerDelta { get => _fingerDelta; }
+    public Vector2 GetSlideDeltaV { get => _slideDeltaV;}
 
     private void OnEnable()
     {
