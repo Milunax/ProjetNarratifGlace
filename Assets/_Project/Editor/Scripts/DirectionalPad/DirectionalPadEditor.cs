@@ -18,16 +18,15 @@ public class DirectionalPadEditor : Editor
         {
             _methods = PadTarget.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly);
         }
-
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
-        var idMethod = EditorGUILayout.Popup("Select Method", 0, _methods.Select(m => m.Name).ToArray());
+        PadTarget.selectedMethodId = EditorGUILayout.Popup("Select Method", PadTarget.selectedMethodId, _methods.Select(m => m.Name).ToArray());
 
-        PadTarget.OnConfirm = (c) => _methods[idMethod].Invoke(PadTarget, new object[] { c });
+        PadTarget.OnConfirm = (c) => _methods[PadTarget.selectedMethodId].Invoke(PadTarget, new object[] { c });
 
         serializedObject.ApplyModifiedProperties();
     }
