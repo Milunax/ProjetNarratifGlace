@@ -32,7 +32,7 @@ public class WheelBehaviour : MonoBehaviour
     void OnFingerSlideStarted(InputAction.CallbackContext ctx) 
     {
         GameObject temp = GameManager.playerInputs.Detection();
-        if(temp == this && temp !=null)
+        if(temp != null && temp == gameObject)
         {          
             _UpdateWheel = StartCoroutine(UpdateWheel());
         }
@@ -40,14 +40,14 @@ public class WheelBehaviour : MonoBehaviour
 
     void OnFingerSlideEnded(InputAction.CallbackContext ctx)
     {
-        if(_UpdateWheel == null) StopCoroutine(_UpdateWheel);
+        if(_UpdateWheel != null) StopCoroutine(_UpdateWheel);
     }
 
     IEnumerator UpdateWheel()
     {
         while (true)
         {
-            GameManager.Instance.GetSetWheelValue = (GameManager.playerInputs.FingerPosition.y - GameManager.playerInputs.SlideStartPos.y) * _multiplyFactor;
+            GameManager.Instance.GetSetWheelValue += GameManager.playerInputs.GetFingerDelta.y * _multiplyFactor;
             yield return new WaitForFixedUpdate();
         }
     }
