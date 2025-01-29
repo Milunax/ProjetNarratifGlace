@@ -5,10 +5,10 @@ using UnityEditor;
 
 using UnityEngine;
 
-[CustomEditor(typeof(DirectionalPad))]
-public class DirectionalPadEditor : Editor
+[CustomEditor(typeof(DirectionalPadButton))]
+public class DirectionalPadButtonEditor : Editor
 {
-    DirectionalPad PadTarget => (DirectionalPad)target;
+    DirectionalPadButton PadTarget => (DirectionalPadButton)target;
 
     private MethodInfo[] _methods;
 
@@ -22,12 +22,11 @@ public class DirectionalPadEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
+        EditorGUI.BeginChangeCheck();
 
         PadTarget.selectedMethodId = EditorGUILayout.Popup("Select Method", PadTarget.selectedMethodId, _methods.Select(m => m.Name).ToArray());
 
-        PadTarget.OnConfirm = (c) => _methods[PadTarget.selectedMethodId].Invoke(PadTarget, new object[] { c });
-
-        serializedObject.ApplyModifiedProperties();
+        if(EditorGUI.EndChangeCheck())
+            EditorUtility.SetDirty(this);
     }
 }

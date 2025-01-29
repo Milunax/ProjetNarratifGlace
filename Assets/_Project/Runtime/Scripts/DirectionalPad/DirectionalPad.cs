@@ -1,5 +1,6 @@
 using GMSpace;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,41 +8,32 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class DirectionalPad : MonoBehaviour
 {
-    [SerializeField] public int selectedMethodId;
-    [SerializeField] public Action<CallbackContext> OnConfirm = delegate { };
+    [SerializeField] private List<GameObject> _buttonsList = new ();
 
     private void Start()
-    {
-        GameManager.playerInputs.primaryTouch.action.started += (c) => OnConfirm.Invoke(c);
+    { 
+        GameManager.playerInputs.primaryTouch.action.started += CheckButtonPressed;
+
     }
 
     private void OnDisable()
     {
-        GameManager.playerInputs.primaryTouch.action.started -= (c) => OnConfirm.Invoke(c);
+        GameManager.playerInputs.primaryTouch.action.started -= CheckButtonPressed;
     }
 
-    public void Confirm(CallbackContext c)
+    private void CheckButtonPressed(CallbackContext ctx)
     {
-        Debug.Log(c.ToString());
-    }
-
-    public void GoUp(CallbackContext c)
-    {
-
-    }
-
-    public void GoDown(CallbackContext c)
-    {
-
-    }
-
-    public void GoRight(CallbackContext c)
-    {
-
-    }
-
-    public void GoLeft(CallbackContext c)
-    {
-
+        var goDetected = GameManager.playerInputs.Detection();
+        foreach(GameObject gameObject in _buttonsList)
+        {
+            if (goDetected == gameObject)
+            {
+                if (goDetected.TryGetComponent(out DirectionalPadButton foundComponent))
+                {
+                    foundComponent.OnClick?.Invoke(ctx);
+                    break;
+                }
+            }
+        }
     }
 }
