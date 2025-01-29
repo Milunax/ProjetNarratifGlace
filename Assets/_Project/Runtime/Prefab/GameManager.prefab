@@ -90,4 +90,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryTouch: {fileID: -1151986714786456792, guid: f73229f12b3629b4b856fb9e41b2e191, type: 3}
   touchPosition: {fileID: 6668487878176963224, guid: f73229f12b3629b4b856fb9e41b2e191, type: 3}
+  touchDelta: {fileID: 8839959948440392514, guid: f73229f12b3629b4b856fb9e41b2e191, type: 3}
   _minimumDrag: 100
