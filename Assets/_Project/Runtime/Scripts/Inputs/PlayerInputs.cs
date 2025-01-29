@@ -21,6 +21,13 @@ public class PlayerInputs : MonoBehaviour
     /// </summary>
     private Vector2 _slideDeltaV;
 
+    public Vector2 GetFingerPosition { get => _fingerPosition;}
+    public Vector2 GetSlideStartPos { get => _slideStartPos;}
+    public Vector2 GetSlideEndPos { get => _slideEndPos; }
+
+    public Vector2 GetFingerDelta { get => _fingerDelta; }
+    public Vector2 GetSlideDeltaV { get => _slideDeltaV; }
+
     private void OnEnable()
     {
         primaryTouch.action.started += OnFingerSlideStarted;
@@ -102,5 +109,15 @@ public class PlayerInputs : MonoBehaviour
         // On bouge pas
         Debug.Log("BOUGE PAS");
         return Vector2.zero;
+    }
+
+    public GameObject Detection()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(_fingerPosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+        {
+            return hit.transform.gameObject;
+        }
+        return null;
     }
 }
