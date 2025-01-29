@@ -36,6 +36,9 @@ namespace GMSpace
         }
         #endregion
 
+        #region Switchs
+        
+        #endregion
 
         #region Signal
         [SerializeField] private float _wheelValue = 0f;

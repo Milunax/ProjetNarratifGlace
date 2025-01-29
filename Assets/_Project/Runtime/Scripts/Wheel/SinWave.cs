@@ -21,7 +21,7 @@ public class SinWave : MonoBehaviour
     private void Update()
     {
         Draw();
-        Debug.Log(GameManager.Instance.GetSetWheelValue);
+        //Debug.Log(GameManager.Instance.GetSetWheelValue);
         if(GameManager.Instance.GetSetWheelValue >= _ValToObtein - _marge && GameManager.Instance.GetSetWheelValue <= _ValToObtein + _marge)
         {
             if (GameManager.Instance.GetSetWaveValidity == false)
