@@ -24,6 +24,9 @@ public class PlayerInputs : MonoBehaviour
     public Vector2 FingerPosition { get => _fingerPosition;}
     public Vector2 SlideStartPos { get => _slideStartPos;}
 
+    public Vector2 FingerPosition { get => _fingerPosition;}
+    public Vector2 SlideStartPos { get => _slideStartPos;}
+
     private void OnEnable()
     {
         primaryTouch.action.started += OnFingerSlideStarted;
