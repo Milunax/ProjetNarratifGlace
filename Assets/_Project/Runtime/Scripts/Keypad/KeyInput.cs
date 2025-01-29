@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using UnityEngine;
 
 public class KeyInput : MonoBehaviour
 {
     [SerializeField] private char _keyChar;
 
-    public Action OnClick;
+    public Action<TextMeshProUGUI> OnClick;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +22,9 @@ public class KeyInput : MonoBehaviour
         OnClick -= Clicked;
     }
 
-    private void Clicked()
+    private void Clicked(TextMeshProUGUI TextToWriteIn)
     {
-        Debug.Log(_keyChar);
+        Debug.Log("Clicked : " + _keyChar);
+        TextToWriteIn.text += _keyChar;
     }
 }
