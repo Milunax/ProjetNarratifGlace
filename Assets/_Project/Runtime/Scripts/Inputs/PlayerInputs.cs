@@ -68,9 +68,7 @@ public class PlayerInputs : MonoBehaviour
         _slideEndPos = _fingerPosition;
         _slideDeltaV = _slideEndPos - _slideStartPos;
 
-        Vector2 dir = DetectSlide();
-
-        _fingerDelta = Vector2.zero;
+        _fingerDelta = DetectSlide();
     }
 
     //VALEURS DE RETOUR SUJETTES À CHANGEMENTS
