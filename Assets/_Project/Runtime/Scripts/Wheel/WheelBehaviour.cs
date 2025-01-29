@@ -14,6 +14,7 @@ public class WheelBehaviour : MonoBehaviour
     [SerializeField] float _multiplyFactor = 1f;
 
     private Coroutine _UpdateWheel;
+    private bool _isActive;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class WheelBehaviour : MonoBehaviour
         GameManager.playerInputs.primaryTouch.action.canceled += OnFingerSlideEnded;
 
         GameManager.Instance.SetWheelMinMax(_minWheelVal, _maxWheelVal);
+        _isActive = GameManager.Instance.GetSetWaveValidity;
     }
 
     private void OnDisable()
@@ -32,8 +34,8 @@ public class WheelBehaviour : MonoBehaviour
     void OnFingerSlideStarted(InputAction.CallbackContext ctx) 
     {
         GameObject temp = GameManager.playerInputs.Detection();
-        if(temp != null && temp == gameObject)
-        {          
+        if (temp != null && temp == gameObject)
+        {
             _UpdateWheel = StartCoroutine(UpdateWheel());
         }
     }
