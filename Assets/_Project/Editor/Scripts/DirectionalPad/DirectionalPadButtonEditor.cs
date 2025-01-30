@@ -5,7 +5,7 @@ using UnityEditor;
 
 using UnityEngine;
 
-[CustomEditor(typeof(DirectionalPadButton))]
+//[CustomEditor(typeof(DirectionalPadButton))]
 public class DirectionalPadButtonEditor : Editor
 {
     DirectionalPadButton PadTarget => (DirectionalPadButton)target;
@@ -24,7 +24,7 @@ public class DirectionalPadButtonEditor : Editor
     {
         EditorGUI.BeginChangeCheck();
 
-        PadTarget.selectedMethodId = EditorGUILayout.Popup("Select Method", PadTarget.selectedMethodId, _methods.Select(m => m.Name).ToArray());
+        //PadTarget.selectedMethodId = EditorGUILayout.Popup("Select Method", PadTarget.selectedMethodId, _methods.Select(m => m.Name).ToArray());
 
         if(EditorGUI.EndChangeCheck())
             EditorUtility.SetDirty(this);

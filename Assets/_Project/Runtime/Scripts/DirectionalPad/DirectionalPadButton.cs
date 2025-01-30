@@ -8,15 +8,16 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class DirectionalPadButton : MonoBehaviour
 {
-    [SerializeField] public int selectedMethodId;
-    [SerializeField] public Action<CallbackContext> OnClick;
+    [SerializeField] DIRECTIONAL_PAD_INFO _inputDirection;
+/*    [SerializeField] public int selectedMethodId;
+    [SerializeField] public Action<CallbackContext> OnClick;*/
 
-    public event Action<DIRECTIONAL_PAD_INFO> OnButtonPressed;
+    //public event Action<DIRECTIONAL_PAD_INFO> OnButtonPressed;
 
     private void Awake()
     {
-        var _methods = GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly);
-        OnClick = (c) => _methods[selectedMethodId].Invoke(this, new object[] { c });
+        //var _methods = GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly);
+        //OnClick = (c) => _methods[selectedMethodId].Invoke(this, new object[] { c });
 
         //GameManager.playerInputs.primaryTouch.action.started += (c) => OnClick.Invoke(c);
     }
@@ -26,7 +27,7 @@ public class DirectionalPadButton : MonoBehaviour
         //GameManager.playerInputs.primaryTouch.action.started -= (c) => OnClick.Invoke(c);
     }
 
-    public DIRECTIONAL_PAD_INFO Confirm(CallbackContext c)
+   /* public DIRECTIONAL_PAD_INFO Confirm(CallbackContext c)
     {
         Debug.Log(DIRECTIONAL_PAD_INFO.CONFIRM.ToString());
         OnButtonPressed?.Invoke(DIRECTIONAL_PAD_INFO.CONFIRM);
@@ -59,5 +60,11 @@ public class DirectionalPadButton : MonoBehaviour
         Debug.Log(DIRECTIONAL_PAD_INFO.LEFT.ToString());
         OnButtonPressed?.Invoke(DIRECTIONAL_PAD_INFO.LEFT);
         return DIRECTIONAL_PAD_INFO.LEFT;
+    }*/
+
+    public DIRECTIONAL_PAD_INFO PressedInput()
+    {
+        Debug.Log(_inputDirection.ToString());
+        return _inputDirection;
     }
 }

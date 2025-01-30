@@ -13,6 +13,9 @@ public class PipesGame : MonoBehaviour
     void Start()
     // Start is called before the first frame update
     {
+        //FindObjectOfType<DirectionalPad>().OnKeyPressed += 
+
+
         _pipes.AddRange(GetComponentsInChildren<Pipe>());
         _pipes = _pipes.OrderBy(e => e.Id).ToList();
 

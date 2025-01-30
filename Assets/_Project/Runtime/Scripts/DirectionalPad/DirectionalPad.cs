@@ -10,10 +10,11 @@ public class DirectionalPad : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _buttonsList = new ();
 
+    public event Action<DIRECTIONAL_PAD_INFO> OnKeyPressed;
+
     private void Start()
     { 
         GameManager.playerInputs.primaryTouch.action.started += CheckButtonPressed;
-
     }
 
     private void OnDisable()
@@ -30,7 +31,9 @@ public class DirectionalPad : MonoBehaviour
             {
                 if (goDetected.TryGetComponent(out DirectionalPadButton foundComponent))
                 {
-                    foundComponent.OnClick?.Invoke(ctx);
+                    //foundComponent.OnClick?.Invoke(ctx);
+                    DIRECTIONAL_PAD_INFO inputInfo = foundComponent.PressedInput();
+                    OnKeyPressed?.Invoke(inputInfo);
                     break;
                 }
             }
