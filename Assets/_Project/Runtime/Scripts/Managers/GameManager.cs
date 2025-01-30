@@ -137,5 +137,9 @@ namespace GMSpace
             }
         }
 
+        private void Update()
+        {
+            //Debug.Log("GM WheelValue : " + _wheelValue);
+        }
     }
 }

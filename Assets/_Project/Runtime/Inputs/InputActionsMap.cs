@@ -46,6 +46,15 @@ namespace GameInput
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TouchDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""d1109ce7-6373-4038-9420-739a4d25b7ae"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -53,6 +62,17 @@ namespace GameInput
                     ""name"": """",
                     ""id"": ""3357d464-b41d-46ca-9851-07edd32f4dea"",
                     ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5c55de3-858e-49aa-b0d3-f2c7d456b61c"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -81,6 +101,39 @@ namespace GameInput
                     ""action"": ""TouchPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7cc6eabf-7c9f-4bad-b91f-cfef1c914c53"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d9f4fdc-9908-477a-952f-67a857eef0b0"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac80f7a3-618f-4fc0-bb6b-f52e4a1a3610"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -91,6 +144,7 @@ namespace GameInput
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_TouchPosition = m_Gameplay.FindAction("TouchPosition", throwIfNotFound: true);
             m_Gameplay_TouchPress = m_Gameplay.FindAction("TouchPress", throwIfNotFound: true);
+            m_Gameplay_TouchDelta = m_Gameplay.FindAction("TouchDelta", throwIfNotFound: true);
         }
 
         ~@InputActionsMap()
@@ -159,12 +213,14 @@ namespace GameInput
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_TouchPosition;
         private readonly InputAction m_Gameplay_TouchPress;
+        private readonly InputAction m_Gameplay_TouchDelta;
         public struct GameplayActions
         {
             private @InputActionsMap m_Wrapper;
             public GameplayActions(@InputActionsMap wrapper) { m_Wrapper = wrapper; }
             public InputAction @TouchPosition => m_Wrapper.m_Gameplay_TouchPosition;
             public InputAction @TouchPress => m_Wrapper.m_Gameplay_TouchPress;
+            public InputAction @TouchDelta => m_Wrapper.m_Gameplay_TouchDelta;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -180,6 +236,9 @@ namespace GameInput
                 @TouchPress.started += instance.OnTouchPress;
                 @TouchPress.performed += instance.OnTouchPress;
                 @TouchPress.canceled += instance.OnTouchPress;
+                @TouchDelta.started += instance.OnTouchDelta;
+                @TouchDelta.performed += instance.OnTouchDelta;
+                @TouchDelta.canceled += instance.OnTouchDelta;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -190,6 +249,9 @@ namespace GameInput
                 @TouchPress.started -= instance.OnTouchPress;
                 @TouchPress.performed -= instance.OnTouchPress;
                 @TouchPress.canceled -= instance.OnTouchPress;
+                @TouchDelta.started -= instance.OnTouchDelta;
+                @TouchDelta.performed -= instance.OnTouchDelta;
+                @TouchDelta.canceled -= instance.OnTouchDelta;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -211,6 +273,7 @@ namespace GameInput
         {
             void OnTouchPosition(InputAction.CallbackContext context);
             void OnTouchPress(InputAction.CallbackContext context);
+            void OnTouchDelta(InputAction.CallbackContext context);
         }
     }
 }
