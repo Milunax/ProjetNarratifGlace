@@ -28,30 +28,35 @@ public class DirectionalPadButton : MonoBehaviour
 
     public DIRECTIONAL_PAD_INFO Confirm(CallbackContext c)
     {
+        Debug.Log(DIRECTIONAL_PAD_INFO.CONFIRM.ToString());
         OnButtonPressed?.Invoke(DIRECTIONAL_PAD_INFO.CONFIRM);
         return DIRECTIONAL_PAD_INFO.CONFIRM;
     }
 
     public DIRECTIONAL_PAD_INFO GoUp(CallbackContext c)
     {
+        Debug.Log(DIRECTIONAL_PAD_INFO.UP.ToString());
         OnButtonPressed?.Invoke(DIRECTIONAL_PAD_INFO.UP);
         return DIRECTIONAL_PAD_INFO.UP;
     }
 
     public DIRECTIONAL_PAD_INFO GoDown(CallbackContext c)
     {
+        Debug.Log(DIRECTIONAL_PAD_INFO.DOWN.ToString());
         OnButtonPressed?.Invoke(DIRECTIONAL_PAD_INFO.DOWN);
         return DIRECTIONAL_PAD_INFO.DOWN;
     }
 
     public DIRECTIONAL_PAD_INFO GoRight(CallbackContext c)
     {
+        Debug.Log(DIRECTIONAL_PAD_INFO.RIGHT.ToString());
         OnButtonPressed?.Invoke(DIRECTIONAL_PAD_INFO.RIGHT);
         return DIRECTIONAL_PAD_INFO.RIGHT;
     }
 
     public DIRECTIONAL_PAD_INFO GoLeft(CallbackContext c)
     {
+        Debug.Log(DIRECTIONAL_PAD_INFO.LEFT.ToString());
         OnButtonPressed?.Invoke(DIRECTIONAL_PAD_INFO.LEFT);
         return DIRECTIONAL_PAD_INFO.LEFT;
     }
