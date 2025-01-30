@@ -140,10 +140,15 @@ public class LocalizationComponent : MonoBehaviour
     public string GetText(string Key, bool keyIsLanguage = false)
     {
         if (cantBeUse) return ErrorCall();
-        if (Key == "")
+        if (Key == null)
         {
             Debug.LogError("Key was null", gameObject);
             return "KEY WAS NULL";
+        }
+        if (Key == "")
+        {
+            Debug.LogWarning("Key was empty", gameObject);
+            return "";
         }
         if (!MapOfTexts.ContainsKey(Key)) 
         { 
