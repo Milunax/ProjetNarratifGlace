@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
 
 public class TextInput : BaseKeypadText
 {
@@ -9,6 +5,11 @@ public class TextInput : BaseKeypadText
     {
         base.Start();
 
+        ResetText();
+    }
+
+    public void ResetText()
+    {
         textComponent.text = "";
     }
 }
