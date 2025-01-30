@@ -5,13 +5,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using TMPro;
+using System;
+using TMPro;
 
 public class WheelBehaviour : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField]float _minWheelVal = 0.0f;
     [SerializeField]float _maxWheelVal = 100.0f;
-    [SerializeField] float _multiplyFactor = 1f;
+    [SerializeField]float _multiplyFactor = 1f;
+    [SerializeField] TMP_Text _scrolltext;
 
     private Coroutine _UpdateWheel;
     private bool _isActive;
@@ -51,6 +55,7 @@ public class WheelBehaviour : MonoBehaviour
 
         while (true)
         {
+            _scrolltext.text = GameManager.Instance.GetSetWheelValue.ToString();
             GameManager.Instance.GetSetWheelValue = startValue + (GameManager.playerInputs.GetSlideDeltaV.y * _multiplyFactor);
             yield return new WaitForFixedUpdate();
         }
