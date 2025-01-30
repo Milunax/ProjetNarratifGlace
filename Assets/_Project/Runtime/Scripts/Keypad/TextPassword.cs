@@ -7,6 +7,8 @@ public class TextPassword : BaseKeypadText
 {
     [SerializeField] private int _numberOfChar;
 
+    public int numberOfChar => _numberOfChar;
+
     // Start is called before the first frame update
     protected override void Start()
     {

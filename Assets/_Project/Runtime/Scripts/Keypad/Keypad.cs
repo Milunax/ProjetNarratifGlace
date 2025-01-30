@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -33,6 +34,7 @@ public class Keypad : MonoBehaviour
             if (goDetected == key.gameObject)
             {
                 key.OnClick?.Invoke(_textInputs[0].textComponent);
+                CompareTexts();
                 break;
             }
         }
@@ -51,5 +53,18 @@ public class Keypad : MonoBehaviour
                 _textInputs = _textInputs.OrderBy(e => e.id).ToList();
                 break;
         }
+    }
+
+    private bool CompareTexts()
+    {
+        if (_textInputs[0].textComponent.text.Length == _textPasswords[0].numberOfChar)
+        {
+            if(_textInputs[0].textComponent.text == _textPasswords[0].textComponent.text)
+            {
+                return true;
+            }
+            else return false;
+        }
+        return false;
     }
 }

@@ -24,7 +24,7 @@ public class KeyInput : MonoBehaviour
 
     private void Clicked(TextMeshProUGUI TextToWriteIn)
     {
-        Debug.Log("Clicked : " + _keyChar);
+        //Debug.Log(name);
         TextToWriteIn.text += _keyChar;
     }
 }
