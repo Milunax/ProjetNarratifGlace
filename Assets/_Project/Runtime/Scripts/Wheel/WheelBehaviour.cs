@@ -11,7 +11,8 @@ using System;
 public class WheelBehaviour : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Material _sinWave;
+    [SerializeField] Material _waveMaterail;
+    [SerializeField] Shader _waveShader;
 
     [Header("Parameters")]
     [SerializeField]float _minWheelVal = 0.0f;
@@ -19,7 +20,6 @@ public class WheelBehaviour : MonoBehaviour
     [SerializeField]float _multiplyFactor = 1f;
     [SerializeField] TMP_Text _scrolltext;
 
-    //SinWave _waveParam;
     private Coroutine _UpdateWheel;
     private bool _isActive;
 
@@ -30,6 +30,7 @@ public class WheelBehaviour : MonoBehaviour
 
         GameManager.Instance.SetWheelMinMax(_minWheelVal, _maxWheelVal);
         _isActive = GameManager.Instance.GetSetWaveValidity;
+        
     }
 
     private void OnDisable()

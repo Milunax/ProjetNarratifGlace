@@ -37,7 +37,13 @@ namespace GMSpace
         #endregion
 
         #region Switchs
-        
+        private bool _switchShotCircuit;
+
+        public bool switchshortCiruit 
+        {
+            get => _switchShotCircuit;
+            set => _switchShotCircuit = value;
+        }
         #endregion
 
         #region Signal

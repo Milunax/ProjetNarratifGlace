@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using DG.Tweening;
 using System.Runtime.InteropServices.WindowsRuntime;
+using GMSpace;
 
 public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
 {
@@ -28,11 +30,23 @@ public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
 
     void Start()
     {
+        GameManager.playerInputs.primaryTouch.action.started += OnFingerSlideStarted;
+
         _onY = _toggleIndicator.anchoredPosition.y;
         _offY = -_toggleIndicator.anchoredPosition.y;
-        Toggle(_isOn);
     }
 
+    void OnFingerSlideStarted(InputAction.CallbackContext ctx)
+    {
+        GameObject temp = GameManager.playerInputs.Detection();
+        if (temp != null && temp == gameObject)
+        {
+            Debug.Log("DD");
+            Toggle(_isOn);
+        }
+    }
+
+    //---- Activation ----//
     void Toggle(bool value)
     {
         if(_isLocked == false)
@@ -47,6 +61,7 @@ public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    //---- Color switching ----//
     void ToggleColor(bool value)
     {
         if(value)
@@ -55,6 +70,7 @@ public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
             _backgroundImg.DOColor(_colorOff, _tweenTime);
     }
 
+    //---- Animation of the switches ----//
     void MoveIndicator (bool value)
     {
         if (value)
