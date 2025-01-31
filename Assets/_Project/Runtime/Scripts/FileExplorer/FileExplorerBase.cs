@@ -1,20 +1,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GMSpace;
+using UnityEngine.UI;
 
 public class FileExplorerBase : MonoBehaviour
 {
     [Header("Display")]
-    [SerializeField] GameObject _textContainer;
-    [SerializeField] FileExplorerLine _textLine;
+    [SerializeField] private GameObject _textContainer;
+    private RectTransform _rectTextContainer;
+    [SerializeField] private GameObject _textLinePrefab;
+    private List<FileExplorerLine> _textLines = new List<FileExplorerLine>();
+
+    private float GetTextContainerSize { get => _rectTextContainer.sizeDelta.x; }
+
     [Header("Display Paddings")]
-    [SerializeField] Vector2 _topLeftPadding;
-    [SerializeField] float _linePadding = 10f;
-    [SerializeField] float _folderPadding = 20f;
+    [SerializeField] private Vector2 _topLeftPadding;
+    [SerializeField] private float _linePadding = 10f;
+    [SerializeField] private float _folderPadding = 20f;
+    [SerializeField] private float _textSize = 20f;
+
+    [Header("Display Scroll")]
+    [SerializeField] private Image _topIndicator;
+    [SerializeField] private Image _bottomIndicator;
+    private int _skippedSteps = 0;
+    private float _topPosY;
+    private float _bottomPosY;
+    private int _maxLineOnScreen;
+
+    public float GetSetTextSize
+    {
+        get => _textSize;
+        set => _textSize = value;
+    }
+
 
     [Space(15)]
     [Header("Root Data")]
     [SerializeField] private List<FileExplorerDataSO> _rootData = new List<FileExplorerDataSO>();
+
 
     private List<DISPLAYED_DATA> _dataForDisplay = new List<DISPLAYED_DATA>();
     private List<int> _dataCursor = new List<int>();
@@ -98,10 +121,13 @@ public class FileExplorerBase : MonoBehaviour
 
     private void Start()
     {
-        OpeningFileExplorer();
+        TryGetComponent<RectTransform>(out _rectTextContainer);
+        SetupTextDisplayValues();
+
+        Opening();
     }
 
-    public void OpeningFileExplorer()
+    public void Opening()
     {
         _dataForDisplay = new List<DISPLAYED_DATA>();
 
@@ -113,6 +139,8 @@ public class FileExplorerBase : MonoBehaviour
         if (_dataForDisplay.Count <= 0) return;
 
         ResetCursorPos();
+
+        BrowsDataRefresh();
     }
 
     private void SetDisplayData(List<DISPLAYED_DATA> dataList, FileExplorerDataSO current, int index)
@@ -156,27 +184,75 @@ public class FileExplorerBase : MonoBehaviour
 
     private void BrowsDataRefresh(int startPos = 0)
     {
+        if (startPos < 0) startPos = 0;
+
         List<int> browsCursor = new List<int>();
         browsCursor.Add(0);
         bool isEnd = false;
+
+        if (_textLines.Count-1 >= startPos)
+        {
+            for (int i = startPos; i < _textLines.Count; i++)
+            {
+                FileExplorerLine item = _textLines[i];
+                _textLines.Remove(item);
+                item.Delete();
+            }
+        }
 
         while (!isEnd)
         {
             int cursorIndex = browsCursor.Count - 1;
 
-            int currentPos = 0;
-            foreach (int i in browsCursor)
+            int currentLine = TotalDataLines(browsCursor);
+
+            List<DISPLAYED_DATA> currentList = _dataForDisplay;
+
+            for (int i = 0; i < browsCursor.Count - 1; i++)
             {
-                currentPos += i;
+                currentList = currentList[i].childs;
             }
-            if (currentPos >= startPos)
+            DISPLAYED_DATA currentItem = currentList[browsCursor[cursorIndex]];
+
+            if (currentLine >= startPos)
             {
-
+                FileExplorerLine item = CreateTextLine(currentItem);
+                SetDisplayLines(item, currentLine, browsCursor.Count - 1);
             }
 
-            
+            if (currentItem.childs.Count > 0)
+            {
+                _dataCursor.Add(0);
+            }
+            else
+            {
+                int next = browsCursor[cursorIndex] + 1;
 
+                if (next < currentList.Count)
+                {
+                    browsCursor[cursorIndex] = next;
+                }
+                else
+                {
+                    for (int i = 0; i < _dataCursor.Count; i++)
+                    {
+                        if (next >= currentList.Count && cursorIndex > 0)
+                        {
+                            browsCursor.RemoveAt(cursorIndex);
+                            cursorIndex = browsCursor.Count - 1;
+                            next = _dataCursor[cursorIndex] + 1;
+                        }
+                        else
+                        {
+                            if (next < currentList.Count) _dataCursor[cursorIndex] = next;
+                            else { isEnd = true; }
+                        }
+                    }
+                }
+            }
         }
+
+        UpdateDisplayLine();
     }
 
     private void ResetCursorPos()
@@ -224,12 +300,20 @@ public class FileExplorerBase : MonoBehaviour
                 return;
             }
 
-            if (next >= GetDataCurrentListLength && GetDataCursorIndex > 0)
+            for (int i = 0; i < _dataCursor.Count; i++)
             {
-                _dataCursor[GetDataCursorIndex -1] += 1;
-                _dataCursor.RemoveAt(GetDataCursorIndex);
-                return;
+                if (next >= GetDataCurrentListLength && GetDataCursorIndex > 0)
+                {
+                    _dataCursor.RemoveAt(GetDataCursorIndex);
+                    next = _dataCursor[GetDataCursorIndex] + 1;
+                }
+                else
+                {
+                    if (next < GetDataCurrentListLength) _dataCursor[GetDataCursorIndex] = next;
+                    return;
+                }
             }
+
         }
     }
 
@@ -246,8 +330,86 @@ public class FileExplorerBase : MonoBehaviour
         _dataCursor.Add(0);
     }
 
-    private void DisplayLine(DISPLAYED_DATA data)
+    private int TotalDataLines(int level = 0)
     {
+        int total = 0;
 
+        foreach (DISPLAYED_DATA item in _dataForDisplay)
+        {
+            if (item.childs.Count > 0) total += TotalDataIndex(level + 1);
+            total++;
+        }
+
+        return total;
+    }
+    private int TotalDataLines(List<int> list, int level = 0)
+    {
+        int total = 0;
+
+        int i = 0;
+        foreach (DISPLAYED_DATA item in _dataForDisplay)
+        {
+            if (level < list.Count && list[level] < i) break;
+
+            if (item.childs.Count > 0) total += TotalDataLines(list, level + 1);
+            total++;
+        }
+
+        return total;
+    }
+
+    private FileExplorerLine CreateTextLine(DISPLAYED_DATA data)
+    {
+        GameObject line = Instantiate(_textLinePrefab, _textContainer.transform);
+        line.name = data.displayName;
+
+        line.TryGetComponent<FileExplorerLine>(out FileExplorerLine scriptLine);
+        _textLines.Add(scriptLine);
+
+        scriptLine.SetupVisual(_rectTextContainer.sizeDelta.x, _textSize, data.displayName, data.fileType, data.isBlocked);
+
+        return scriptLine;
+    }
+    private void SetupTextDisplayValues()
+    {
+        _topPosY = -(_topLeftPadding.y + (_textSize / 2));
+        _bottomPosY = -GetTextContainerSize - _topPosY;
+
+        int count = 0;
+        float temp = _topPosY;
+        while (temp >= _bottomPosY)
+        {
+            count++;
+            temp -= _linePadding + _textSize;
+        }
+
+        _maxLineOnScreen = count;
+    }
+    private void SetDisplayLines(FileExplorerLine item, int line, int column)
+    {
+        item.GetRectTransform.localPosition = new Vector2(item.GetRectTransform.localPosition.x + (_folderPadding * column),
+                                                          item.GetRectTransform.localPosition.y - ((_linePadding + _textSize) * line));
+
+        if (line >= _skippedSteps && line <= _maxLineOnScreen) item.SetVisibility(true);
+        else item.SetVisibility(false);
+    }
+    private void UpdateDisplayLine()
+    {
+        int halfMaxLine = _maxLineOnScreen / 2;
+
+        int currentIndex = TotalDataLines(_dataCursor);
+        if (currentIndex >= halfMaxLine && currentIndex <= _textLines.Count - halfMaxLine)
+        {
+            _skippedSteps = currentIndex - halfMaxLine;
+        }
+
+        _rectTextContainer.localPosition = new Vector2(_rectTextContainer.localPosition.x, (_linePadding + _textSize) * _skippedSteps);
+
+        for (int i = 0; i < _textLines.Count; i++)
+        {
+            if (i < _skippedSteps) _textLines[i].SetVisibility(false);
+            else if (i >= _skippedSteps && i <= _skippedSteps + _maxLineOnScreen) _textLines[i].SetVisibility(true);
+            else _textLines[i].SetVisibility(false);
+        }
     }
 }
