@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc89dd0108f5df4f910a0a3b3496f90, type: 3}
+  m_Name: New Dialogue Container SO
+  m_EditorClassIdentifier: 
+  nodeLinkDatas:
+  - baseNodeGuid: 1b965c61-610d-47b4-bc33-f0eee1c94baa
+    targetNodeGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
+  - baseNodeGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
+    targetNodeGuid: 9b1ca8e9-57a7-4aff-9edc-7d95779ea445
+  - baseNodeGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
+    targetNodeGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
+  - baseNodeGuid: 6b141308-2dca-4b9a-8aa8-2cb6ab934d47
+    targetNodeGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
+  - baseNodeGuid: 9b1ca8e9-57a7-4aff-9edc-7d95779ea445
+    targetNodeGuid: bec8d61d-2cb4-4d60-bb3a-8e1f70f94a51
+  - baseNodeGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
+    targetNodeGuid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
+  - baseNodeGuid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
+    targetNodeGuid: 93e8ef9a-977c-436e-a89c-f6612a947e77
+  dialogueNodeDatas:
+  - nodeguid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
+    position: {x: 1128.7999, y: 286.4}
+    dialogueNodePorts:
+    - InputGuid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
+      OutputGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
+      Key: Option_Name02
+      ID_Port: 0
+    sprite: {fileID: 21300000, guid: a87ba417c3dde1346b95b4209eddfc4b, type: 3}
+    dialoguefaceimagetype: 0
+    name: Name_Test02
+    key: Key_Text02
+  - nodeguid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
+    position: {x: 756, y: 159.2}
+    dialogueNodePorts:
+    - InputGuid: 9b1ca8e9-57a7-4aff-9edc-7d95779ea445
+      OutputGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
+      Key: Option_A
+      ID_Port: 0
+    - InputGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
+      OutputGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
+      Key: Option_B
+      ID_Port: 0
+    sprite: {fileID: 21300000, guid: ca9cb1c101ef55c4ea7339a1a0f1f99f, type: 3}
+    dialoguefaceimagetype: 0
+    name: Name_Test01
+    key: Key_Text01
+  endNodeDatas:
+  - nodeguid: bec8d61d-2cb4-4d60-bb3a-8e1f70f94a51
+    position: {x: 1478.3999, y: 60.8}
+    endNodeTypes: 0
+  - nodeguid: 93e8ef9a-977c-436e-a89c-f6612a947e77
+    position: {x: 1788.7999, y: 229.6}
+    endNodeTypes: 0
+  startNodeDatas:
+  - nodeguid: 1b965c61-610d-47b4-bc33-f0eee1c94baa
+    position: {x: 593.60004, y: 116.8}
+    node_id: 
+    mainStartNode: 1
+  - nodeguid: 6b141308-2dca-4b9a-8aa8-2cb6ab934d47
+    position: {x: 924, y: 414.4}
+    node_id: Delayed
+    mainStartNode: 0
+  eventNodeDatas:
+  - nodeguid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
+    position: {x: 1478.3999, y: 222.40001}
+    tag: test bleu
+    DialogueEventSo: {fileID: 11400000, guid: e0ed1d347ced37e4aad7753fb903cc6f, type: 2}
+  - nodeguid: 9b1ca8e9-57a7-4aff-9edc-7d95779ea445
+    position: {x: 1132, y: 94.399994}
+    tag: test vert
+    DialogueEventSo: {fileID: 11400000, guid: e0ed1d347ced37e4aad7753fb903cc6f, type: 2}

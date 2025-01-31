@@ -47,10 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   languages: 0a0000000e00000022000000
   defaultLanguage: 10
-  currentLanguage: 34
+  currentLanguage: 10
   startRoutine: 1
   LanguageSelection: {fileID: 2682695221668001164}
   refreshLogs: 1
+  returnDefaultLanguageIfPossible: 0
 --- !u!114 &2682695221668001164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,3 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TSVFile: {fileID: 6618102311697462576, guid: 51f61d321ed0ba44f91ff8b101797566, type: 3}
+  TMPList: []
+  TextList: []
+  TextMeshList: []
+  TextsKeys: []
