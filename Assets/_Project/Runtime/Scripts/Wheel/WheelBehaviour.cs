@@ -30,7 +30,7 @@ public class WheelBehaviour : MonoBehaviour
 
         GameManager.Instance.SetWheelMinMax(_minWheelVal, _maxWheelVal);
         _isActive = GameManager.Instance.GetSetWaveValidity;
-        
+        _waveMaterail = GetComponent<Material>();
     }
 
     private void OnDisable()
@@ -61,7 +61,7 @@ public class WheelBehaviour : MonoBehaviour
         {
             _scrolltext.text = GameManager.Instance.GetSetWheelValue.ToString();
             GameManager.Instance.GetSetWheelValue = startValue + (GameManager.playerInputs.GetSlideDeltaV.y * _multiplyFactor);
-            
+            //_waveShader.
             yield return new WaitForFixedUpdate();
         }
     }

@@ -36,6 +36,11 @@ public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
         _offY = -_toggleIndicator.anchoredPosition.y;
     }
 
+    void OnDisable()
+    {
+        GameManager.playerInputs.primaryTouch.action.started -= OnFingerSlideStarted;
+    }
+
     void OnFingerSlideStarted(InputAction.CallbackContext ctx)
     {
         GameObject temp = GameManager.playerInputs.Detection();
