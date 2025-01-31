@@ -58,6 +58,11 @@
 
         // Monochrome
         _MonochromeOnOff("Monochrome OnOff", Int) = 0
+
+        // --- Bloom ---
+        _BloomOnOff("Bloom OnOff (0=off,1=on)", Range(0,1)) = 0
+        _BloomThreshold("Bloom Threshold", Range(0,2)) = 1
+        _BloomIntensity("Bloom Intensity", Range(0,5)) = 1
     }
 
     SubShader
@@ -126,6 +131,11 @@
 
             int   _MonochromeOnOff;
 
+            // Bloom
+            float _BloomOnOff;
+            float _BloomThreshold;
+            float _BloomIntensity;
+
             //----------------------------------
             // 辅助函数
             //----------------------------------
@@ -137,6 +147,27 @@
             float EaseIn(float t0, float t1, float t)
             {
                 return 2.0 * smoothstep(t0, 2.0 * t1 - t0, t);
+            }
+
+             // Luminance 用于 Bloom
+            float Luminance(float4 c)
+            {
+                return dot(c.rgb, float3(0.299, 0.587, 0.114));
+            }
+
+            // 简易BoxBlur(3x3) => Bloom
+            float4 SampleBox9(sampler2D tex, float2 uv, float2 pixelSize)
+            {
+                float4 sum = 0;
+                for (int y=-1; y<=1; y++)
+                {
+                    for (int x=-1; x<=1; x++)
+                    {
+                        float2 offset = float2(x, y) * pixelSize;
+                        sum += tex2D(tex, uv+offset);
+                    }
+                }
+                return sum / 9.0;
             }
 
             // 定义一个函数，自动根据开关采样哪个贴图
@@ -258,6 +289,19 @@
                 if (_ColorFilterOnOff > 0.5)
                 {
                     color.rgb *= (_ColorFilterColor.rgb * _ColorFilterIntensity);
+                }
+
+                // (E) Bloom
+                if(_BloomOnOff>0.5)
+                {
+                    float lum = Luminance(color);
+                    if(lum>_BloomThreshold)
+                    {
+                        float2 texPixSize = float2(_MainTex_TexelSize.z,_MainTex_TexelSize.w);
+                        float4 blurCol = SampleBox9(_MainTex, uv, texPixSize);
+                        float4 brightPart = max(blurCol - _BloomThreshold,0);
+                        color += brightPart*_BloomIntensity;
+                    }
                 }
 
                 return color;
