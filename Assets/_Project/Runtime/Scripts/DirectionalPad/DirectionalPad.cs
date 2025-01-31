@@ -10,7 +10,7 @@ public class DirectionalPad : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _buttonsList = new ();
 
-    public event Action<DIRECTIONAL_PAD_INFO> OnKeyPressed;
+    public static event Action<DIRECTIONAL_PAD_INFO> OnKeyPressed;
 
     private void Start()
     { 

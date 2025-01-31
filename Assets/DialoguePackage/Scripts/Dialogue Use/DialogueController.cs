@@ -34,6 +34,10 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private Button button04;
     [SerializeField] private Text textbutton04;
 
+    [Space]
+
+    [SerializeField] private Button SelectedButton = null;
+
 
     private List<Button> buttons = new List<Button>();
     private List<Text> buttonTexts = new List<Text>();
@@ -55,6 +59,10 @@ public class DialogueController : MonoBehaviour
         LocalizationManager.OnRefresh += RefreshTexts;
     }
 
+    private void Start()
+    {
+        DirectionalPad.OnKeyPressed += ReceiveDirectionalInput;
+    }
 
     private void OnDisable()
     {
@@ -72,7 +80,7 @@ public class DialogueController : MonoBehaviour
         for (int i = 0; i < _texts.Count; i++)
         {
             buttonTexts[i].text = LocalizationManager.Instance.UniGetText(refTsv, _texts[i]);
-        }
+        }   
     }
 #endif
     private void Awake()
@@ -125,6 +133,8 @@ public class DialogueController : MonoBehaviour
     {
         buttons.ForEach(button => button.gameObject.SetActive(false));
 
+        Debug.Log(_unityActions[0].GetInvocationList());
+
         for (int i = 0; i < _texts.Count; i++)
         {
             Debug.Log("text button number " + i + ": " + _texts[i]);
@@ -134,6 +144,33 @@ public class DialogueController : MonoBehaviour
             buttons[i].onClick = new Button.ButtonClickedEvent();
             // add a delegate
             buttons[i].onClick.AddListener(_unityActions[i]);
+            
+        }
+        SelectedButton = buttons[0];
+    }
+
+    public void ReceiveDirectionalInput(DIRECTIONAL_PAD_INFO input)
+    {
+        int idCurrentButton;
+        switch (input)
+        {
+            //ADD SECURITIES TO NOT GO OUT OF BOUNDS OF LIST
+            case DIRECTIONAL_PAD_INFO.UP:
+                /*idCurrentButton = buttons.FindIndex(m => SelectedButton);
+                SelectedButton = buttons[idCurrentButton + 1];*/    
+                break;
+
+            case DIRECTIONAL_PAD_INFO.DOWN:
+                idCurrentButton = buttons.FindIndex(m => SelectedButton);
+                SelectedButton = buttons[idCurrentButton + 1];
+                break;
+
+            case DIRECTIONAL_PAD_INFO.CONFIRM:
+                SelectedButton.onClick?.Invoke();
+                break;
+
+            default:
+                break;
         }
     }
 }
