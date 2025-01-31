@@ -8,11 +8,15 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
 {
-    [SerializeField] bool _isOn = true;
+    [Header("References")]
     [SerializeField] RectTransform _toggleIndicator;
     [SerializeField] Image _backgroundImg;
     [SerializeField] Color _colorOn;
     [SerializeField] Color _colorOff;
+
+    [Header("Parameters")]
+    [SerializeField] bool _isOn = true;
+    [SerializeField] bool _isLocked = false;
     [SerializeField] float _tweenTime = .25f;
 
     private float _onY;
@@ -31,14 +35,16 @@ public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
 
     void Toggle(bool value)
     {
-        _isOn = !_isOn;
-            Debug.Log("ça passe");
+        if(_isLocked == false)
+        {
+            _isOn = !_isOn;
+            //Debug.Log("ça passe");
             ToggleColor(_isOn);
             MoveIndicator(_isOn);
 
             if(OnValueChanged != null)
                 OnValueChanged(_isOn);
-        
+        }
     }
 
     void ToggleColor(bool value)
