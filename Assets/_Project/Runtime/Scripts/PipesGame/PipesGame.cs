@@ -22,7 +22,7 @@ public class PipesGame : MonoBehaviour
     void Start()
     // Start is called before the first frame update
     {
-        FindObjectOfType<DirectionalPad>().OnKeyPressed += MoveBetweenPipes;
+        DirectionalPad.OnKeyPressed += MoveBetweenPipes;
 
         int createdObjectID = 0;
 

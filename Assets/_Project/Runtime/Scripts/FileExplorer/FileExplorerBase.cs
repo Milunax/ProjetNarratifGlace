@@ -336,7 +336,7 @@ public class FileExplorerBase : MonoBehaviour
 
         foreach (DISPLAYED_DATA item in _dataForDisplay)
         {
-            if (item.childs.Count > 0) total += TotalDataIndex(level + 1);
+            if (item.childs.Count > 0) total += TotalDataLines(level + 1);
             total++;
         }
 

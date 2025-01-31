@@ -16,10 +16,10 @@ public class ScreenDisplay : MonoBehaviour
     [SerializeField] private int sizeInPixel = 1024;
 
     [Header("Status")]
-    [field: SerializeField] private SCREEN_ACTIVE _activeScreen = SCREEN_ACTIVE.MAP;
-    [field: SerializeField, ReadOnly] private MAP_ACTIVE _activeMap = MAP_ACTIVE.MAP;
-    [field: SerializeField, ReadOnly] private FILE_EXPLORER_ACTIVE _activeFileExplorer = FILE_EXPLORER_ACTIVE.CLOSED;
-    [field: SerializeField, ReadOnly] private DIALOGUE_ACTIVE _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
+    [SerializeField] private SCREEN_ACTIVE _activeScreen = SCREEN_ACTIVE.MAP;
+    [SerializeField, ReadOnly] private MAP_ACTIVE _activeMap = MAP_ACTIVE.MAP;
+    [SerializeField, ReadOnly] private FILE_EXPLORER_ACTIVE _activeFileExplorer = FILE_EXPLORER_ACTIVE.CLOSED;
+    [SerializeField, ReadOnly] private DIALOGUE_ACTIVE _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
 
     private void OnValidate()
     {
@@ -27,6 +27,15 @@ public class ScreenDisplay : MonoBehaviour
         {
             sizeInPixel = 256;
         }
+    }
+
+    private void OnEnable()
+    {
+        DirectionalPad.OnKeyPressed += DirectionnalPadInput;
+    }
+    private void OnDisable()
+    {
+        DirectionalPad.OnKeyPressed -= DirectionnalPadInput;
     }
 
     private void Start()
@@ -118,6 +127,30 @@ public class ScreenDisplay : MonoBehaviour
             if (_activeFileExplorer != FILE_EXPLORER_ACTIVE.CLOSED) _activeScreen = SCREEN_ACTIVE.FILE_EXPLORER;
             else if (_activeMap != MAP_ACTIVE.CLOSED) _activeScreen = SCREEN_ACTIVE.MAP;
             else _activeScreen = SCREEN_ACTIVE.BLACK_SCREEN;
+        }
+    }
+
+    private void DirectionnalPadInput(DIRECTIONAL_PAD_INFO input)
+    {
+        switch (_activeScreen)
+        {
+            case SCREEN_ACTIVE.MAP:
+                {
+
+                }
+                break;
+            case SCREEN_ACTIVE.FILE_EXPLORER:
+                {
+                    
+                }
+                break;
+            case SCREEN_ACTIVE.DIALOGUE:
+                {
+
+                }
+                break;
+            default:
+                break;
         }
     }
 
