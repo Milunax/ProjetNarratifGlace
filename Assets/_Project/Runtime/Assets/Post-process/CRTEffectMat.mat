@@ -95,7 +95,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LowResMultiple: 64
+    - _LowResMultiple: 256
     - _LowResOnOff: 1
     - _Metallic: 0
     - _Mode: 0

@@ -18,7 +18,7 @@
 
         // ========== 低分辨率 ==========
         _LowResOnOff("LowRes OnOff (0=off,1=on)", Range(0,1)) = 0
-        _LowResMultiple("LowRes Multiple", Range(1,64)) = 2
+        _LowResMultiple("LowRes Multiple", Range(1,256)) = 2
 
         // ========== 颜色滤镜 ==========
         _ColorFilterOnOff("ColorFilter OnOff (0=off,1=on)", Range(0,1)) = 0
