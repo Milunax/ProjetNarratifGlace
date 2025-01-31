@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Project/Runtime/Prefab/Pipe.prefab.meta
 guid: 54a0d24280d4d0f4cb13a22dda483505
 PrefabImporter:
+========
+guid: a5fcbc6b62ab1334ba2ac39afa70851b
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> 049d408c6f63b8694eb480d438715f730932403f:Assets/_Project/Runtime/Prefab/FileExplorer.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
