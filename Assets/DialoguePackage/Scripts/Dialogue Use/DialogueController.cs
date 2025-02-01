@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System;
+using System.Runtime.CompilerServices;
+
 
 
 #if TranslationSystemImplemented
@@ -36,8 +38,11 @@ public class DialogueController : MonoBehaviour
 
     [Space]
 
-    [SerializeField] private Button SelectedButton = null;
+    [SerializeField] private Button _selectedButton = null;
+    [SerializeField] private List<Button> _activeButtonsList = new List<Button>();
+    public Action<Button, Color> OnSelectedButtonValueChange;
 
+    [SerializeField] private Image _selectionImage;
 
     private List<Button> buttons = new List<Button>();
     private List<Text> buttonTexts = new List<Text>();
@@ -50,6 +55,7 @@ public class DialogueController : MonoBehaviour
     private List<string> savedButtonKeys= new List<string>();
 
     public string RefTsv { get => refTsv; set => refTsv = value; }
+    public Button SelectedButton { get => _selectedButton; set { _selectedButton = value; OnSelectedButtonValueChange?.Invoke(_selectedButton, Color.green); } }
 
 
 
@@ -57,16 +63,17 @@ public class DialogueController : MonoBehaviour
     private void OnEnable()
     {
         LocalizationManager.OnRefresh += RefreshTexts;
-    }
-
-    private void Start()
-    {
         DirectionalPad.OnKeyPressed += ReceiveDirectionalInput;
+        OnSelectedButtonValueChange += UpdateButtonVisual;
+        OnSelectedButtonValueChange += MoveSelectionImage;
     }
 
     private void OnDisable()
     {
         LocalizationManager.OnRefresh -= RefreshTexts;
+        DirectionalPad.OnKeyPressed -= ReceiveDirectionalInput;
+        OnSelectedButtonValueChange -= UpdateButtonVisual;
+        OnSelectedButtonValueChange -= MoveSelectionImage;
     }
 
     private void RefreshTexts(SystemLanguage currentLanguage)
@@ -131,12 +138,14 @@ public class DialogueController : MonoBehaviour
 
     public void SetButtons(List<string> _texts, List<UnityAction> _unityActions)
     {
+        _activeButtonsList.Clear();
         buttons.ForEach(button => button.gameObject.SetActive(false));
 
         Debug.Log(_unityActions[0].GetInvocationList());
 
         for (int i = 0; i < _texts.Count; i++)
         {
+            _activeButtonsList.Add(buttons[i]);
             Debug.Log("text button number " + i + ": " + _texts[i]);
             buttonTexts[i].text = _texts[i];
             buttons[i].gameObject.SetActive(true);
@@ -146,7 +155,8 @@ public class DialogueController : MonoBehaviour
             buttons[i].onClick.AddListener(_unityActions[i]);
             
         }
-        SelectedButton = buttons[0];
+        SelectedButton = _activeButtonsList[0];
+        Debug.Log(SelectedButton.transform.position.y);
     }
 
     public void ReceiveDirectionalInput(DIRECTIONAL_PAD_INFO input)
@@ -156,21 +166,55 @@ public class DialogueController : MonoBehaviour
         {
             //ADD SECURITIES TO NOT GO OUT OF BOUNDS OF LIST
             case DIRECTIONAL_PAD_INFO.UP:
-                /*idCurrentButton = buttons.FindIndex(m => SelectedButton);
-                SelectedButton = buttons[idCurrentButton + 1];*/    
+                idCurrentButton = _activeButtonsList.IndexOf(SelectedButton);
+                Debug.Log("UP : " + SelectedButton.name);
+                Debug.Log("UP : " + idCurrentButton);
+                if (idCurrentButton > 0)
+                {
+                    UpdateButtonVisual(_selectedButton, Color.white);
+                    SelectedButton = _activeButtonsList[idCurrentButton - 1];
+                }
                 break;
 
             case DIRECTIONAL_PAD_INFO.DOWN:
-                idCurrentButton = buttons.FindIndex(m => SelectedButton);
-                SelectedButton = buttons[idCurrentButton + 1];
+                idCurrentButton = _activeButtonsList.IndexOf(SelectedButton);
+                Debug.Log("DOWN : " + SelectedButton.name);
+                Debug.Log("DOWN : " + idCurrentButton);
+                if (idCurrentButton < _activeButtonsList.Count - 1)
+                {
+                    UpdateButtonVisual(_selectedButton, Color.white);
+                    SelectedButton = _activeButtonsList[idCurrentButton + 1];
+                }
                 break;
 
             case DIRECTIONAL_PAD_INFO.CONFIRM:
+                UpdateButtonVisual(_selectedButton, Color.white);
                 SelectedButton.onClick?.Invoke();
                 break;
 
             default:
                 break;
         }
+    }
+
+    /*private void UpdateButtonVisual()
+    {
+        var buttonColors = SelectedButton.colors;
+        buttonColors.normalColor = Color.green;
+        SelectedButton.colors = buttonColors;
+    }*/
+
+
+    private void UpdateButtonVisual(Button button, Color color)
+    {
+        var buttonColors = button.colors;
+        buttonColors.normalColor = color;
+        button.colors = buttonColors;
+    }
+
+    private void MoveSelectionImage(Button button, Color color)
+    {
+        //Debug.Log(button.transform.position.y);
+        _selectionImage.rectTransform.position = new Vector3(_selectionImage.rectTransform.position.x, button.transform.position.y, _selectionImage.rectTransform.position.z);
     }
 }
