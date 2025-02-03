@@ -2,24 +2,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using GMSpace;
 using UnityEngine.UI;
+using TMPro;
+using NaughtyAttributes;
 
 public class FileExplorerBase : MonoBehaviour
 {
-    [Header("Display")]
+    [Header("Utilities")]
     [SerializeField] private GameObject _textContainer;
     private RectTransform _rectTextContainer;
     [SerializeField] private GameObject _textLinePrefab;
-    private List<FileExplorerLine> _textLines = new List<FileExplorerLine>();
-
     private float GetTextContainerSize { get => _rectTextContainer.sizeDelta.x; }
+    [SerializeField, ReadOnly] private FILE_EXPLORER_ACTIVE _currentScreen;
+
+    [Header("Childs UI")]
+    [SerializeField] private GameObject _background;
+    [SerializeField] private GameObject _textFileUI;
+    [SerializeField] private FileExplorerTextUI _textFileUIScript;
 
     [Header("Display Paddings")]
     [SerializeField] private Vector2 _topLeftPadding;
     [SerializeField] private float _linePadding = 10f;
-    [SerializeField] private float _folderPadding = 20f;
     [SerializeField] private float _textSize = 20f;
 
-    [Header("Display Scroll")]
+    [Header("Display Indicators")]
+    [SerializeField] private TextMeshProUGUI _folderIndicator;
     [SerializeField] private Image _topIndicator;
     [SerializeField] private Image _bottomIndicator;
     private int _skippedSteps = 0;
@@ -38,142 +44,131 @@ public class FileExplorerBase : MonoBehaviour
     [Header("Root Data")]
     [SerializeField] private List<FileExplorerDataSO> _rootData = new List<FileExplorerDataSO>();
 
+    private List<string> _dataPath = new List<string>();
+    private List<DISPLAY_DATA> _displayedData = new List<DISPLAY_DATA>();
+    private int _cursor;
 
-    private List<DISPLAYED_DATA> _dataForDisplay = new List<DISPLAYED_DATA>();
-    private List<int> _dataCursor = new List<int>();
-    private int GetDataCursorIndex { get => _dataCursor.Count-1; } 
-    private List<DISPLAYED_DATA> GetDataCurrentList
+    private struct DISPLAY_DATA
     {
-        get
-        {
-            List<DISPLAYED_DATA> current = _dataForDisplay;
-
-            for (int i = 0; i < _dataCursor.Count - 1; i++)
-            {
-                current = current[i].childs;
-            }
-
-            return current;
-        }
-    }
-    private int GetDataCurrentListLength
-    {
-        get
-        {
-            List<DISPLAYED_DATA> current = _dataForDisplay;
-
-            for (int i = 0;  i < _dataCursor.Count - 1; i++)
-            {
-                current = current[i].childs;
-            }
-
-            return current.Count;
-        }
-    }
-    private DISPLAYED_DATA GetDataCurrentItem
-    {
-        get
-        {
-            List<DISPLAYED_DATA> current = _dataForDisplay;
-
-            for (int i = 0; i < _dataCursor.Count - 1; i++)
-            {
-                current = current[i].childs;
-            }
-
-            return current[_dataCursor[GetDataCursorIndex]];
-        }
-    }
-    private FileExplorerDataSO GetDataCurrentRaw
-    {
-        get
-        {
-            List<DISPLAYED_DATA> currentDisplay = _dataForDisplay;
-            List<FileExplorerDataSO> currentData = _rootData;
-
-            for (int i = 0; i < _dataCursor.Count - 1; i++)
-            {
-                currentData = ((FileExplorerFolderSO)currentData[currentDisplay[_dataCursor[i]].indexList]).childs;
-                currentDisplay = currentDisplay[i].childs;
-            }
-
-            return currentData[currentDisplay[_dataCursor[GetDataCursorIndex]].indexList];
-        }
-    }
-
-    private struct DISPLAYED_DATA
-    {
-        public string displayName;
-        public FILE_TYPE fileType;
-        public int indexList;
+        public FileExplorerDataSO data;
+        public FILE_TYPE type;
         public bool isBlocked;
-        public List<DISPLAYED_DATA> childs;
+        public FileExplorerLine textLine;
 
-        public DISPLAYED_DATA(string nName, FILE_TYPE nFileType, int nIndex, bool nBlocked)
+        public DISPLAY_DATA(FileExplorerDataSO newData, FILE_TYPE newType, bool blocked)
         {
-            displayName = nName;
-            fileType = nFileType;
-            indexList = nIndex;
-            isBlocked = nBlocked;
-            childs = new List<DISPLAYED_DATA>();
+            data = newData;
+            type = newType;
+            isBlocked = blocked;
+            textLine = null;
         }
     }
+
 
     private void Start()
     {
         TryGetComponent<RectTransform>(out _rectTextContainer);
         SetupTextDisplayValues();
+        _textFileUIScript.SetTextValues(_textSize, _topLeftPadding);
 
         Opening();
+    }
+    public void Closing()
+    {
+        _dataPath.Clear();
+        _cursor = 0;
+
+        foreach (DISPLAY_DATA item in _displayedData)
+        {
+            item.textLine.Delete();
+        }
+        _displayedData.Clear();
+
+        _background.SetActive(false);
+        _textContainer.SetActive(false);
+        _textFileUI.SetActive(false);
+
+        _currentScreen = FILE_EXPLORER_ACTIVE.CLOSED;
     }
 
     public void Opening()
     {
-        _dataForDisplay = new List<DISPLAYED_DATA>();
+        _background.SetActive(true);
+        _textContainer.SetActive(true);
+        _textFileUI.SetActive(false);
 
-        for (int i = 0; i < _rootData.Count; i++)
-        {
-            SetDisplayData(_dataForDisplay, _rootData[i], i);
-        }
+        _currentScreen = FILE_EXPLORER_ACTIVE.FILE_EXPLORER;
 
-        if (_dataForDisplay.Count <= 0) return;
-
-        ResetCursorPos();
-
-        BrowsDataRefresh();
+        SetDisplayData(_rootData);
     }
 
-    private void SetDisplayData(List<DISPLAYED_DATA> dataList, FileExplorerDataSO current, int index)
+    private void SetDisplayData(List<FileExplorerDataSO> listOfData)
     {
-        if (current.isVisible.day < GameManager.Instance.GetSetProgressionDay &&
-            current.isVisible.inDay < GameManager.Instance.GetSetProgressionInDay &&
-            current.isVisible.narrativeIALevel < GameManager.Instance.GetSetNarrativeIALevel) return; // if file/folder isn't visible
-
-        FILE_TYPE type = GetFileType(current);
-
-        if (current.isAccessible.day >= GameManager.Instance.GetSetProgressionDay &&
-            current.isAccessible.inDay >= GameManager.Instance.GetSetProgressionInDay &&
-            current.isAccessible.narrativeIALevel >= GameManager.Instance.GetSetNarrativeIALevel) // if file/folder is accessible
+        _cursor = 0;
+        foreach (DISPLAY_DATA item in _displayedData)
         {
-            if (type == FILE_TYPE.FOLDER) // if folder
+            item.textLine.Delete();
+        }
+        _displayedData.Clear();
+
+        foreach (FileExplorerDataSO item in listOfData)
+        {
+            if (item.isVisible.day < GameManager.Instance.GetSetProgressionDay &&
+                item.isVisible.inDay < GameManager.Instance.GetSetProgressionInDay &&
+                item.isVisible.narrativeIALevel < GameManager.Instance.GetSetNarrativeIALevel) continue; // if file/folder isn't visible
+
+            FILE_TYPE type = GetFileType(item);
+
+            if (item.isAccessible.day >= GameManager.Instance.GetSetProgressionDay &&
+                item.isAccessible.inDay >= GameManager.Instance.GetSetProgressionInDay &&
+                item.isAccessible.narrativeIALevel >= GameManager.Instance.GetSetNarrativeIALevel) // if file/folder is accessible
             {
-                FileExplorerFolderSO folder = (FileExplorerFolderSO)current;
-                foreach (FileExplorerDataSO file in folder.childs)
+                if (type == FILE_TYPE.FOLDER) // if folder
                 {
-                    if (file == null) folder.childs.Remove(file); // if file in folder is empty, remove it
+                    FileExplorerFolderSO folder = (FileExplorerFolderSO)item;
+                    foreach (FileExplorerDataSO file in folder.childs)
+                    {
+                        if (file == null) folder.childs.Remove(file); // if file in folder is empty, remove it
+                    }
+
+                    if (folder.childs.Count <= 0) { continue; } // if folder is empty, don't display
                 }
 
-                if (folder.childs.Count <= 0) { return; } // if folder is empty, don't display
+                DISPLAY_DATA itemData = new DISPLAY_DATA(item, type, false);
+
+                CreateTextLine(ref itemData);
+                _displayedData.Add(itemData);
             }
+            else // if file/folder isn't accessible
+            {
+                DISPLAY_DATA itemData = new DISPLAY_DATA(item, type, true);
 
-            dataList.Add(new DISPLAYED_DATA(current.fileName, type, index, false));
+                CreateTextLine(ref itemData);
+                _displayedData.Add(itemData);
+            }
         }
-        else // if file/folder isn't accessible
+
+        for (int i = 0; i < _displayedData.Count; i++)
         {
-            dataList.Add(new DISPLAYED_DATA(current.fileName, type, index, true));
+            SetDisplayLines(_displayedData[i].textLine, i);
         }
-    }
+        _displayedData[0].textLine.GetSetCursor = true;
 
+        string indicator = "PC";
+        if (_dataPath.Count < 3)
+        {
+            foreach (string folder in _dataPath)
+            {
+                indicator += "/" + folder;
+            }
+        }
+        else
+        {
+            indicator += "/.." + (_dataPath.Count - 1) + "../" + _dataPath[_dataPath.Count - 1];
+        }
+
+        _folderIndicator.text = indicator;
+    }
     private FILE_TYPE GetFileType(FileExplorerDataSO file)
     {
         if (file is FileExplorerFolderSO) return FILE_TYPE.FOLDER;
@@ -182,234 +177,225 @@ public class FileExplorerBase : MonoBehaviour
         return FILE_TYPE.NULL;
     }
 
-    private void BrowsDataRefresh(int startPos = 0)
-    {
-        if (startPos < 0) startPos = 0;
-
-        List<int> browsCursor = new List<int>();
-        browsCursor.Add(0);
-        bool isEnd = false;
-
-        if (_textLines.Count-1 >= startPos)
-        {
-            for (int i = startPos; i < _textLines.Count; i++)
-            {
-                FileExplorerLine item = _textLines[i];
-                _textLines.Remove(item);
-                item.Delete();
-            }
-        }
-
-        while (!isEnd)
-        {
-            int cursorIndex = browsCursor.Count - 1;
-
-            int currentLine = TotalDataLines(browsCursor);
-
-            List<DISPLAYED_DATA> currentList = _dataForDisplay;
-
-            for (int i = 0; i < browsCursor.Count - 1; i++)
-            {
-                currentList = currentList[i].childs;
-            }
-            DISPLAYED_DATA currentItem = currentList[browsCursor[cursorIndex]];
-
-            if (currentLine >= startPos)
-            {
-                FileExplorerLine item = CreateTextLine(currentItem);
-                SetDisplayLines(item, currentLine, browsCursor.Count - 1);
-            }
-
-            if (currentItem.childs.Count > 0)
-            {
-                _dataCursor.Add(0);
-            }
-            else
-            {
-                int next = browsCursor[cursorIndex] + 1;
-
-                if (next < currentList.Count)
-                {
-                    browsCursor[cursorIndex] = next;
-                }
-                else
-                {
-                    for (int i = 0; i < _dataCursor.Count; i++)
-                    {
-                        if (next >= currentList.Count && cursorIndex > 0)
-                        {
-                            browsCursor.RemoveAt(cursorIndex);
-                            cursorIndex = browsCursor.Count - 1;
-                            next = _dataCursor[cursorIndex] + 1;
-                        }
-                        else
-                        {
-                            if (next < currentList.Count) _dataCursor[cursorIndex] = next;
-                            else { isEnd = true; }
-                        }
-                    }
-                }
-            }
-        }
-
-        UpdateDisplayLine();
-    }
-
-    private void ResetCursorPos()
-    {
-        _dataCursor.Clear();
-        _dataCursor.Add(0);
-    }
-    private void MoveCursor(bool tempo/*given movement input (UP/DOWN)*/)
-    {
-        if (tempo) //move up
-        {
-            int previous = _dataCursor[GetDataCursorIndex] -1;
-
-            if (previous >= 0)
-            {
-                _dataCursor[GetDataCursorIndex] = previous;
-
-                if (GetDataCurrentItem.childs.Count > 0)
-                {
-                    _dataCursor.Add(GetDataCurrentItem.childs.Count -1);
-                }
-
-                return;
-            }
-
-            if (previous < 0 && GetDataCursorIndex > 0)
-            {
-                _dataCursor.RemoveAt(GetDataCursorIndex);
-                return;
-            }
-        }
-        else if (!tempo) //move down
-        {
-            if (GetDataCurrentItem.childs.Count > 0)
-            {
-                _dataCursor.Add(0);
-                return;
-            }
-
-            int next = _dataCursor[GetDataCursorIndex] + 1;
-
-            if (next < GetDataCurrentListLength)
-            {
-                _dataCursor[GetDataCursorIndex] = next;
-                return;
-            }
-
-            for (int i = 0; i < _dataCursor.Count; i++)
-            {
-                if (next >= GetDataCurrentListLength && GetDataCursorIndex > 0)
-                {
-                    _dataCursor.RemoveAt(GetDataCursorIndex);
-                    next = _dataCursor[GetDataCursorIndex] + 1;
-                }
-                else
-                {
-                    if (next < GetDataCurrentListLength) _dataCursor[GetDataCursorIndex] = next;
-                    return;
-                }
-            }
-
-        }
-    }
-
-    private void OpenFolder()
-    {
-        FileExplorerFolderSO data = (FileExplorerFolderSO)GetDataCurrentRaw;
-        List<DISPLAYED_DATA> currentDisplay = GetDataCurrentList;
-
-        for (int i = 0; i < data.childs.Count; i++)
-        {
-            SetDisplayData(currentDisplay[_dataCursor[GetDataCursorIndex]].childs, data.childs[i], i);
-        }
-
-        _dataCursor.Add(0);
-    }
-
-    private int TotalDataLines(int level = 0)
-    {
-        int total = 0;
-
-        foreach (DISPLAYED_DATA item in _dataForDisplay)
-        {
-            if (item.childs.Count > 0) total += TotalDataLines(level + 1);
-            total++;
-        }
-
-        return total;
-    }
-    private int TotalDataLines(List<int> list, int level = 0)
-    {
-        int total = 0;
-
-        int i = 0;
-        foreach (DISPLAYED_DATA item in _dataForDisplay)
-        {
-            if (level < list.Count && list[level] < i) break;
-
-            if (item.childs.Count > 0) total += TotalDataLines(list, level + 1);
-            total++;
-        }
-
-        return total;
-    }
-
-    private FileExplorerLine CreateTextLine(DISPLAYED_DATA data)
-    {
-        GameObject line = Instantiate(_textLinePrefab, _textContainer.transform);
-        line.name = data.displayName;
-
-        line.TryGetComponent<FileExplorerLine>(out FileExplorerLine scriptLine);
-        _textLines.Add(scriptLine);
-
-        scriptLine.SetupVisual(_rectTextContainer.sizeDelta.x, _textSize, data.displayName, data.fileType, data.isBlocked);
-
-        return scriptLine;
-    }
     private void SetupTextDisplayValues()
     {
-        _topPosY = -(_topLeftPadding.y + (_textSize / 2));
-        _bottomPosY = -GetTextContainerSize - _topPosY;
+        _topPosY = -(_topLeftPadding.y + (_textSize * 1.5f));
+        _bottomPosY = -512 - _topPosY;
 
         int count = 0;
         float temp = _topPosY;
         while (temp >= _bottomPosY)
         {
             count++;
-            temp -= _linePadding + _textSize;
+            temp -= (_linePadding + _textSize);
         }
 
         _maxLineOnScreen = count;
-    }
-    private void SetDisplayLines(FileExplorerLine item, int line, int column)
-    {
-        item.GetRectTransform.localPosition = new Vector2(item.GetRectTransform.localPosition.x + (_folderPadding * column),
-                                                          item.GetRectTransform.localPosition.y - ((_linePadding + _textSize) * line));
+        //Debug.Log(_topPosY + " | " + _bottomPosY + " | " + _maxLineOnScreen + " | " + (_linePadding + _textSize));
 
+        _folderIndicator.fontSize = _textSize;
+        _folderIndicator.rectTransform.sizeDelta = new Vector2(0, _textSize);
+        _folderIndicator.rectTransform.localPosition = new Vector2((_textSize / 2f) + (_rectTextContainer.sizeDelta.x / 2f), 0);
+        _folderIndicator.rectTransform.anchoredPosition = new Vector2(_topLeftPadding.x, - _topLeftPadding.y - (_textSize * 0.5f));
+    }
+    private bool CreateTextLine(ref DISPLAY_DATA itemData)
+    {
+        GameObject line = Instantiate(_textLinePrefab, _textContainer.transform);
+        line.name = itemData.data.fileName;
+
+        if (line.TryGetComponent<FileExplorerLine>(out itemData.textLine))
+        {
+            itemData.textLine.SetupVisual(_rectTextContainer.sizeDelta.x, _textSize, itemData.data.fileName, itemData.type, itemData.isBlocked);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    private void SetDisplayLines(FileExplorerLine item, int line)
+    {
+        item.GetRectTransform.anchoredPosition = new Vector2(_topLeftPadding.x + (_textSize * 1.5f) + item.GetWidthSpacing,
+                                                          - (_topLeftPadding.y * 2) - (_textSize * 1.5f) - ((_linePadding + _textSize) * line));
+
+        SetVisibility(item, line);
+    }
+    private void SetVisibility(FileExplorerLine item, int line)
+    {
         if (line >= _skippedSteps && line <= _maxLineOnScreen) item.SetVisibility(true);
         else item.SetVisibility(false);
     }
-    private void UpdateDisplayLine()
+
+    public void InputsListener(DIRECTIONAL_PAD_INFO padInfo)
     {
-        int halfMaxLine = _maxLineOnScreen / 2;
-
-        int currentIndex = TotalDataLines(_dataCursor);
-        if (currentIndex >= halfMaxLine && currentIndex <= _textLines.Count - halfMaxLine)
+        switch (_currentScreen)
         {
-            _skippedSteps = currentIndex - halfMaxLine;
+            case FILE_EXPLORER_ACTIVE.FILE_EXPLORER:
+                {
+                    switch (padInfo)
+                    {
+                        case DIRECTIONAL_PAD_INFO.UP:
+                        case DIRECTIONAL_PAD_INFO.DOWN:
+                            {
+                                MoveCursor(padInfo);
+                                break;
+                            }
+
+                        case DIRECTIONAL_PAD_INFO.CONFIRM:
+                        case DIRECTIONAL_PAD_INFO.RIGHT:
+                            {
+                                OpenFile();
+                                break;
+                            }
+
+                        case DIRECTIONAL_PAD_INFO.LEFT:
+                            {
+                                CloseFolder();
+                                break;
+                            }
+
+                        default:
+                            break;
+
+                    }
+                    break;
+                }
+
+            case FILE_EXPLORER_ACTIVE.TEXT:
+                {
+                    switch (padInfo)
+                    {
+                        case DIRECTIONAL_PAD_INFO.UP:
+                        case DIRECTIONAL_PAD_INFO.DOWN:
+                            {
+                                _textFileUIScript.ScrollText(padInfo);
+                                break;
+                            }
+                        case DIRECTIONAL_PAD_INFO.LEFT:
+                            {
+                                _textContainer.SetActive(true);
+                                _textFileUI.SetActive(false);
+
+                                _currentScreen = FILE_EXPLORER_ACTIVE.FILE_EXPLORER;
+                                break;
+                            }
+
+                        default:
+                            break;
+                    }
+                    break;
+                }
         }
 
-        _rectTextContainer.localPosition = new Vector2(_rectTextContainer.localPosition.x, (_linePadding + _textSize) * _skippedSteps);
+    }
 
-        for (int i = 0; i < _textLines.Count; i++)
+    private void MoveCursor(DIRECTIONAL_PAD_INFO direction)
+    {
+        int add = 0;
+
+        switch (direction)
         {
-            if (i < _skippedSteps) _textLines[i].SetVisibility(false);
-            else if (i >= _skippedSteps && i <= _skippedSteps + _maxLineOnScreen) _textLines[i].SetVisibility(true);
-            else _textLines[i].SetVisibility(false);
+            case DIRECTIONAL_PAD_INFO.UP:
+                add = -1;
+                break;
+            case DIRECTIONAL_PAD_INFO.DOWN:
+                add = +1;
+                break;
+
+            default:
+                return;
         }
+
+        if (!GetCursorValidation(add)) return;
+
+        _displayedData[_cursor].textLine.GetSetCursor = false;
+        _cursor += add;
+        _displayedData[_cursor].textLine.GetSetCursor = true;
+    }
+    private bool GetCursorValidation(int add)
+    {
+        int temp = _cursor + add;
+
+        if (temp < 0 || temp >= _displayedData.Count) return false;
+        else return true;
+    }
+
+    private void OpenFile()
+    {
+        if (_displayedData[_cursor].isBlocked)
+        {
+            BlockedFile();
+            return;
+        }
+
+        switch (_displayedData[_cursor].type)
+        {
+            case FILE_TYPE.FOLDER:
+                {
+                    OpenFolder();
+                    break;
+                }
+            case FILE_TYPE.FILE_TEXT:
+                {
+                    _textContainer.SetActive(false);
+                    _textFileUI.SetActive(true);
+
+                    FileExplorerFileTextSO textFile = (FileExplorerFileTextSO)_displayedData[_cursor].data;
+                    _textFileUIScript.SetInfos(textFile.title, textFile.description, textFile.image);
+
+                    _currentScreen = FILE_EXPLORER_ACTIVE.TEXT;
+
+                    break;
+                }
+            case FILE_TYPE.FILE_AUDIO:
+                {
+                    Debug.Log("Open audio");
+                    break;
+                }
+
+            default:
+                BlockedFile();
+                break;
+        }
+    }
+    private void BlockedFile()
+    {
+        Debug.Log("File is blocked");
+    }
+
+    private void OpenFolder()
+    {
+        _dataPath.Add(_displayedData[_cursor].data.fileName);
+        FileExplorerFolderSO folder = (FileExplorerFolderSO)_displayedData[_cursor].data;
+
+        SetDisplayData(folder.childs);
+    }
+    private void CloseFolder()
+    {
+        if (_dataPath.Count <= 0) return;
+
+        _dataPath.RemoveAt(_dataPath.Count - 1);
+
+        SetDisplayData(GetFolderByPath());
+    }
+    private List<FileExplorerDataSO> GetFolderByPath()
+    {
+        List<FileExplorerDataSO> currentList = _rootData;
+
+        for (int i = 0; i < _dataPath.Count; i++)
+        {
+            string path = _dataPath[i];
+
+            foreach (FileExplorerDataSO item in currentList)
+            {
+                if (item.fileName == path && item is FileExplorerFolderSO)
+                {
+                    currentList = ((FileExplorerFolderSO)item).childs;
+                    break;
+                }
+            }
+        }
+
+        return currentList;
     }
 }

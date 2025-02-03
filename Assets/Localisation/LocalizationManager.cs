@@ -168,7 +168,7 @@ namespace LocalizationPackage
             {
                 if (comp.GetTSVFileName == TSVFileName)
                 {
-                    return comp.GetText(Key);
+                    return comp.GetTextSafe(Key);
                 }
             }
 
@@ -220,7 +220,7 @@ namespace LocalizationPackage
                 Debug.LogWarning(languageToGet.ToString() + " is not supported, add this language in the variable 'languages' if you want it to be supported ", gameObject);
             }
 
-            return LanguageSelection.GetText(languageToGet.ToString(), sameAsSelectedLanguage);
+            return LanguageSelection.GetTextUnsafe(languageToGet.ToString(), sameAsSelectedLanguage);
         }
     }
 }

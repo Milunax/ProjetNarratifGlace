@@ -141,7 +141,7 @@ public class ScreenDisplay : MonoBehaviour
                 break;
             case SCREEN_ACTIVE.FILE_EXPLORER:
                 {
-                    
+                    _fileExplorer.InputsListener(input);
                 }
                 break;
             case SCREEN_ACTIVE.DIALOGUE:
@@ -153,5 +153,6 @@ public class ScreenDisplay : MonoBehaviour
                 break;
         }
     }
+
 
 }
