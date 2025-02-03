@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/_Project/Runtime/Assets/UI/TextTest6.png.meta
-guid: 48b68af28b6918240b2211a5881535e7
-========
-guid: 06e9c5e158b03c641a2adad0210548d4
->>>>>>>> 25032bc3f78b43ddbd67ff0e9ff47822a65c11cb:Assets/_Project/Runtime/Assets/TX/Macintosh/Macintosh_Cadre Ecran Info_BaseColor.png.meta
+guid: 6e2140aa599ceae45ab0d1f00a0eb6ca
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
