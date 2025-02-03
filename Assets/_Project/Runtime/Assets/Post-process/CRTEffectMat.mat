@@ -79,7 +79,7 @@ Material:
     - _BloomOnOff: 0
     - _BloomThreshold: 0
     - _BumpScale: 1
-    - _ChromaticAberrationOnOff: 1
+    - _ChromaticAberrationOnOff: 0
     - _ChromaticAberrationStrength: 0
     - _ColorFilterIntensity: 0
     - _ColorFilterOnOff: 0
@@ -99,7 +99,7 @@ Material:
     - _LowResOnOff: 1
     - _Metallic: 0
     - _Mode: 0
-    - _MonochromeOnOff: 1
+    - _MonochromeOnOff: 0
     - _MultipleGhostOnOff: 1
     - _MultipleGhostStrength: 0
     - _OcclusionStrength: 1
