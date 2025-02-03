@@ -32,10 +32,12 @@ public class ScreenDisplay : MonoBehaviour
     private void OnEnable()
     {
         DirectionalPad.OnKeyPressed += DirectionnalPadInput;
+        ContextualButtons.OnKeyPressed += ContextualPadInput;
     }
     private void OnDisable()
     {
         DirectionalPad.OnKeyPressed -= DirectionnalPadInput;
+        ContextualButtons.OnKeyPressed -= ContextualPadInput;
     }
 
     private void Start()
@@ -67,6 +69,17 @@ public class ScreenDisplay : MonoBehaviour
         //_Map.Closing();
     }
 
+    private void FileExplorerButton()
+    {
+        if (_activeFileExplorer == FILE_EXPLORER_ACTIVE.CLOSED)
+        {
+            OpenFileExplorer();
+        }
+        else if (_activeFileExplorer != FILE_EXPLORER_ACTIVE.CLOSED)
+        {
+            CloseFileExplorer();
+        }
+    }
     public void OpenFileExplorer()
     {
         if (_activeScreen != SCREEN_ACTIVE.SHUTDOWN && _activeScreen <= SCREEN_ACTIVE.MAP)
@@ -85,7 +98,7 @@ public class ScreenDisplay : MonoBehaviour
         }
         _activeFileExplorer = FILE_EXPLORER_ACTIVE.CLOSED;
 
-        //_fileExplorer.Closing();
+        _fileExplorer.Closing();
     }
 
     public void OpenDialogue(bool isInteractif)
@@ -149,10 +162,38 @@ public class ScreenDisplay : MonoBehaviour
 
                 }
                 break;
+
             default:
                 break;
         }
     }
+    private void ContextualPadInput(CONTEXTUAL_INPUT_INFO input)
+    {
+        if (_activeScreen > SCREEN_ACTIVE.BLACK_SCREEN && input == CONTEXTUAL_INPUT_INFO.FILE_EXPLORER)
+        {
+            FileExplorerButton();
+        }
 
+        switch (_activeScreen)
+        {
+            case SCREEN_ACTIVE.MAP:
+                {
+
+                }
+                break;
+            case SCREEN_ACTIVE.FILE_EXPLORER:
+                {
+                    
+                }
+                break;
+            case SCREEN_ACTIVE.DIALOGUE:
+                {
+
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
 }
