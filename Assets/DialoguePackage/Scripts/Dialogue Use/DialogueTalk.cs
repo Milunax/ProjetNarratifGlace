@@ -25,6 +25,14 @@ public class DialogueTalk : DialogueGetData
         CheckNodeType(GetNextNode(dialogueContainer.startNodeDatas[0]));
         dialogueController.ShowDialogue(true);
     }
+
+    public void StartDialogue(SystemLanguage language)
+    {
+        // look for next node to execute
+        CheckNodeType(GetNextNode(dialogueContainer.startNodeDatas[0]));
+        dialogueController.ShowDialogue(true);
+    }
+
     public void StartDialogue(string IDStart)
     {
         // look for a node that matches the id sent

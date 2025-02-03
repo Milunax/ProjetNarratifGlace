@@ -113,25 +113,25 @@ public class DialogueController : MonoBehaviour
     // Ici serait l'endroit ou l'on envoie le dialogue récupéré avec la clé dans les database
     public void SetText(string _name, string _textbox)
     {
-        textName.text = _name;
-        textBox.text = _textbox;
+        if(textName != null) textName.text = _name;
+        if(textBox != null) textBox.text = _textbox;
     }
 
     public void SetImage(Sprite _image, DialogueSpriteType _dialogueSpriteType)
     {
-        LeftImageGO.SetActive(false);
-        RightImageGO.SetActive(false);
+        if(LeftImageGO != null) LeftImageGO.SetActive(false);
+        if(RightImageGO != null) RightImageGO.SetActive(false);
 
         if(_image != null)
         {
             if(_dialogueSpriteType == DialogueSpriteType.left)
             {
-                LeftImage.sprite = _image;
-                LeftImageGO.SetActive(true);
+                if (LeftImage != null) LeftImage.sprite = _image;
+                if (LeftImageGO != null) LeftImageGO.SetActive(true);
             } else
             {
-                RightImage.sprite = _image;
-                RightImageGO.SetActive(true);
+                if (RightImage != null) RightImage.sprite = _image;
+                if (RightImageGO != null) RightImageGO.SetActive(true);
             }
         }
     }

@@ -136,6 +136,11 @@ namespace LocalizationPackage
             AllComponents = FindObjectsOfType<LocalizationComponent>(true);
             StartCoroutine(WaitForInit());
         }
+        private void ReStart()
+        {
+            AllComponents = FindObjectsOfType<LocalizationComponent>(true);
+            StartCoroutine(WaitForInit());
+        }
 
         private IEnumerator WaitForInit()
         {
@@ -164,6 +169,12 @@ namespace LocalizationPackage
         /// <returns>Text in current game language.</returns>
         public string UniGetText(string TSVFileName, string Key)
         {
+            if (AllComponents == null)
+            {
+                ReStart();
+                return null;
+            }
+
             foreach(LocalizationComponent comp in AllComponents)
             {
                 if (comp.GetTSVFileName == TSVFileName)

@@ -137,6 +137,12 @@ public class LocalizationComponent : MonoBehaviour
     /// <returns>Text in current game language. Will return text on multiple lines if multiple keys are given</returns>
     public string GetTextSafe(string Key)
     {
+        if (Key == null)
+        {
+            Debug.LogError("Key was null", gameObject);
+            return "KEY WAS NULL";
+        }
+
         Key = CleanKey(Key);
 
         string result = "";

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using LocalizationPackage;
 
 public class DialogueTalkZone : MonoBehaviour
 {
@@ -23,7 +24,12 @@ public class DialogueTalkZone : MonoBehaviour
 
     private void OnEnable()
     {
-        DialogueTalk.StartDialogue();
+        LocalizationManager.OnRefresh += DialogueTalk.StartDialogue;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationManager.OnRefresh -= DialogueTalk.StartDialogue;
     }
 
 
