@@ -38,7 +38,7 @@ public class FileExplorerLine : MonoBehaviour
 
     private void Start()
     {
-        //SetupVisual(256, 36, "Lorem Ipsum", FILE_TYPE.FILE_TEXT, false);
+        _imageCursor.sprite = _cursor;
     }
     public void SetupVisual(float boxWidth, float textSize, string text, FILE_TYPE type, bool blocked)
     {

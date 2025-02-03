@@ -947,7 +947,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 666712c9d4fcf7844ba663b2f26854e9, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: bb5d387999871e340be74eae7d80c17b, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1065,8 +1065,8 @@ Transform:
   m_GameObject: {fileID: 9106369381091434083}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.70710677, z: -0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0608, y: 2.21, z: -5}
+  m_LocalScale: {x: 0.42439097, y: 0.42439097, z: 0.42439097}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6575251405154595306}
@@ -1099,7 +1099,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a2eae50b8e7cb994c84c9d32649f735a, type: 2}
+  - {fileID: 2100000, guid: 27d838ada9dc4c8479237cd2d9559cfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
