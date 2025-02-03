@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 #if TranslationSystemImplemented
 using LocalizationPackage;
@@ -148,6 +149,8 @@ public class DialogueTalk : DialogueGetData
             {
                 // when action is called, execute stuff between these brackets
                 CheckNodeType(GetNodeByGuid(nodeport.InputGuid));
+                Debug.Log(nodeport.InputGuid);
+                Debug.Log("Delegate Called");
                 //audioSource.Stop();
             };
             unityActions.Add(tempAction);
