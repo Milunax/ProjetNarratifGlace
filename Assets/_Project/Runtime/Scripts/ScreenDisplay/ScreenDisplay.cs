@@ -10,6 +10,8 @@ public class ScreenDisplay : MonoBehaviour
     [Space(10)]
     [Header("Screens")]
     [SerializeField] private FileExplorerBase _fileExplorer;
+    [SerializeField] private DialogueController _dialogueController;
+
 
     [Header("Resolution")]
     [InfoBox("Size can't be below 256 pixels")]
@@ -44,6 +46,8 @@ public class ScreenDisplay : MonoBehaviour
         _renderCamera.targetTexture.width = sizeInPixel;
 
         _rectScreens.localScale = new Vector2(sizeInPixel / 256, sizeInPixel / 256);
+
+        OpenDialogue(true);
     }
 
     public void OpenMap()
@@ -97,6 +101,8 @@ public class ScreenDisplay : MonoBehaviour
 
         if (isInteractif) _activeDialogue = DIALOGUE_ACTIVE.DIALOGUE_INTERACTIVE;
         else _activeDialogue = DIALOGUE_ACTIVE.DIALOGUE_NO_INTERACTIVE;
+
+        _dialogueController.Opening();
     }
     public void CloseDialogue()
     {
@@ -146,7 +152,7 @@ public class ScreenDisplay : MonoBehaviour
                 break;
             case SCREEN_ACTIVE.DIALOGUE:
                 {
-
+                    _dialogueController.ReceiveDirectionalInput(input);
                 }
                 break;
             default:

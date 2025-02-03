@@ -63,7 +63,7 @@ public class DialogueController : MonoBehaviour
     private void OnEnable()
     {
         LocalizationManager.OnRefresh += RefreshTexts;
-        DirectionalPad.OnKeyPressed += ReceiveDirectionalInput;
+        //DirectionalPad.OnKeyPressed += ReceiveDirectionalInput;
         OnSelectedButtonValueChange += UpdateButtonVisual;
         OnSelectedButtonValueChange += MoveSelectionImage;
     }
@@ -71,9 +71,14 @@ public class DialogueController : MonoBehaviour
     private void OnDisable()
     {
         LocalizationManager.OnRefresh -= RefreshTexts;
-        DirectionalPad.OnKeyPressed -= ReceiveDirectionalInput;
+        //DirectionalPad.OnKeyPressed -= ReceiveDirectionalInput;
         OnSelectedButtonValueChange -= UpdateButtonVisual;
         OnSelectedButtonValueChange -= MoveSelectionImage;
+    }
+
+    public void Opening()
+    {
+        ShowDialogue(true);
     }
 
     private void RefreshTexts(SystemLanguage currentLanguage)
@@ -92,7 +97,7 @@ public class DialogueController : MonoBehaviour
 #endif
     private void Awake()
     {
-        ShowDialogue(false);
+        //ShowDialogue(false);
         // veryyyyyyyy ugly
         buttons.Add(button01);
         buttons.Add(button02);
