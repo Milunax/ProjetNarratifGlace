@@ -26,7 +26,7 @@ public class PlayerInputs : MonoBehaviour
     public Vector2 GetSlideEndPos { get => _slideEndPos; }
 
     public Vector2 GetFingerDelta { get => _fingerDelta; }
-    public Vector2 GetSlideDeltaV { get => _slideDeltaV; }
+    public Vector2 GetSlideDeltaV { get => _slideDeltaV;}
 
     private void OnEnable()
     {
@@ -68,25 +68,23 @@ public class PlayerInputs : MonoBehaviour
         _slideEndPos = _fingerPosition;
         _slideDeltaV = _slideEndPos - _slideStartPos;
 
-        Vector2 dir = DetectSlide();
-
-        _fingerDelta = Vector2.zero;
+        _fingerDelta = DetectSlide();
     }
 
-    //VALEURS DE RETOUR SUJETTES À CHANGEMENTS
+    //VALEURS DE RETOUR SUJETTES ï¿½ CHANGEMENTS
     private Vector2 DetectSlide()
     {
         if (Mathf.Abs(_slideDeltaV.x) > Mathf.Abs(_slideDeltaV.y) && Mathf.Abs(_slideDeltaV.x) > _minimumDrag) //Si l'offset en x est plus grand qu'en y
         {
             if (_slideDeltaV.x > 0)
             {
-                // Aller à droite
+                // Aller ï¿½ droite
                 Debug.Log("DROITE");
                 return Vector2.right;
             }
             else if (_slideDeltaV.x < 0)
             {
-                // Aller à gauche
+                // Aller ï¿½ gauche
                 Debug.Log("GAUCHE");
                 return Vector2.left;
             }

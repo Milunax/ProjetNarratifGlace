@@ -69,10 +69,20 @@ namespace GMSpace
         public int SetByForceNarrativeIALevel { set => _progression.narrativeIALevel = value; }
         #endregion
 
+        #region Switchs
+        private bool _switchShotCircuit;
+
+        public bool switchshortCiruit 
+        {
+            get => _switchShotCircuit;
+            set => _switchShotCircuit = value;
+        }
+        #endregion
 
         #region Signal
-        private float _wheelValue = 0f;
+        [SerializeField] private float _wheelValue = 0f;
         private Vector2 _wheelClamp = new Vector3(0f, 100f);
+        [SerializeField] private bool _wavesIsValid = false;
 
         public float GetSetWheelValue {
             get => _wheelValue;
@@ -91,6 +101,11 @@ namespace GMSpace
             _wheelClamp.x = min;
             _wheelClamp.y = max;
             return true;
+        }
+        public bool GetSetWaveValidity 
+        { 
+            get => _wavesIsValid;
+            set => _wavesIsValid = value;
         }
         #endregion
         #region Simon
