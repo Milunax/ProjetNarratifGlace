@@ -20,6 +20,7 @@ public class FileExplorerLine : MonoBehaviour
     [Header("Initials")]
     [InfoBox("Based on a size of text of 20")]
     [SerializeField] private float _widthSpacing = 2f;
+    public float GetWidthSpacing { get => _widthSpacing; }
     private bool _isOnScreen = false;
     public bool GetIsOnScreen { get => _isOnScreen; }
 
