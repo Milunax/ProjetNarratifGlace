@@ -85,15 +85,15 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Wave1Amplitude: 0.1
-    - _Wave1Frequency: 2
+    - _Wave1Amplitude: 0.297
+    - _Wave1Frequency: 0.62
     - _Wave1Phase: 5
-    - _Wave2Amplitude: 0.1
-    - _Wave2Frequency: 3
-    - _Wave2Phase: 3
-    - _Wave3Amplitude: 0.1
-    - _Wave3Frequency: 5
-    - _Wave3Phase: 2
+    - _Wave2Amplitude: 0
+    - _Wave2Frequency: 0
+    - _Wave2Phase: 0
+    - _Wave3Amplitude: 0
+    - _Wave3Frequency: 0
+    - _Wave3Phase: 0
     - _ZWrite: 1
     m_Colors:
     - _BGColor: {r: 0, g: 0, b: 0, a: 0}
