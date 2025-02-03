@@ -7,17 +7,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class WheelBehaviour : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Material _waveMaterail;
-    [SerializeField] Shader _waveShader;
+    private Shader _waveMaterial;
+    [SerializeField] GameObject _waveImage;
+    CanvasRenderer _canvaRenderer;
 
     [Header("Parameters")]
-    [SerializeField]float _minWheelVal = 0.0f;
-    [SerializeField]float _maxWheelVal = 100.0f;
-    [SerializeField]float _multiplyFactor = 1f;
+    [SerializeField] float _minWheelVal = 0.0f;
+    [SerializeField] float _maxWheelVal = 100.0f;
+    [SerializeField] float _multiplyFactor = 1f;
     [SerializeField] TMP_Text _scrolltext;
 
     private Coroutine _UpdateWheel;
@@ -30,7 +32,13 @@ public class WheelBehaviour : MonoBehaviour
 
         GameManager.Instance.SetWheelMinMax(_minWheelVal, _maxWheelVal);
         _isActive = GameManager.Instance.GetSetWaveValidity;
-        _waveMaterail = GetComponent<Material>();
+
+        var shader = Shader.Find("Custom/SineWave");
+        _waveMaterial = _waveImage.GetComponent<Shader>();
+        _waveMaterial = shader;
+        _canvaRenderer = _waveImage.GetComponent<CanvasRenderer>();
+
+
     }
 
     private void OnDisable()
@@ -39,7 +47,7 @@ public class WheelBehaviour : MonoBehaviour
         GameManager.playerInputs.primaryTouch.action.canceled -= OnFingerSlideEnded;
     }
 
-    void OnFingerSlideStarted(InputAction.CallbackContext ctx) 
+    void OnFingerSlideStarted(InputAction.CallbackContext ctx)
     {
         GameObject temp = GameManager.playerInputs.Detection();
         if (temp != null && temp == gameObject)
@@ -61,7 +69,8 @@ public class WheelBehaviour : MonoBehaviour
         {
             _scrolltext.text = GameManager.Instance.GetSetWheelValue.ToString();
             GameManager.Instance.GetSetWheelValue = startValue + (GameManager.playerInputs.GetSlideDeltaV.y * _multiplyFactor);
-            //_waveShader.
+
+            _canvaRenderer.GetMaterial().SetFloat("_Wave1Frequency", GameManager.Instance.GetSetWheelValue/_maxWheelVal * 10);
             yield return new WaitForFixedUpdate();
         }
     }
