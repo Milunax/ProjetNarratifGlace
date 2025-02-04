@@ -64,7 +64,6 @@ public class DirectionalPadButton : MonoBehaviour
 
     public DIRECTIONAL_PAD_INFO PressedInput()
     {
-        Debug.Log(_inputDirection.ToString());
         return _inputDirection;
     }
 }
