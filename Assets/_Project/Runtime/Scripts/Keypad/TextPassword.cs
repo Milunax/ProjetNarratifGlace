@@ -22,13 +22,13 @@ public class TextPassword : BaseKeypadText
         
     }
 
-    private void GeneratePassword()
+    public void GeneratePassword()
     {
         string generatedPassword = "";
 
         for (int i  = 0; i < _numberOfChar; i++)
         {
-            generatedPassword += Random.Range(0, _numberOfChar + 1);
+            generatedPassword += Random.Range(0, 10);
         }
 
         _textComponent.text = generatedPassword;

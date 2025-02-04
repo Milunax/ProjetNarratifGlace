@@ -1,14 +1,16 @@
 using DG.Tweening;
 using GMSpace;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Map : MonoBehaviour
 {
+    public static event Action<GameObject> OnTaskFinished;
+
     [SerializeField] MAP_ACTIVE _mapState;
     [SerializeField] private Image _player;
     [SerializeField] private List<PointOfInterest> _points =  new List<PointOfInterest>();
@@ -27,6 +29,7 @@ public class Map : MonoBehaviour
     {
         _mapState = MAP_ACTIVE.MAP;
         DirectionalPad.OnKeyPressed += ReceiveInput;
+        OnTaskFinished += TaskFinished;
     }
 
     private void OnDisable()
@@ -110,5 +113,9 @@ public class Map : MonoBehaviour
         }
     }
 
-    
+    public void TaskFinished(GameObject objectToHide)
+    {
+        _mapState = MAP_ACTIVE.MAP;
+        objectToHide.SetActive(false);
+    }
 }
