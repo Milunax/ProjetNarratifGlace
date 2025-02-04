@@ -46,7 +46,7 @@ public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
         GameObject temp = GameManager.playerInputs.Detection();
         if (temp != null && temp == gameObject)
         {
-            Debug.Log("DD");
+            //Debug.Log("DD");
             Toggle(_isOn);
         }
     }

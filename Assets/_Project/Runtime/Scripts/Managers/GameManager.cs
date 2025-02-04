@@ -70,12 +70,12 @@ namespace GMSpace
         #endregion
 
         #region Switchs
-        private bool _switchShotCircuit;
+        private bool _isSwitchActive = false;
 
         public bool switchshortCiruit 
         {
-            get => _switchShotCircuit;
-            set => _switchShotCircuit = value;
+            get => _isSwitchActive;
+            set => _isSwitchActive = value;
         }
         #endregion
 
