@@ -79,19 +79,19 @@ Material:
     - _BloomOnOff: 0
     - _BloomThreshold: 0
     - _BumpScale: 1
-    - _ChromaticAberrationOnOff: 0
-    - _ChromaticAberrationStrength: 0
-    - _ColorFilterIntensity: 0
-    - _ColorFilterOnOff: 0
+    - _ChromaticAberrationOnOff: 1
+    - _ChromaticAberrationStrength: 0.005
+    - _ColorFilterIntensity: 1
+    - _ColorFilterOnOff: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FishEyeOnOff: 0
-    - _FishEyeStrength: 0
+    - _FishEyeOnOff: 1
+    - _FishEyeStrength: 0.208
     - _FisheyeStrength: 0
-    - _FlickeringCycle: 1
+    - _FlickeringCycle: 3
     - _FlickeringOnOff: 1
-    - _FlickeringStrength: 0
+    - _FlickeringStrength: 0.001
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -104,17 +104,17 @@ Material:
     - _MultipleGhostStrength: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ScanlineFrequency: 32
+    - _ScanlineFrequency: 64
     - _ScanlineNoiseOnOff: 1
     - _ScanlineOnOff: 1
     - _ScreenJumpOffset: 0
     - _ScreenJumpOnOff: 1
-    - _SlippageInterval: 0
+    - _SlippageInterval: 0.5
     - _SlippageNoiseOnOff: 0
     - _SlippageOnOff: 1
-    - _SlippageScrollSpeed: 0
+    - _SlippageScrollSpeed: 10
     - _SlippageSize: 1
-    - _SlippageStrength: 0
+    - _SlippageStrength: 0.001
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -123,7 +123,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorFilterColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorFilterColor: {r: 0.6653613, g: 0.7924528, b: 0.7803567, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _UVRect: {r: 0, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []
