@@ -38,7 +38,7 @@ public class WheelBehaviour : MonoBehaviour
         _waveMaterial = shader;
         _canvaRenderer = _waveImage.GetComponent<CanvasRenderer>();
 
-
+        _waveImage.SetActive(false);
     }
 
     private void OnDisable()
@@ -52,13 +52,21 @@ public class WheelBehaviour : MonoBehaviour
         GameObject temp = GameManager.playerInputs.Detection();
         if (temp != null && temp == gameObject)
         {
+            _isActive = true;
+            _waveImage.SetActive(true);
             _UpdateWheel = StartCoroutine(UpdateWheel());
         }
     }
 
     void OnFingerSlideEnded(InputAction.CallbackContext ctx)
     {
-        if (_UpdateWheel != null) StopCoroutine(_UpdateWheel);
+        if (_UpdateWheel != null)
+        {
+            _isActive = false;
+            StopCoroutine(_UpdateWheel);
+            
+            _waveImage.SetActive(false);
+        }
     }
 
     IEnumerator UpdateWheel()
