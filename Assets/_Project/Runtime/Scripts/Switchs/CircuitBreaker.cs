@@ -7,85 +7,37 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Runtime.InteropServices.WindowsRuntime;
 using GMSpace;
+using UnityEditor.Experimental.GraphView;
 
-public class CircuitBreaker : MonoBehaviour, IPointerDownHandler
+public class CircuitBreaker : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] RectTransform _toggleIndicator;
-    [SerializeField] Image _backgroundImg;
-    [SerializeField] Color _colorOn;
-    [SerializeField] Color _colorOff;
+    [SerializeField] private List<Switchs> _switchs = new List<Switchs>();
+    [SerializeField] private Switchs _selectedSwitch;
 
     [Header("Parameters")]
-    [SerializeField] bool _isOn = true;
-    [SerializeField] bool _isLocked = false;
-    [SerializeField] float _tweenTime = .25f;
+    [SerializeField] private int _column;
 
-    private float _onY;
-    private float _offY;
-
-    public bool IsOn { get => _isOn; }
-    public delegate void ValueChanged(bool value);
-    public event ValueChanged OnValueChanged;
+    public Switchs selectedSwitch { get { return _selectedSwitch; } private set { _selectedSwitch = value; } }
 
     void Start()
     {
-        GameManager.playerInputs.primaryTouch.action.started += OnFingerSlideStarted;
-
-        _onY = _toggleIndicator.anchoredPosition.y;
-        _offY = -_toggleIndicator.anchoredPosition.y;
+        DirectionalPad.OnKeyPressed += MoveBetweenSwitchs;
     }
 
     void OnDisable()
     {
-        GameManager.playerInputs.primaryTouch.action.started -= OnFingerSlideStarted;
+        DirectionalPad.OnKeyPressed -= MoveBetweenSwitchs;
     }
 
-    void OnFingerSlideStarted(InputAction.CallbackContext ctx)
+    private void MoveBetweenSwitchs(DIRECTIONAL_PAD_INFO switchInfo)
     {
-        GameObject temp = GameManager.playerInputs.Detection();
-        if (temp != null && temp == gameObject)
+        switch (switchInfo)
         {
-            //Debug.Log("DD");
-            Toggle(_isOn);
+            case DIRECTIONAL_PAD_INFO.LEFT:
+                //selectedSwitch;
+                break;
         }
     }
 
-    //---- Activation ----//
-    void Toggle(bool value)
-    {
-        if(_isLocked == false)
-        {
-            _isOn = !_isOn;
-            //Debug.Log("ça passe");
-            ToggleColor(_isOn);
-            MoveIndicator(_isOn);
-
-            if(OnValueChanged != null)
-                OnValueChanged(_isOn);
-        }
-    }
-
-    //---- Color switching ----//
-    void ToggleColor(bool value)
-    {
-        if(value)
-            _backgroundImg.DOColor(_colorOn, _tweenTime);
-        else
-            _backgroundImg.DOColor(_colorOff, _tweenTime);
-    }
-
-    //---- Animation of the switches ----//
-    void MoveIndicator (bool value)
-    {
-        if (value)
-            _toggleIndicator.DOAnchorPosY(_onY, _tweenTime);
-        else
-            _toggleIndicator.DOAnchorPosY(_offY, _tweenTime);
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Toggle(_isOn);
-    }
 }
