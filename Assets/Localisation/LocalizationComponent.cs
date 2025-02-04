@@ -130,6 +130,31 @@ public class LocalizationComponent : MonoBehaviour
 
         return -1;
     }
+    /// <summary>
+    /// Give a text depending on the TSV file present in the class, the keys provided in parameter, and the current game language defined in the LocalizationManager.
+    /// </summary>
+    /// <param name="Key">Given identification key corresponding to a text in the TSV file. Can contain multiple key if separated by "&&"</param>
+    /// <returns>Text in current game language. Will return text on multiple lines if multiple keys are given</returns>
+    public string GetTextSafe(string Key)
+    {
+        if (Key == null)
+        {
+            Debug.LogError("Key was null", gameObject);
+            return "KEY WAS NULL";
+        }
+
+        Key = CleanKey(Key);
+
+        string result = "";
+        string[] tempo = Key.Split("&&");
+        foreach (string key in tempo)
+        {
+            if (result != "") result += '\n';
+            result += GetTextUnsafe(key);
+        }
+
+        return result;
+    }
 
     /// <summary>
     /// Give a text depending on the TSV file present in the class, the key provided in parameter, and the current game language defined in the LocalizationManager.
@@ -137,13 +162,18 @@ public class LocalizationComponent : MonoBehaviour
     /// <param name="Key">Given identification key corresponding to a text in the TSV file.</param>
     /// <param name="keyIsLanguage">Intended for LocalizationManager use only, keep at "false" by default to avoid unexpected errors.</param>
     /// <returns>Text in current game language.</returns>
-    public string GetText(string Key, bool keyIsLanguage = false)
+    public string GetTextUnsafe(string Key, bool keyIsLanguage = false)
     {
         if (cantBeUse) return ErrorCall();
-        if (Key == "")
+        if (Key == null)
         {
             Debug.LogError("Key was null", gameObject);
             return "KEY WAS NULL";
+        }
+        if (Key == "")
+        {
+            Debug.LogWarning("Key was empty", gameObject);
+            return "";
         }
         if (!MapOfTexts.ContainsKey(Key)) 
         { 
@@ -219,7 +249,7 @@ public class LocalizationComponent : MonoBehaviour
                 foreach (string key in tempo)
                 {
                     if (result != "") result += '\n';
-                    result += GetText(key);
+                    result += GetTextUnsafe(key);
                 }
 
                 TMPList[i].text = result;
@@ -243,7 +273,7 @@ public class LocalizationComponent : MonoBehaviour
                 foreach (string key in tempo)
                 {
                     if (result != "") result += '\n';
-                    result += GetText(key);
+                    result += GetTextUnsafe(key);
                 }
 
                 TextList[i].text = result;
@@ -251,7 +281,7 @@ public class LocalizationComponent : MonoBehaviour
         }
 
 
-        if (TextList.Count > 0)
+        if (TextMeshList.Count > 0)
         {
             for (int i = 0; i < TextMeshList.Count; i++)
             {
@@ -268,7 +298,7 @@ public class LocalizationComponent : MonoBehaviour
                 foreach (string key in tempo)
                 {
                     if (result != "") result += '\n';
-                    result += GetText(key);
+                    result += GetTextUnsafe(key);
                 }
 
                 TextMeshList[i].text = result;

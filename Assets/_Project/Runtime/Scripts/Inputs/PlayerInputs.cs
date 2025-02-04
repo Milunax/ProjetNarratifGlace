@@ -59,6 +59,7 @@ public class PlayerInputs : MonoBehaviour
 
     private void OnFingerSlideStarted(InputAction.CallbackContext ctx)
     {
+        Debug.Log("on finger slide started");
         _slideStartPos = _fingerPosition;
         _slideDeltaV = Vector2.zero;
     }
@@ -71,20 +72,20 @@ public class PlayerInputs : MonoBehaviour
         _fingerDelta = DetectSlide();
     }
 
-    //VALEURS DE RETOUR SUJETTES À CHANGEMENTS
+    //VALEURS DE RETOUR SUJETTES ï¿½ CHANGEMENTS
     private Vector2 DetectSlide()
     {
         if (Mathf.Abs(_slideDeltaV.x) > Mathf.Abs(_slideDeltaV.y) && Mathf.Abs(_slideDeltaV.x) > _minimumDrag) //Si l'offset en x est plus grand qu'en y
         {
             if (_slideDeltaV.x > 0)
             {
-                // Aller à droite
+                // Aller ï¿½ droite
                 Debug.Log("DROITE");
                 return Vector2.right;
             }
             else if (_slideDeltaV.x < 0)
             {
-                // Aller à gauche
+                // Aller ï¿½ gauche
                 Debug.Log("GAUCHE");
                 return Vector2.left;
             }
@@ -111,11 +112,15 @@ public class PlayerInputs : MonoBehaviour
 
     public GameObject Detection()
     {
-        Ray ray = Camera.main.ScreenPointToRay(_fingerPosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+        Vector3 screenPoint = new Vector3 (GetSlideStartPos.x, GetSlideStartPos.y, 0);
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
+        if (Physics.Raycast(worldPoint, Camera.main.transform.forward, out RaycastHit hit, Mathf.Infinity))
         {
+            Debug.DrawRay(worldPoint, Camera.main.transform.forward * 10, Color.green, 10f);
+            Debug.Log(hit.transform.gameObject.name);
             return hit.transform.gameObject;
         }
+        Debug.DrawRay(worldPoint, Camera.main.transform.forward * 1000, Color.red, 10f);
         return null;
     }
 }

@@ -9,9 +9,44 @@ namespace GMSpace
         public static PlayerInputs playerInputs;
 
         // Game Manager local variables //
+        #region GameState
+        private GAME_STATE gameState;
+        private PROGRESSION _progression = new PROGRESSION(0, 0, 0);
+
+        public GAME_STATE GetGameState { get => gameState; }
+
+        public PROGRESSION GetProgression { get => _progression; }
+        public PROGRESSION SetByForceProgression { set => _progression = value; }
+        public int GetSetProgressionDay 
+        { 
+            get => _progression.day;
+            set
+            {
+                if (value > _progression.day)
+                {
+                    _progression.inDay = 0;
+                    _progression.day = value;
+                }
+                else Debug.Log("Day wasn't changed : value is lower or equal to current day");
+            }
+        }
+        public int SetByForceProgressionDay { set => _progression.day = value; }
+        public int GetSetProgressionInDay 
+        { 
+            get => _progression.inDay;
+            set
+            {
+                if (value > _progression.inDay)
+                {
+                    _progression.inDay = value;
+                }
+                else Debug.Log("inDay wasn't changed : value is lower or equal to current inDay");
+            }
+        }
+        public int SetByForceProgressionInDay { set => _progression.inDay = value;  }
+        #endregion
         #region NarrativeIA
         private bool _narrativeIAIsActive;
-        private int _narrativeIALevel;
 
         //Accessor for ergonomy and possible debug purposes
         public bool GetSetNarrativeIAIsActive
@@ -21,19 +56,17 @@ namespace GMSpace
         }
         public int GetSetNarrativeIALevel
         {
-            get => _narrativeIALevel;
-            set => _narrativeIALevel = value;
+            get => _progression.narrativeIALevel;
+            set
+            {
+                if (value > _progression.narrativeIALevel)
+                {
+                    _progression.narrativeIALevel = value;
+                }
+                else Debug.Log("IA Level wasn't changed : value is lower or equal to current IA Level");
+            }
         }
-        #endregion
-
-        #region GameState
-        public enum GAME_STATE
-        {
-            WAKE_UP = 0,
-            DISCUSS = 1,
-            ROUTINE_TASK = 2,
-            SECONDARY_TASK = 3
-        }
+        public int SetByForceNarrativeIALevel { set => _progression.narrativeIALevel = value; }
         #endregion
 
         #region Switchs
