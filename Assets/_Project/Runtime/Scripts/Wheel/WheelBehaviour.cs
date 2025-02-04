@@ -20,10 +20,15 @@ public class WheelBehaviour : MonoBehaviour
     [SerializeField] float _minWheelVal = 0.0f;
     [SerializeField] float _maxWheelVal = 100.0f;
     [SerializeField] float _multiplyFactor = 1f;
+    [SerializeField] float _valToObtain = 1f;
     [SerializeField] TMP_Text _scrolltext;
 
     private Coroutine _UpdateWheel;
     private bool _isActive;
+
+    private float _saveStartValue;
+    public float GetSaveStartValue {  get => _saveStartValue;}
+
 
     void Start()
     {
@@ -32,13 +37,10 @@ public class WheelBehaviour : MonoBehaviour
 
         GameManager.Instance.SetWheelMinMax(_minWheelVal, _maxWheelVal);
         _isActive = GameManager.Instance.GetSetWaveValidity;
-
         var shader = Shader.Find("Custom/SineWave");
-        _waveMaterial = _waveImage.GetComponent<Shader>();
-        _waveMaterial = shader;
         _canvaRenderer = _waveImage.GetComponent<CanvasRenderer>();
-
-        _waveImage.SetActive(false);
+        //_waveImage.SetActive(false);
+        StartCoroutine(GetWaveMaterial());
     }
 
     private void OnDisable()
@@ -77,9 +79,27 @@ public class WheelBehaviour : MonoBehaviour
         {
             _scrolltext.text = GameManager.Instance.GetSetWheelValue.ToString();
             GameManager.Instance.GetSetWheelValue = startValue + (GameManager.playerInputs.GetSlideDeltaV.y * _multiplyFactor);
-
             _canvaRenderer.GetMaterial().SetFloat("_Wave1Frequency", GameManager.Instance.GetSetWheelValue/_maxWheelVal * 10);
+            print(_canvaRenderer.GetMaterial().GetFloat("_Wave1Frequency"));
+            if (_valToObtain == GameManager.Instance.GetSetWheelValue)
+            {
+                Debug.Log("Wave game Win");
+            }
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    IEnumerator GetWaveMaterial()
+    {
+        do
+        {
+            if (_canvaRenderer.GetMaterial() != null)
+            {
+                Debug.Log("not null");
+                _saveStartValue = _canvaRenderer.GetMaterial().GetFloat("_Wave1Frequency");
+            }
+
+            yield return new WaitForFixedUpdate();
+        } while (_canvaRenderer.GetMaterial() == null);
     }
 }

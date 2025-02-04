@@ -11,15 +11,12 @@ using UnityEngine.InputSystem;
 public class Switchs : MonoBehaviour, IPointerDownHandler
 {
     [Header("References")]
-    [SerializeField] private Switchs _previousSwitchs;
-    [SerializeField] private Switchs _nextSwitchs;
     [SerializeField] RectTransform _toggleIndicator;
     [SerializeField] Image _backgroundImg;
     [SerializeField] Color _colorOn;
     [SerializeField] Color _colorOff;
 
     [Header("Parameters")]
-    //[SerializeField] private int _column = 3;
     [SerializeField] private bool _isSelectable = true;
     [SerializeField] bool _isOn = true;
     [SerializeField] bool _isLocked = false;
@@ -31,10 +28,6 @@ public class Switchs : MonoBehaviour, IPointerDownHandler
     public bool IsOn { get => _isOn; }
     public delegate void ValueChanged(bool value);
     public event ValueChanged OnValueChanged;
-
-    //public int Column { get => _column; set => _column = value; }
-    public Switchs Previous { get { return _previousSwitchs; } set { _previousSwitchs = value; } }
-    public Switchs NextSwitch { get { return _nextSwitchs; } set { _nextSwitchs = value; } }
     public bool selection { get => _isSelectable; set => _isSelectable = value; }
 
     void Start()
