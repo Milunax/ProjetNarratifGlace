@@ -74,5 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58e0416023ac884d8ee815f14bab8ac, type: 3}
   m_Name: ShadowCtrl
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   vignetteMaterial: {fileID: 2100000, guid: b814d8db33808e5458f47307cfa93b69, type: 2}

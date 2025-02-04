@@ -1545,7 +1545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1456212171730415883}
   m_Layer: 0
-  m_Name: Macintosh_Rig
+  m_Name: Mac_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
