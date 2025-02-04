@@ -95,14 +95,12 @@ public class FileExplorerTextUI : MonoBehaviour
                 {
                     float temp = Mathf.Clamp(_rect.anchoredPosition.y - (_textSize * 2f), _scrollLimit.x, _scrollLimit.y);
                     _rect.anchoredPosition = new Vector2(_rect.anchoredPosition.x, temp);
-                    Debug.Log("UP : " + temp + " | " + _textSize);
                     break;
                 }
             case DIRECTIONAL_PAD_INFO.DOWN:
                 {
                     float temp = Mathf.Clamp(_rect.anchoredPosition.y + (_textSize * 2f), _scrollLimit.x, _scrollLimit.y);
                     _rect.anchoredPosition = new Vector2(_rect.anchoredPosition.x, temp);
-                    Debug.Log("DOWN : " + temp);
                     break;
                 }
 
