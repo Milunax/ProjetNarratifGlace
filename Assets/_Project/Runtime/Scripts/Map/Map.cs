@@ -21,6 +21,7 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject _taskPipes;
     [SerializeField] private GameObject _taskNumberCode;
     [SerializeField] private GameObject _taskNumberLogic;
+    [SerializeField] private GameObject _taskWaves;
 
     private void OnEnable()
     {
@@ -38,7 +39,7 @@ public class Map : MonoBehaviour
     void Start()
     {
         _points.AddRange(FindObjectsOfType<PointOfInterest>());
-        UpdateSelectedPoint(_points[0]);
+        //UpdateSelectedPoint(_points[0]);
     }
 
     private void UpdateSelectedPoint(PointOfInterest newPoint)
@@ -82,18 +83,27 @@ public class Map : MonoBehaviour
         {
             case MAP_ACTIVE.DOOR_SIMON:
                 if(_taskSimon != null) _taskSimon.SetActive(true);
+                _mapState = MAP_ACTIVE.DOOR_SIMON;
                 break;
             case MAP_ACTIVE.SWITCH:
                 if (_taskSwitch != null) _taskSwitch.SetActive(true);
+                _mapState = MAP_ACTIVE.SWITCH;
                 break;
             case MAP_ACTIVE.PIPES:
                 if (_taskPipes != null) _taskPipes.SetActive(true);
+                _mapState = MAP_ACTIVE.PIPES;
                 break;
             case MAP_ACTIVE.NUMBERS_CODE:
                 if (_taskNumberCode != null) _taskNumberCode.SetActive(true);
+                _mapState= MAP_ACTIVE.NUMBERS_CODE;
                 break;
             case MAP_ACTIVE.NUMBERS_LOGIC:
                 if (_taskNumberLogic != null) _taskNumberLogic.SetActive(true);
+                _mapState = MAP_ACTIVE.NUMBERS_LOGIC;
+                break;
+            case MAP_ACTIVE.WAVES:
+                if(_taskWaves != null) _taskWaves.SetActive(true);
+                _mapState = MAP_ACTIVE.WAVES;
                 break;
             default:
                 break;
