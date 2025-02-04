@@ -59,7 +59,7 @@ public class PlayerInputs : MonoBehaviour
 
     private void OnFingerSlideStarted(InputAction.CallbackContext ctx)
     {
-        Debug.Log("on finger slide started");
+        //Debug.Log("on finger slide started");
         _slideStartPos = _fingerPosition;
         _slideDeltaV = Vector2.zero;
     }
@@ -80,13 +80,13 @@ public class PlayerInputs : MonoBehaviour
             if (_slideDeltaV.x > 0)
             {
                 // Aller � droite
-                Debug.Log("DROITE");
+                //Debug.Log("DROITE");
                 return Vector2.right;
             }
             else if (_slideDeltaV.x < 0)
             {
                 // Aller � gauche
-                Debug.Log("GAUCHE");
+                //Debug.Log("GAUCHE");
                 return Vector2.left;
             }
         }
@@ -95,18 +95,18 @@ public class PlayerInputs : MonoBehaviour
             if (_slideDeltaV.y > 0)
             {
                 // Aller en haut
-                Debug.Log("HAUT");
+                //Debug.Log("HAUT");
                 return Vector2.up;
             }
             else if (_slideDeltaV.y < 0)
             {
                 // Aller en bas
-                Debug.Log("BAS");
+                //Debug.Log("BAS");
                 return Vector2.down;
             }
         }
         // On bouge pas
-        Debug.Log("BOUGE PAS");
+        //Debug.Log("BOUGE PAS");
         return Vector2.zero;
     }
 
@@ -119,7 +119,7 @@ public class PlayerInputs : MonoBehaviour
             if (Physics.Raycast(worldPoint, Camera.main.transform.forward, out RaycastHit hit, Mathf.Infinity))
             {
                 Debug.DrawRay(worldPoint, Camera.main.transform.forward * 10, Color.green, 10f);
-                Debug.Log(hit.transform.gameObject.name);
+                //Debug.Log(hit.transform.gameObject.name);
                 return hit.transform.gameObject;
             }
             Debug.DrawRay(worldPoint, Camera.main.transform.forward * 1000, Color.red, 10f);
@@ -131,7 +131,7 @@ public class PlayerInputs : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
                 Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.green, 10f);
-                Debug.Log(hit.transform.gameObject.name);
+                //Debug.Log(hit.transform.gameObject.name);
                 return hit.transform.gameObject;
             }
             Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 10f);

@@ -307,7 +307,7 @@ public class LocalizationComponent : MonoBehaviour
     }
     private string CleanKey(string key, bool superClean = false)
     {
-        string result = key.Replace(" ", "").Replace("\t", "");
+        string result = key.Replace(" ", "").Replace("\t", "").Replace("\n", "");
         return result;
     }
 
