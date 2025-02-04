@@ -9,24 +9,11 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] PointOfInterest _right;
     [SerializeField] PointOfInterest _left;
 
-    [SerializeField] List<DIRECTIONAL_PAD_INFO> _possibleDirections;
+    [SerializeField] private MAP_ACTIVE _task;
 
     public PointOfInterest Up => _up;
     public PointOfInterest Down => _down;
     public PointOfInterest Right => _right;
     public PointOfInterest Left => _left;
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public MAP_ACTIVE Task => _task;
 }

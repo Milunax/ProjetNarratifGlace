@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &32062921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 32062922}
+  m_Layer: 0
+  m_Name: Tasks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &32062922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32062921}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9318547, y: 14.438045, z: -10.003318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &140115688
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,18 +178,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140115688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 9.928239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1641043312}
   - {fileID: 1301263045}
-  m_Father: {fileID: 747120755}
+  m_Father: {fileID: 194323600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 62}
+  m_AnchoredPosition: {x: 93.67174, y: 206.17236}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &140115690
@@ -287,11 +318,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea5dfd72f4d50499050f7a8e7c2b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _up: {fileID: 0}
-  _down: {fileID: 0}
-  _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 01000000020000000300000004000000
+  _up: {fileID: 949240722}
+  _down: {fileID: 1094936558}
+  _right: {fileID: 658370543}
+  _left: {fileID: 1325218790}
+  _task: 0
 --- !u!1 &186994034
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,9 +413,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _up: {fileID: 0}
   _down: {fileID: 0}
-  _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 0300000004000000
+  _right: {fileID: 353340985}
+  _left: {fileID: 490836218}
+  _task: 13
 --- !u!1 &194323599
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,12 +441,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194323599}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17174013, y: 22.027637, z: -9.928239}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -93.67174, y: -144.17236, z: -9.928239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
+  m_Children:
+  - {fileID: 140115689}
+  m_Father: {fileID: 747120755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &194323601
 MonoBehaviour:
@@ -429,9 +461,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520bd6b8aa1c9bc4884c7e01712e6bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mapState: 0
   _player: {fileID: 1301263046}
   _points: []
   _currentPoint: {fileID: 0}
+  _taskSimon: {fileID: 0}
+  _taskSwitch: {fileID: 0}
+  _taskPipes: {fileID: 0}
+  _taskNumberCode: {fileID: 0}
+  _taskNumberLogic: {fileID: 0}
 --- !u!1 &353340981
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,11 +558,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea5dfd72f4d50499050f7a8e7c2b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _up: {fileID: 0}
+  _up: {fileID: 1094936558}
   _down: {fileID: 0}
-  _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 010000000300000004000000
+  _right: {fileID: 1354795809}
+  _left: {fileID: 186994038}
+  _task: 0
 --- !u!1 &455806653
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +655,7 @@ MonoBehaviour:
   _down: {fileID: 1009651957}
   _right: {fileID: 1325218790}
   _left: {fileID: 0}
-  _possibleDirections: 010000000400000002000000
+  _task: 0
 --- !u!1 &490836214
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +748,7 @@ MonoBehaviour:
   _down: {fileID: 0}
   _right: {fileID: 186994038}
   _left: {fileID: 0}
-  _possibleDirections: 0100000004000000
+  _task: 0
 --- !u!1 &578275187
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +841,7 @@ MonoBehaviour:
   _down: {fileID: 857745349}
   _right: {fileID: 1416599940}
   _left: {fileID: 0}
-  _possibleDirections: 0400000002000000
+  _task: 0
 --- !u!1 &614904593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,8 +1052,8 @@ MonoBehaviour:
   _up: {fileID: 0}
   _down: {fileID: 0}
   _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 03000000
+  _left: {fileID: 164207266}
+  _task: 0
 --- !u!1 &747120751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1148,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 140115689}
+  - {fileID: 194323600}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1265,7 +1303,7 @@ MonoBehaviour:
   _down: {fileID: 455806657}
   _right: {fileID: 0}
   _left: {fileID: 0}
-  _possibleDirections: 0100000002000000
+  _task: 0
 --- !u!1 &867101979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,11 +1513,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea5dfd72f4d50499050f7a8e7c2b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _up: {fileID: 0}
-  _down: {fileID: 0}
+  _up: {fileID: 1359154323}
+  _down: {fileID: 164207266}
   _right: {fileID: 0}
   _left: {fileID: 0}
-  _possibleDirections: 0100000002000000
+  _task: 15
 --- !u!1 &1009651953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1610,7 @@ MonoBehaviour:
   _down: {fileID: 490836218}
   _right: {fileID: 0}
   _left: {fileID: 0}
-  _possibleDirections: 0100000002000000
+  _task: 11
 --- !u!1 &1094936554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,11 +1699,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea5dfd72f4d50499050f7a8e7c2b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _up: {fileID: 0}
-  _down: {fileID: 0}
+  _up: {fileID: 164207266}
+  _down: {fileID: 353340985}
   _right: {fileID: 0}
   _left: {fileID: 0}
-  _possibleDirections: 0100000002000000
+  _task: 14
 --- !u!1 &1185479344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,9 +2056,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _up: {fileID: 0}
   _down: {fileID: 0}
-  _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 0300000004000000
+  _right: {fileID: 164207266}
+  _left: {fileID: 455806657}
+  _task: 0
 --- !u!1 &1354795805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,8 +2150,8 @@ MonoBehaviour:
   _up: {fileID: 0}
   _down: {fileID: 0}
   _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 03000000
+  _left: {fileID: 353340985}
+  _task: 0
 --- !u!1 &1357318050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,9 +2361,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _up: {fileID: 0}
   _down: {fileID: 0}
-  _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 030000000400000002000000
+  _right: {fileID: 1997065361}
+  _left: {fileID: 1416599940}
+  _task: 0
 --- !u!1 &1416599936
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,9 +2454,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _up: {fileID: 0}
   _down: {fileID: 0}
-  _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 0300000004000000
+  _right: {fileID: 1359154323}
+  _left: {fileID: 578275191}
+  _task: 12
 --- !u!1 &1612995643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,8 +2916,8 @@ MonoBehaviour:
   _up: {fileID: 0}
   _down: {fileID: 0}
   _right: {fileID: 0}
-  _left: {fileID: 0}
-  _possibleDirections: 03000000
+  _left: {fileID: 1359154323}
+  _task: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2887,6 +2925,6 @@ SceneRoots:
   - {fileID: 1911336907}
   - {fileID: 811832820}
   - {fileID: 1884130884}
-  - {fileID: 194323600}
   - {fileID: 747120755}
   - {fileID: 1185479347}
+  - {fileID: 32062922}

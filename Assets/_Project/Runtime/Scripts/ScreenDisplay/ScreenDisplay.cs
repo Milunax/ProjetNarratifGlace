@@ -11,6 +11,7 @@ public class ScreenDisplay : MonoBehaviour
     [Header("Screens")]
     [SerializeField] private FileExplorerBase _fileExplorer;
     [SerializeField] private DialogueController _dialogueController;
+    [SerializeField] private Map _map;
 
 
     [Header("Resolution")]
@@ -142,7 +143,7 @@ public class ScreenDisplay : MonoBehaviour
         {
             case SCREEN_ACTIVE.MAP:
                 {
-
+                    _map.ReceiveInput(input);
                 }
                 break;
             case SCREEN_ACTIVE.FILE_EXPLORER:
