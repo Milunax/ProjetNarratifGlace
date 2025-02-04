@@ -70,9 +70,8 @@ public class FileExplorerBase : MonoBehaviour
         TryGetComponent<RectTransform>(out _rectTextContainer);
         SetupTextDisplayValues();
         _textFileUIScript.SetTextValues(_textSize, _topLeftPadding);
-
-        Opening();
     }
+
     public void Closing()
     {
         _dataPath.Clear();
