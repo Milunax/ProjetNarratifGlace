@@ -49,7 +49,7 @@ public class ScreenDisplay : MonoBehaviour
 
         _rectScreens.localScale = new Vector2(sizeInPixel / 256, sizeInPixel / 256);
 
-        OpenDialogue(true);
+        //OpenDialogue(true);
     }
 
     public void OpenMap()

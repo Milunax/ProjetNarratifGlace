@@ -42,8 +42,8 @@ public class FileExplorerTextUI : MonoBehaviour
     {
         if (_nbLines != _mainText.textInfo.lineCount)
         {
-            _image.rectTransform.anchoredPosition = new Vector2(_image.rectTransform.anchoredPosition.x, -(_offset.y + (_textSize * 3f)) - (_textSize * (_mainText.textInfo.lineCount + 2.5f)));
-            _scrollLimit.y = _scrollLimit.x + (_offset.y + (_textSize * 2f) + _textSize * (_mainText.textInfo.lineCount - 1));
+            _image.rectTransform.anchoredPosition = new Vector2(_image.rectTransform.anchoredPosition.x, -(_offset.y + (_textSize * 3f)) - ((_textSize * 1.125f) * _mainText.textInfo.lineCount));
+            _scrollLimit.y = _scrollLimit.x + (_offset.y + (_textSize * 2f) + (_textSize * 1.125f) * (_mainText.textInfo.lineCount - 2));
         }
     }
 
