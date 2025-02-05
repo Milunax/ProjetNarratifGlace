@@ -61,7 +61,7 @@ public class ScreenDisplay : MonoBehaviour
         }
         _activeMap = MAP_ACTIVE.MAP;
 
-        //Open Map
+        _map.Opening();
     }
     public void CloseMap()
     {
@@ -71,7 +71,7 @@ public class ScreenDisplay : MonoBehaviour
         }
         _activeMap = MAP_ACTIVE.CLOSED;
 
-        //_Map.Closing();
+        _map.Closing();
     }
 
     private void FileExplorerButton()
