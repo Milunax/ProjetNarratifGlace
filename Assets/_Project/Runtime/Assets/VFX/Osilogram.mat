@@ -85,8 +85,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Wave1Amplitude: 0.297
-    - _Wave1Frequency: 1.16
+    - _Wave1Amplitude: 0.2
+    - _Wave1Frequency: 0.4
     - _Wave1Phase: 5
     - _Wave2Amplitude: 0
     - _Wave2Frequency: 0
