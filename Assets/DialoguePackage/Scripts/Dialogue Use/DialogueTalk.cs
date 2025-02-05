@@ -170,7 +170,7 @@ public class DialogueTalk : DialogueGetData
     {
         if (nodeData.DialogueEventSo != null)
         {
-            nodeData.DialogueEventSo.RunEvent(nodeData.tag);
+            nodeData.DialogueEventSo.RunEvent(nodeData.tag, nodeData.isInteractive);
         }
         CheckNodeType(GetNextNode(nodeData));
     }
