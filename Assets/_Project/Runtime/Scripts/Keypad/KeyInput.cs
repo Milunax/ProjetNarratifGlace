@@ -10,6 +10,7 @@ public class KeyInput : MonoBehaviour
 
     public char Clicked()
     {
+        GameManager.soundManager.PlayAudio("click sound", SoundManager.AUDIO_CATEGORY.NONE, 0.05f);
 
         return _keyChar;
     }

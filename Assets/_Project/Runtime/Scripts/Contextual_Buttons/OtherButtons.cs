@@ -10,7 +10,7 @@ public class OtherButtons : MonoBehaviour
 
     public CONTEXTUAL_INPUT_INFO Clicked()
     {
-
+        GameManager.soundManager.PlayAudio("click sound", SoundManager.AUDIO_CATEGORY.NONE, 0.05f);
         return _keyInput;
     }
 }

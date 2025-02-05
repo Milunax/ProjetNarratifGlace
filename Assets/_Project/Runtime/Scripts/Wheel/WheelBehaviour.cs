@@ -1,13 +1,8 @@
 using GMSpace;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using TMPro;
-using System;
-using UnityEngine.UI;
 
 public class WheelBehaviour : MonoBehaviour
 {
@@ -57,6 +52,7 @@ public class WheelBehaviour : MonoBehaviour
         {
             _isActive = true;
             _waveImage.SetActive(true);
+            _audioSource = GameManager.soundManager.PlayAudioLoop(_audio, SoundManager.AUDIO_CATEGORY.FOLEY);
             _UpdateWheel = StartCoroutine(UpdateWheel());
         }
     }
@@ -68,6 +64,7 @@ public class WheelBehaviour : MonoBehaviour
             _isActive = false;
             StopCoroutine(_UpdateWheel);
             _waveImage.SetActive(false);
+            GameManager.soundManager.StopAudioLoop(ref _audioSource);
         }
     }
 
