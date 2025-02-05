@@ -81,6 +81,11 @@ public class DialogueController : MonoBehaviour
         ShowDialogue(true);
     }
 
+    public void Closing()
+    {
+        ShowDialogue(false);
+    }
+
     private void RefreshTexts(SystemLanguage currentLanguage)
     {
         SetText(LocalizationManager.Instance.UniGetText(refTsv, savedNameKey), 
@@ -112,6 +117,7 @@ public class DialogueController : MonoBehaviour
 
     public void ShowDialogue(bool _show)
     {
+        Debug.Log(_show);
         dialogueUI.SetActive(_show);
     }
 
