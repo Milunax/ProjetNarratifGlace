@@ -385,6 +385,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2595144911027196918, guid: f936f166521062644b8c845b55863770, type: 3}
+      propertyPath: _keyChar
+      value: 54
+      objectReference: {fileID: 0}
     - target: {fileID: 3592361863689822329, guid: f936f166521062644b8c845b55863770, type: 3}
       propertyPath: m_Name
       value: Macintosh
