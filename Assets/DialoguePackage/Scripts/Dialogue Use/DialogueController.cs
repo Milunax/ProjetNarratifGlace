@@ -76,16 +76,6 @@ public class DialogueController : MonoBehaviour
         OnSelectedButtonValueChange -= MoveSelectionImage;
     }
 
-    public void Opening()
-    {
-        ShowDialogue(true);
-    }
-
-    public void Closing()
-    {
-        ShowDialogue(false);
-    }
-
     private void RefreshTexts(SystemLanguage currentLanguage)
     {
         SetText(LocalizationManager.Instance.UniGetText(refTsv, savedNameKey), 
@@ -113,6 +103,16 @@ public class DialogueController : MonoBehaviour
         buttonTexts.Add(textbutton02);
         buttonTexts.Add(textbutton03);
         buttonTexts.Add(textbutton04);
+    }
+
+    public void Opening()
+    {
+        ShowDialogue(true);
+    }
+
+    public void Closing()
+    {
+        ShowDialogue(false);
     }
 
     public void ShowDialogue(bool _show)
