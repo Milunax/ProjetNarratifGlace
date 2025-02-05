@@ -104,7 +104,7 @@ public class PasswordManager : MonoBehaviour
     {
         if(_passwordCompletedCount >= _passwordToCompleteCount)
         {
-            FindObjectOfType<Map>().TaskFinished(_taskContainer); //passer info de quelle task c'est
+            FindObjectOfType<Map>().TaskFinished(_taskContainer);   
             ResetTask();
         }
     }

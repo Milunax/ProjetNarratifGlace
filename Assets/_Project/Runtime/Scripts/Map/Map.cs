@@ -1,9 +1,5 @@
-using DG.Tweening;
-using GMSpace;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,8 +43,11 @@ public class Map : MonoBehaviour
 
     private void UpdateSelectedPoint(PointOfInterest newPoint)
     {
-        _currentPoint = newPoint;
-        UpdatePlayerPosition();
+        if(newPoint != null)
+        {
+            _currentPoint = newPoint;
+            UpdatePlayerPosition();
+        } 
     }
 
     private void UpdatePlayerPosition()
@@ -61,16 +60,88 @@ public class Map : MonoBehaviour
         switch(input)
         {
             case DIRECTIONAL_PAD_INFO.UP:
-                if(_currentPoint.Up != null) UpdateSelectedPoint(_currentPoint.Up);
+                if (_currentPoint.DoorUp != null)
+                {
+                    Debug.Log("1");
+                    if (_currentPoint.DoorUp.IsOpen)
+                    {
+                        Debug.Log("3");
+                        UpdateSelectedPoint(_currentPoint.Up);
+                    }
+                    else
+                    {
+                        Debug.Log("Open Simon");
+                        OpenTask(MAP_ACTIVE.DOOR_SIMON);
+                    }
+                }
+                else
+                {
+                    Debug.Log("2");
+                    UpdateSelectedPoint(_currentPoint.Up);
+                }
                 break;
             case DIRECTIONAL_PAD_INFO.DOWN:
-                if (_currentPoint.Down != null) UpdateSelectedPoint(_currentPoint.Down);
+                    if (_currentPoint.DoorDown != null)
+                    {
+                        Debug.Log("1");
+                        if (_currentPoint.DoorDown.IsOpen)
+                        {
+                                Debug.Log("3");
+                                UpdateSelectedPoint(_currentPoint.Down);
+                        }
+                        else
+                        {
+                            Debug.Log("Open Simon");
+                            OpenTask(MAP_ACTIVE.DOOR_SIMON);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("2");
+                        UpdateSelectedPoint(_currentPoint.Down);
+                    }
                 break;
             case DIRECTIONAL_PAD_INFO.RIGHT:
-                if (_currentPoint.Right != null) UpdateSelectedPoint(_currentPoint.Right);
+                if (_currentPoint.DoorRight != null)
+                {
+                    Debug.Log("1");
+                    if (_currentPoint.DoorRight.IsOpen)
+                    {
+                        Debug.Log("3");
+                        UpdateSelectedPoint(_currentPoint.Right);
+                    }
+                    else
+                    {
+                        Debug.Log("Open Simon");
+                        OpenTask(MAP_ACTIVE.DOOR_SIMON);
+                    }
+                }
+                else
+                {
+                    Debug.Log("2");
+                    UpdateSelectedPoint(_currentPoint.Right);
+                }
                 break;
             case DIRECTIONAL_PAD_INFO.LEFT:
-                if (_currentPoint.Left != null) UpdateSelectedPoint(_currentPoint.Left);
+                if (_currentPoint.DoorLeft != null)
+                {
+                    Debug.Log("1");
+                    if (_currentPoint.DoorLeft.IsOpen)
+                    {
+                        Debug.Log("3");
+                        UpdateSelectedPoint(_currentPoint.Left);
+                    }
+                    else
+                    {
+                        Debug.Log("Open Simon");
+                        OpenTask(MAP_ACTIVE.DOOR_SIMON);
+                    }
+                }
+                else
+                {
+                    Debug.Log("2");
+                    UpdateSelectedPoint(_currentPoint.Left);
+                }
                 break;
             case DIRECTIONAL_PAD_INFO.CONFIRM:
                 if (_currentPoint != null && _currentPoint.Task != MAP_ACTIVE.CLOSED) OpenTask(_currentPoint.Task);
@@ -82,40 +153,44 @@ public class Map : MonoBehaviour
 
     private void OpenTask(MAP_ACTIVE task)
     {
-        switch (task)
+        if(!_currentPoint.IsTaskCompleted)
         {
-            case MAP_ACTIVE.DOOR_SIMON:
-                if(_taskSimon != null) _taskSimon.SetActive(true);
-                _mapState = MAP_ACTIVE.DOOR_SIMON;
-                break;
-            case MAP_ACTIVE.SWITCH:
-                if (_taskSwitch != null) _taskSwitch.SetActive(true);
-                _mapState = MAP_ACTIVE.SWITCH;
-                break;
-            case MAP_ACTIVE.PIPES:
-                if (_taskPipes != null) _taskPipes.SetActive(true);
-                _mapState = MAP_ACTIVE.PIPES;
-                break;
-            case MAP_ACTIVE.NUMBERS_CODE:
-                if (_taskNumberCode != null) _taskNumberCode.SetActive(true);
-                _mapState= MAP_ACTIVE.NUMBERS_CODE;
-                break;
-            case MAP_ACTIVE.NUMBERS_LOGIC:
-                if (_taskNumberLogic != null) _taskNumberLogic.SetActive(true);
-                _mapState = MAP_ACTIVE.NUMBERS_LOGIC;
-                break;
-            case MAP_ACTIVE.WAVES:
-                if(_taskWaves != null) _taskWaves.SetActive(true);
-                _mapState = MAP_ACTIVE.WAVES;
-                break;
-            default:
-                break;
+            switch (task)
+            {
+                case MAP_ACTIVE.DOOR_SIMON:
+                    if (_taskSimon != null) _taskSimon.SetActive(true);
+                    _mapState = MAP_ACTIVE.DOOR_SIMON;
+                    break;
+                case MAP_ACTIVE.SWITCH:
+                    if (_taskSwitch != null) _taskSwitch.SetActive(true);
+                    _mapState = MAP_ACTIVE.SWITCH;
+                    break;
+                case MAP_ACTIVE.PIPES:
+                    if (_taskPipes != null) _taskPipes.SetActive(true);
+                    _mapState = MAP_ACTIVE.PIPES;
+                    break;
+                case MAP_ACTIVE.NUMBERS_CODE:
+                    if (_taskNumberCode != null) _taskNumberCode.SetActive(true);
+                    _mapState = MAP_ACTIVE.NUMBERS_CODE;
+                    break;
+                case MAP_ACTIVE.NUMBERS_LOGIC:
+                    if (_taskNumberLogic != null) _taskNumberLogic.SetActive(true);
+                    _mapState = MAP_ACTIVE.NUMBERS_LOGIC;
+                    break;
+                case MAP_ACTIVE.WAVES:
+                    if (_taskWaves != null) _taskWaves.SetActive(true);
+                    _mapState = MAP_ACTIVE.WAVES;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     public void TaskFinished(GameObject objectToHide)
     {
         _mapState = MAP_ACTIVE.MAP;
+        _currentPoint.IsTaskCompleted = true;
         objectToHide.SetActive(false);
     }
 }
