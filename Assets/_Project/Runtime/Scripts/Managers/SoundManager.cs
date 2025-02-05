@@ -160,7 +160,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public bool PlayAudio(AudioClip clip, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
+    public bool PlayAudio(AudioClip clip, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE, float randomPitch = 0f)
     {
         if (_audioList.Count < 29 && clip != null) // 32 sounds limit - 3 permanent sounds
         {
@@ -170,7 +170,7 @@ public class SoundManager : MonoBehaviour
 
             AUDIO_PROPERTIES properties = GetAudioProperties(configuration);
             audio.volume = properties.volume;
-            audio.pitch = properties.pitch;
+            audio.pitch = UnityEngine.Random.Range(properties.pitch - randomPitch, properties.pitch + randomPitch);
             audio.panStereo = properties.stereoPan;
             audio.spatialBlend = properties.spacialBlend;
             audio.reverbZoneMix = properties.reverbZoneMix;
@@ -182,7 +182,7 @@ public class SoundManager : MonoBehaviour
         }
         else return false;
     }
-    public bool PlayAudio(string audioName, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
+    public bool PlayAudio(string audioName, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE, float randomPitch = 0f)
     {
         if (_audioList.Count < 29) // 32 sounds limit - 3 permanent sounds
         {
@@ -195,7 +195,7 @@ public class SoundManager : MonoBehaviour
 
             AUDIO_PROPERTIES properties = GetAudioProperties(configuration);
             audio.volume = properties.volume;
-            audio.pitch = properties.pitch;
+            audio.pitch = UnityEngine.Random.Range(properties.pitch - randomPitch, properties.pitch + randomPitch);
             audio.panStereo = properties.stereoPan;
             audio.spatialBlend = properties.spacialBlend;
             audio.reverbZoneMix = properties.reverbZoneMix;
