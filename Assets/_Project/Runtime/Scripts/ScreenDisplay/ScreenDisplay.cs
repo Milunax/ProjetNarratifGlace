@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using UnityEditor;
 using UnityEngine;
 
 public class ScreenDisplay : MonoBehaviour
@@ -24,6 +25,14 @@ public class ScreenDisplay : MonoBehaviour
     [SerializeField, ReadOnly] private FILE_EXPLORER_ACTIVE _activeFileExplorer = FILE_EXPLORER_ACTIVE.CLOSED;
     [SerializeField, ReadOnly] private DIALOGUE_ACTIVE _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
 
+    [Header("Dialogue graph events tags")]
+    [SerializeField] private string _openDialogueTag;
+    [SerializeField] private string _closeDialogueTag;
+    [SerializeField] private string _openMap;
+    [SerializeField] private string _closeMap;
+    [SerializeField] private string _openFileExplorer;
+    [SerializeField] private string _closeFileExplorer;
+
     private void OnValidate()
     {
         if (sizeInPixel < 256)
@@ -45,12 +54,42 @@ public class ScreenDisplay : MonoBehaviour
 
     private void Start()
     {
+        DialogueEventSO.DialogueEvent += GraphEvent;
         _renderCamera.targetTexture.height = sizeInPixel;
         _renderCamera.targetTexture.width = sizeInPixel;
 
         _rectScreens.localScale = new Vector2(sizeInPixel / 256, sizeInPixel / 256);
 
-        //OpenDialogue(true);
+        CloseDialogue();
+        CloseMap();
+        CloseFileExplorer();
+    }
+
+    private void GraphEvent(string tag, bool isDialogueInteractive)
+    {
+        switch (tag)
+        {
+            case "OpenDialogue":
+                Debug.Log("Opendialogue");
+                OpenDialogue(isDialogueInteractive);
+                break;
+            case "CloseDialogue":
+                CloseDialogue();
+                break;
+            case "OpenMap":
+                Debug.Log("OpenMap");
+                OpenMap();
+                break;
+            case "CloseMap":
+                CloseMap();
+                break;
+            case "OpenFileExplorer":
+                OpenFileExplorer();
+                break;
+            case "CloseFileExplorer":
+                CloseFileExplorer();
+                break;
+        }
     }
 
     public void OpenMap()
@@ -108,6 +147,7 @@ public class ScreenDisplay : MonoBehaviour
 
     public void OpenDialogue(bool isInteractif)
     {
+        //Debug.Log("test");
         if (isInteractif && _activeScreen != SCREEN_ACTIVE.SHUTDOWN)
         {
             _activeScreen = SCREEN_ACTIVE.DIALOGUE;
@@ -129,7 +169,7 @@ public class ScreenDisplay : MonoBehaviour
 
         _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
 
-        //Close Dialogues
+        _dialogueController.Closing();
     }
     public void ChangeDialogueState(DIALOGUE_ACTIVE state)
     {

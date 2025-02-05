@@ -10,10 +10,14 @@ public class EventNode : BaseNode
     private ObjectField eventField;
 
     private string eventTag;
-    private TextField eventTagField; 
+    private TextField eventTagField;
+
+    private bool eventBool = true;
+    private Toggle eventBoolField;
 
     public DialogueEventSO DialogueEvent { get => dialogueEvent; set => dialogueEvent = value; }
     public string EventTag { get => eventTag; set => eventTag = value; }
+    public bool EventBool { get => eventBool; set => eventBool = value; }
 
     public EventNode()
     {
@@ -64,11 +68,22 @@ public class EventNode : BaseNode
         eventTagField.multiline = true;
         eventTagField.AddToClassList("TextBox");
         mainContainer.Add(eventTagField);
+
+        //Bool Label
+        Label boolLabel = new Label("Is dialogue interactive");
+        tagLabel.AddToClassList("label_text");
+        tagLabel.AddToClassList("label");
+        mainContainer.Add(boolLabel);
+
+        //Bool field
+        AddField(ref eventBoolField, ref eventBool,
+            newValue => eventBool = newValue);
     }
 
     public override void LoadValueIntoField()
     {
         eventField.SetValueWithoutNotify(dialogueEvent);
         eventTagField.SetValueWithoutNotify(eventTag);
+        eventBoolField.SetValueWithoutNotify(eventBool);
     }
 }

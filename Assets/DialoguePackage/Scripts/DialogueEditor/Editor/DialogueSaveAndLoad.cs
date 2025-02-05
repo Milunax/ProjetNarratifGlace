@@ -151,7 +151,8 @@ public class DialogueSaveAndLoad
             nodeguid = _node.NodeGuid,
             position = _node.GetPosition().position,
             DialogueEventSo = _node.DialogueEvent,
-            tag = _node.EventTag
+            tag = _node.EventTag,
+            isInteractive = _node.EventBool
         };
         return nodeData;
     }
@@ -203,6 +204,7 @@ public class DialogueSaveAndLoad
             tempNode.NodeGuid = node.nodeguid;
             tempNode.DialogueEvent = node.DialogueEventSo;
             tempNode.EventTag = node.tag;
+            tempNode.EventBool = node.isInteractive;
             //Update visuals with loaded values
             tempNode.LoadValueIntoField();
             graphView.AddElement(tempNode);
