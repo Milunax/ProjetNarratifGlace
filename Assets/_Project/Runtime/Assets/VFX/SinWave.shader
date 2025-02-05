@@ -22,7 +22,7 @@
 
         // === 共同控制 ===
         [Header(MovementAndVisual)]
-        _MovementSpeed("Movement Speed", Range(0,2)) = 1
+        _MovementSpeed("Movement Speed", Range(0,10)) = 10
         _LineThickness("Line Thickness", Range(0,0.1)) = 0.02
         _LineColor("Line Color", Color) = (1,1,1,1)
         _BGColor("Background Color", Color) = (0,0,0,0)
