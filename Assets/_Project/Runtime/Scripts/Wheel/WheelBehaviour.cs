@@ -1,6 +1,7 @@
 using GMSpace;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 
@@ -9,6 +10,8 @@ public class WheelBehaviour : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject _waveImage;
     [SerializeField] GameObject _waveTarget;
+    [SerializeField] AudioClip _audio;
+    AudioSource _audioSource;
     CanvasRenderer _canvaRendererWave;
     CanvasRenderer _canvaRendererWaveTarget;
 
