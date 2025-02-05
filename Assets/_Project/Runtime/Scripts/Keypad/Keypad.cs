@@ -8,7 +8,7 @@ public class Keypad : MonoBehaviour
 {
     [SerializeField] private List<KeyInput> _keyInputs = new ();
 
-    public Action<char> OnKeyPressed;
+    public static event Action<char> OnKeyPressed;
 
     // Start is called before the first frame update
     void Start()

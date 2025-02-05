@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PasswordManager : MonoBehaviour
@@ -9,17 +10,13 @@ public class PasswordManager : MonoBehaviour
 
     private Keypad _keypad;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        _keypad = FindObjectOfType<Keypad>();
-        _keypad.OnKeyPressed += UpdatePassword;
-
+        Keypad.OnKeyPressed += UpdatePassword;
     }
-
     private void OnDisable()
     {
-        _keypad.OnKeyPressed -= UpdatePassword;
+        Keypad.OnKeyPressed -= UpdatePassword;
     }
 
     public void AddTextToList(BaseKeypadText elementToAdd)
