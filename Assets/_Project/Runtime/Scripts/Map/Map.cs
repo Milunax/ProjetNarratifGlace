@@ -21,6 +21,10 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject _taskNumberLogic;
     [SerializeField] private GameObject _taskWaves;
 
+    [Header("Hide on close")]
+    [SerializeField] private GameObject _background;
+    [SerializeField] private GameObject _tasks;
+
     private void OnEnable()
     {
         _mapState = MAP_ACTIVE.MAP;
@@ -32,6 +36,7 @@ public class Map : MonoBehaviour
     {
         _mapState = MAP_ACTIVE.CLOSED;
         //DirectionalPad.OnKeyPressed -= ReceiveInput;
+        OnTaskFinished -= TaskFinished;
     }
 
     // Start is called before the first frame update
@@ -43,12 +48,16 @@ public class Map : MonoBehaviour
 
     public void Opening()
     {
-        gameObject.SetActive(false);
+        _background.SetActive(true);
+        _tasks.SetActive(true);
+        _mapState = MAP_ACTIVE.MAP;
     }
 
     public void Closing()
     {
-        gameObject.SetActive(false);
+        _background.SetActive(false);
+        _tasks.SetActive(false);
+        _mapState = MAP_ACTIVE.CLOSED;
     }
 
     private void UpdateSelectedPoint(PointOfInterest newPoint)

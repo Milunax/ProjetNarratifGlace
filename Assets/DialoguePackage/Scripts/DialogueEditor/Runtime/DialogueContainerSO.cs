@@ -74,6 +74,7 @@ public class StartNodeData :BaseNodeData
 public class EventNodeData : BaseNodeData
 {
     public string tag;
+    public bool isInteractive;
     public DialogueEventSO DialogueEventSo;
 }
 

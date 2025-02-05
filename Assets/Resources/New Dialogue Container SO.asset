@@ -14,62 +14,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeLinkDatas:
   - baseNodeGuid: 1b965c61-610d-47b4-bc33-f0eee1c94baa
-    targetNodeGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
-  - baseNodeGuid: 6b141308-2dca-4b9a-8aa8-2cb6ab934d47
-    targetNodeGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
-  - baseNodeGuid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
-    targetNodeGuid: 93e8ef9a-977c-436e-a89c-f6612a947e77
-  - baseNodeGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
-    targetNodeGuid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
-  - baseNodeGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
-    targetNodeGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
-  - baseNodeGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
-    targetNodeGuid: bec8d61d-2cb4-4d60-bb3a-8e1f70f94a51
+    targetNodeGuid: 0e26223e-21ac-4f64-9de8-7b6e1a2d873a
+  - baseNodeGuid: 0e26223e-21ac-4f64-9de8-7b6e1a2d873a
+    targetNodeGuid: fdae7c31-25a4-4cbb-98a8-5c26bd74e523
+  - baseNodeGuid: 9615d6a1-3f79-4146-8f30-d11bf5c79447
+    targetNodeGuid: b07be88d-9134-4abe-94b3-5b03a62c1908
+  - baseNodeGuid: b07be88d-9134-4abe-94b3-5b03a62c1908
+    targetNodeGuid: 03d9f0da-66ce-4cc2-9246-bd7df0aacd7c
+  - baseNodeGuid: fdae7c31-25a4-4cbb-98a8-5c26bd74e523
+    targetNodeGuid: 9615d6a1-3f79-4146-8f30-d11bf5c79447
   dialogueNodeDatas:
-  - nodeguid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
-    position: {x: 1128.7999, y: 286.4}
+  - nodeguid: fdae7c31-25a4-4cbb-98a8-5c26bd74e523
+    position: {x: 1038, y: 117}
     dialogueNodePorts:
-    - InputGuid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
-      OutputGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
-      Key: Option_Name02
+    - InputGuid: 9615d6a1-3f79-4146-8f30-d11bf5c79447
+      OutputGuid: fdae7c31-25a4-4cbb-98a8-5c26bd74e523
+      Key: 
       ID_Port: 0
-    sprite: {fileID: 21300000, guid: a87ba417c3dde1346b95b4209eddfc4b, type: 3}
+    sprite: {fileID: 0}
     dialoguefaceimagetype: 0
-    name: Name_Test02
-    key: Key_Text02
-  - nodeguid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
-    position: {x: 756.8, y: 156.8}
-    dialogueNodePorts:
-    - InputGuid: bec8d61d-2cb4-4d60-bb3a-8e1f70f94a51
-      OutputGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
-      Key: Option_A
-      ID_Port: 0
-    - InputGuid: 9511a85a-23dc-4b54-8f1f-810dd0917f84
-      OutputGuid: 8aa853c8-4f94-43f0-8147-6cfd0424ba6c
-      Key: Option_B
-      ID_Port: 0
-    sprite: {fileID: 21300000, guid: ca9cb1c101ef55c4ea7339a1a0f1f99f, type: 3}
-    dialoguefaceimagetype: 0
-    name: Name_Test01
+    name: Name_Text01
     key: Key_Text01
   endNodeDatas:
-  - nodeguid: 93e8ef9a-977c-436e-a89c-f6612a947e77
-    position: {x: 1788.7999, y: 229.6}
-    endNodeTypes: 0
-  - nodeguid: bec8d61d-2cb4-4d60-bb3a-8e1f70f94a51
-    position: {x: 1209.6, y: 127.2}
+  - nodeguid: 03d9f0da-66ce-4cc2-9246-bd7df0aacd7c
+    position: {x: 2033, y: 117}
     endNodeTypes: 0
   startNodeDatas:
   - nodeguid: 1b965c61-610d-47b4-bc33-f0eee1c94baa
-    position: {x: 593.60004, y: 116.8}
+    position: {x: 594, y: 117}
     node_id: 
     mainStartNode: 1
-  - nodeguid: 6b141308-2dca-4b9a-8aa8-2cb6ab934d47
-    position: {x: 924, y: 414.4}
-    node_id: Delayed
-    mainStartNode: 0
   eventNodeDatas:
-  - nodeguid: 4e1d316e-f638-49ee-aa8a-2dce7e06d652
-    position: {x: 1478.3999, y: 222.40001}
-    tag: test bleu
+  - nodeguid: 0e26223e-21ac-4f64-9de8-7b6e1a2d873a
+    position: {x: 718, y: 117}
+    tag: OpenDialogue
+    isInteractive: 1
+    DialogueEventSo: {fileID: 11400000, guid: e0ed1d347ced37e4aad7753fb903cc6f, type: 2}
+  - nodeguid: 9615d6a1-3f79-4146-8f30-d11bf5c79447
+    position: {x: 1355, y: 117}
+    tag: CloseDialogue
+    isInteractive: 1
+    DialogueEventSo: {fileID: 11400000, guid: e0ed1d347ced37e4aad7753fb903cc6f, type: 2}
+  - nodeguid: b07be88d-9134-4abe-94b3-5b03a62c1908
+    position: {x: 1661, y: 117}
+    tag: OpenMap
+    isInteractive: 1
     DialogueEventSo: {fileID: 11400000, guid: e0ed1d347ced37e4aad7753fb903cc6f, type: 2}
