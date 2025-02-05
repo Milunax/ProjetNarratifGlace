@@ -18,18 +18,12 @@ public class PasswordManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _keypad = FindObjectOfType<Keypad>();
-        _keypad.OnKeyPressed += UpdatePassword;
-    }
-
-    private void OnEnable()
-    {
-        
+        Keypad.OnKeyPressed += UpdatePassword;
     }
     private void OnDisable()
     {
         ResetTask();
-        _keypad.OnKeyPressed -= UpdatePassword;
+        Keypad.OnKeyPressed -= UpdatePassword;
     }
 
     public void AddTextToList(BaseKeypadText elementToAdd)
