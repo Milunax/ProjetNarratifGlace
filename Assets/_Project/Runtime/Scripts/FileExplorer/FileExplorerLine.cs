@@ -20,6 +20,7 @@ public class FileExplorerLine : MonoBehaviour
     [Header("Initials")]
     [InfoBox("Based on a size of text of 20")]
     [SerializeField] private float _widthSpacing = 2f;
+    public float GetWidthSpacing { get => _widthSpacing; }
     private bool _isOnScreen = false;
     public bool GetIsOnScreen { get => _isOnScreen; }
 
@@ -37,7 +38,7 @@ public class FileExplorerLine : MonoBehaviour
 
     private void Start()
     {
-        //SetupVisual(256, 36, "Lorem Ipsum", FILE_TYPE.FILE_TEXT, false);
+        _imageCursor.sprite = _cursor;
     }
     public void SetupVisual(float boxWidth, float textSize, string text, FILE_TYPE type, bool blocked)
     {

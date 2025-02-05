@@ -136,6 +136,11 @@ namespace LocalizationPackage
             AllComponents = FindObjectsOfType<LocalizationComponent>(true);
             StartCoroutine(WaitForInit());
         }
+        private void ReStart()
+        {
+            AllComponents = FindObjectsOfType<LocalizationComponent>(true);
+            StartCoroutine(WaitForInit());
+        }
 
         private IEnumerator WaitForInit()
         {
@@ -164,11 +169,17 @@ namespace LocalizationPackage
         /// <returns>Text in current game language.</returns>
         public string UniGetText(string TSVFileName, string Key)
         {
+            if (AllComponents == null)
+            {
+                ReStart();
+                return null;
+            }
+
             foreach(LocalizationComponent comp in AllComponents)
             {
                 if (comp.GetTSVFileName == TSVFileName)
                 {
-                    return comp.GetText(Key);
+                    return comp.GetTextSafe(Key);
                 }
             }
 
@@ -220,7 +231,7 @@ namespace LocalizationPackage
                 Debug.LogWarning(languageToGet.ToString() + " is not supported, add this language in the variable 'languages' if you want it to be supported ", gameObject);
             }
 
-            return LanguageSelection.GetText(languageToGet.ToString(), sameAsSelectedLanguage);
+            return LanguageSelection.GetTextUnsafe(languageToGet.ToString(), sameAsSelectedLanguage);
         }
     }
 }

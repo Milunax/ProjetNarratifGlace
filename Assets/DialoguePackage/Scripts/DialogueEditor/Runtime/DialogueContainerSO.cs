@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -74,6 +72,7 @@ public class StartNodeData :BaseNodeData
 public class EventNodeData : BaseNodeData
 {
     public string tag;
+    public bool isInteractive;
     public DialogueEventSO DialogueEventSo;
 }
 
@@ -84,7 +83,7 @@ public class DialogueNodePort
 {
     public string InputGuid;
     public string OutputGuid;
-    public Port MyPort;
+    public UnityEditor.Experimental.GraphView.Port MyPort;
     public PortParameters MyPortParams;
     public TextField textField;
     public string Key;

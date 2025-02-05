@@ -64,7 +64,7 @@ public class DirectionalPadButton : MonoBehaviour
 
     public DIRECTIONAL_PAD_INFO PressedInput()
     {
-        Debug.Log(_inputDirection.ToString());
+        GameManager.soundManager.PlayAudio("click sound", SoundManager.AUDIO_CATEGORY.NONE, 0.05f);
         return _inputDirection;
     }
 }

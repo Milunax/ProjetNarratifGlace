@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OsilogramTarget
+  m_Shader: {fileID: 4800000, guid: ae8dd7ab0d499ec45bbdc22fa3ad80bd, type: 3}
+  m_Parent: {fileID: 2100000, guid: e523bb6e886743b4989607f1bf8c463e, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _MovementSpeed: 0
+    - _Wave1Amplitude: 0.2
+    - _Wave1Frequency: 0.5
+    - _Wave1Phase: 5
+    - _Wave2Amplitude: 0
+    - _Wave2Frequency: 0
+    - _Wave2Phase: 0
+    m_Colors: []
+  m_BuildTextureStacks: []

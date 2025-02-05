@@ -56,13 +56,13 @@ MonoBehaviour:
   _imageIcon: {fileID: 2844921413306266717}
   _imageCursor: {fileID: 803762111923947167}
   _widthSpacing: 2
-  _cursor: {fileID: 0}
-  _folderAcc: {fileID: 21300000, guid: 77e6ba9af948e9d4fad29678e0fcb45a, type: 3}
-  _folderBlc: {fileID: 21300000, guid: 63198a83e27dccb47b361ece353168b6, type: 3}
-  _TextFileAcc: {fileID: 21300000, guid: 6c2bffd514fe4cc4ca52cc6abbc49d85, type: 3}
-  _TextFileBlc: {fileID: 21300000, guid: 53b4a647c2c9dbd40be6fb2b2a21746e, type: 3}
-  _AudioFileAcc: {fileID: 21300000, guid: 0a6d2c35b158e89459f763e72241e6d7, type: 3}
-  _AudioFileBlc: {fileID: 21300000, guid: 2d98aafbb07550343a0dbf75b1c6d5dc, type: 3}
+  _cursor: {fileID: 21300000, guid: 6e2140aa599ceae45ab0d1f00a0eb6ca, type: 3}
+  _folderAcc: {fileID: 21300000, guid: e79860e049e1d6345be12914e285db7f, type: 3}
+  _folderBlc: {fileID: 21300000, guid: 1bceee965a2bc2f46ba3f5b63ef4a4cf, type: 3}
+  _TextFileAcc: {fileID: 21300000, guid: 88dc36058f93e334f97feb7932cc319c, type: 3}
+  _TextFileBlc: {fileID: 21300000, guid: 1ce47a638a1ebd3469e395045b2baa04, type: 3}
+  _AudioFileAcc: {fileID: 21300000, guid: a10081ac485c5114dbc777d339d0c530, type: 3}
+  _AudioFileBlc: {fileID: 21300000, guid: 3e76a323741ba6e4ea8f8fd3e4f4d8ab, type: 3}
 --- !u!1 &3606090545118361112
 GameObject:
   m_ObjectHideFlags: 0

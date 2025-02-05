@@ -15,7 +15,8 @@ public enum MAP_ACTIVE
     SWITCH = 12,
     PIPES = 13,
     NUMBERS_CODE = 14,
-    NUMBERS_LOGIC = 15
+    NUMBERS_LOGIC = 15,
+    WAVES = 16
 }
 
 public enum FILE_EXPLORER_ACTIVE

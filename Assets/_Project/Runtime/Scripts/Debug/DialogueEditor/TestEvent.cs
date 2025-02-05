@@ -10,12 +10,12 @@ public class TestEvent : MonoBehaviour
 
     private void OnEnable()
     {
-        DialogueEventSO.DialogueEvent += ColorChange;
+        //DialogueEventSO.DialogueEvent += ColorChange;
     }
 
     private void OnDisable()
     {
-        DialogueEventSO.DialogueEvent -= ColorChange;
+        //DialogueEventSO.DialogueEvent -= ColorChange;
     }
 
     private void ColorChange(string tag)

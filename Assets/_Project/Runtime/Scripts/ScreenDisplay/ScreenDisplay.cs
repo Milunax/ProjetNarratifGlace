@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using UnityEditor;
 using UnityEngine;
 
 public class ScreenDisplay : MonoBehaviour
@@ -10,6 +11,9 @@ public class ScreenDisplay : MonoBehaviour
     [Space(10)]
     [Header("Screens")]
     [SerializeField] private FileExplorerBase _fileExplorer;
+    [SerializeField] private DialogueController _dialogueController;
+    [SerializeField] private Map _map;
+
 
     [Header("Resolution")]
     [InfoBox("Size can't be below 256 pixels")]
@@ -20,6 +24,14 @@ public class ScreenDisplay : MonoBehaviour
     [SerializeField, ReadOnly] private MAP_ACTIVE _activeMap = MAP_ACTIVE.MAP;
     [SerializeField, ReadOnly] private FILE_EXPLORER_ACTIVE _activeFileExplorer = FILE_EXPLORER_ACTIVE.CLOSED;
     [SerializeField, ReadOnly] private DIALOGUE_ACTIVE _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
+
+    [Header("Dialogue graph events tags")]
+    [SerializeField] private string _openDialogueTag;
+    [SerializeField] private string _closeDialogueTag;
+    [SerializeField] private string _openMap;
+    [SerializeField] private string _closeMap;
+    [SerializeField] private string _openFileExplorer;
+    [SerializeField] private string _closeFileExplorer;
 
     private void OnValidate()
     {
@@ -32,18 +44,52 @@ public class ScreenDisplay : MonoBehaviour
     private void OnEnable()
     {
         DirectionalPad.OnKeyPressed += DirectionnalPadInput;
+        ContextualButtons.OnKeyPressed += ContextualPadInput;
     }
     private void OnDisable()
     {
         DirectionalPad.OnKeyPressed -= DirectionnalPadInput;
+        ContextualButtons.OnKeyPressed -= ContextualPadInput;
     }
 
     private void Start()
     {
+        DialogueEventSO.DialogueEvent += GraphEvent;
         _renderCamera.targetTexture.height = sizeInPixel;
         _renderCamera.targetTexture.width = sizeInPixel;
 
         _rectScreens.localScale = new Vector2(sizeInPixel / 256, sizeInPixel / 256);
+
+        CloseDialogue();
+        CloseMap();
+        CloseFileExplorer();
+    }
+
+    private void GraphEvent(string tag, bool isDialogueInteractive)
+    {
+        switch (tag)
+        {
+            case "OpenDialogue":
+                Debug.Log("Opendialogue");
+                OpenDialogue(isDialogueInteractive);
+                break;
+            case "CloseDialogue":
+                CloseDialogue();
+                break;
+            case "OpenMap":
+                Debug.Log("OpenMap");
+                OpenMap();
+                break;
+            case "CloseMap":
+                CloseMap();
+                break;
+            case "OpenFileExplorer":
+                OpenFileExplorer();
+                break;
+            case "CloseFileExplorer":
+                CloseFileExplorer();
+                break;
+        }
     }
 
     public void OpenMap()
@@ -54,7 +100,7 @@ public class ScreenDisplay : MonoBehaviour
         }
         _activeMap = MAP_ACTIVE.MAP;
 
-        //Open Map
+        _map.Opening();
     }
     public void CloseMap()
     {
@@ -64,9 +110,20 @@ public class ScreenDisplay : MonoBehaviour
         }
         _activeMap = MAP_ACTIVE.CLOSED;
 
-        //_Map.Closing();
+        _map.Closing();
     }
 
+    private void FileExplorerButton()
+    {
+        if (_activeFileExplorer == FILE_EXPLORER_ACTIVE.CLOSED)
+        {
+            OpenFileExplorer();
+        }
+        else if (_activeFileExplorer != FILE_EXPLORER_ACTIVE.CLOSED)
+        {
+            CloseFileExplorer();
+        }
+    }
     public void OpenFileExplorer()
     {
         if (_activeScreen != SCREEN_ACTIVE.SHUTDOWN && _activeScreen <= SCREEN_ACTIVE.MAP)
@@ -85,11 +142,12 @@ public class ScreenDisplay : MonoBehaviour
         }
         _activeFileExplorer = FILE_EXPLORER_ACTIVE.CLOSED;
 
-        //_fileExplorer.Closing();
+        _fileExplorer.Closing();
     }
 
     public void OpenDialogue(bool isInteractif)
     {
+        //Debug.Log("test");
         if (isInteractif && _activeScreen != SCREEN_ACTIVE.SHUTDOWN)
         {
             _activeScreen = SCREEN_ACTIVE.DIALOGUE;
@@ -97,6 +155,8 @@ public class ScreenDisplay : MonoBehaviour
 
         if (isInteractif) _activeDialogue = DIALOGUE_ACTIVE.DIALOGUE_INTERACTIVE;
         else _activeDialogue = DIALOGUE_ACTIVE.DIALOGUE_NO_INTERACTIVE;
+
+        //_dialogueController.Opening();
     }
     public void CloseDialogue()
     {
@@ -109,7 +169,7 @@ public class ScreenDisplay : MonoBehaviour
 
         _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
 
-        //Close Dialogues
+        //_dialogueController.Closing();
     }
     public void ChangeDialogueState(DIALOGUE_ACTIVE state)
     {
@@ -132,6 +192,35 @@ public class ScreenDisplay : MonoBehaviour
 
     private void DirectionnalPadInput(DIRECTIONAL_PAD_INFO input)
     {
+        switch (_activeScreen)
+        {
+            case SCREEN_ACTIVE.MAP:
+                {
+                    _map.ReceiveInput(input);
+                }
+                break;
+            case SCREEN_ACTIVE.FILE_EXPLORER:
+                {
+                    _fileExplorer.InputsListener(input);
+                }
+                break;
+            case SCREEN_ACTIVE.DIALOGUE:
+                {
+                    _dialogueController.ReceiveDirectionalInput(input);
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+    private void ContextualPadInput(CONTEXTUAL_INPUT_INFO input)
+    {
+        if (_activeScreen > SCREEN_ACTIVE.BLACK_SCREEN && input == CONTEXTUAL_INPUT_INFO.FILE_EXPLORER)
+        {
+            FileExplorerButton();
+        }
+
         switch (_activeScreen)
         {
             case SCREEN_ACTIVE.MAP:
