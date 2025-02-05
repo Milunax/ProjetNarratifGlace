@@ -12,9 +12,10 @@ using UnityEngine.UI;
 public class WheelBehaviour : MonoBehaviour
 {
     [Header("References")]
-    private Shader _waveMaterial;
     [SerializeField] GameObject _waveImage;
-    CanvasRenderer _canvaRenderer;
+    [SerializeField] GameObject _waveTarget;
+    CanvasRenderer _canvaRendererWave;
+    CanvasRenderer _canvaRendererWaveTarget;
 
     [Header("Parameters")]
     [SerializeField] float _minWheelVal = 0.0f;
@@ -25,6 +26,11 @@ public class WheelBehaviour : MonoBehaviour
     private Coroutine _UpdateWheel;
     private bool _isActive;
 
+    private float _saveStartValue;
+    private float _saveWaveTargetValue;
+    public float GetSaveStartValue {  get => _saveStartValue;}
+
+
     void Start()
     {
         GameManager.playerInputs.primaryTouch.action.started += OnFingerSlideStarted;
@@ -32,13 +38,10 @@ public class WheelBehaviour : MonoBehaviour
 
         GameManager.Instance.SetWheelMinMax(_minWheelVal, _maxWheelVal);
         _isActive = GameManager.Instance.GetSetWaveValidity;
-
-        var shader = Shader.Find("Custom/SineWave");
-        _waveMaterial = _waveImage.GetComponent<Shader>();
-        _waveMaterial = shader;
-        _canvaRenderer = _waveImage.GetComponent<CanvasRenderer>();
-
-        _waveImage.SetActive(false);
+        _canvaRendererWave = _waveImage.GetComponent<CanvasRenderer>();
+        _canvaRendererWaveTarget = _waveTarget.GetComponent<CanvasRenderer>();
+        //_waveImage.SetActive(false);
+        StartCoroutine(GetWaveMaterial());
     }
 
     private void OnDisable()
@@ -64,7 +67,6 @@ public class WheelBehaviour : MonoBehaviour
         {
             _isActive = false;
             StopCoroutine(_UpdateWheel);
-            
             _waveImage.SetActive(false);
         }
     }
@@ -72,14 +74,33 @@ public class WheelBehaviour : MonoBehaviour
     IEnumerator UpdateWheel()
     {
         float startValue = GameManager.Instance.GetSetWheelValue;
-
         while (true)
         {
             _scrolltext.text = GameManager.Instance.GetSetWheelValue.ToString();
             GameManager.Instance.GetSetWheelValue = startValue + (GameManager.playerInputs.GetSlideDeltaV.y * _multiplyFactor);
-
-            _canvaRenderer.GetMaterial().SetFloat("_Wave1Frequency", GameManager.Instance.GetSetWheelValue/_maxWheelVal * 10);
+            _canvaRendererWave.GetComponent<Image>().material.SetFloat("_Wave1Frequency", GameManager.Instance.GetSetWheelValue/_maxWheelVal * 10);
+            _canvaRendererWaveTarget.GetComponent<Image>().material.SetFloat("_Wave1Frequency", GameManager.Instance.GetSetWheelValue/_maxWheelVal * 10);
+            //print(_canvaRendererWave.GetMaterial().GetFloat("_Wave1Frequency"));
+            if (_saveWaveTargetValue == GameManager.Instance.GetSetWheelValue)
+            {
+                Debug.Log("Wave game Win");
+            }
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    IEnumerator GetWaveMaterial()
+    {
+        do
+        {
+            if (_canvaRendererWave.GetComponent<Image>().material != null && _canvaRendererWaveTarget.GetComponent<Image>().material != null)
+            {
+                //Debug.Log("not null");
+                _saveStartValue = _canvaRendererWave.GetComponent<Image>().material.GetFloat("_Wave1Frequency");
+                _saveWaveTargetValue = _canvaRendererWaveTarget.GetComponent<Image>().material.GetFloat("_Wave1Frequency");
+            }
+
+            yield return new WaitForFixedUpdate();
+        } while (_canvaRendererWave.GetMaterial() == null);
     }
 }

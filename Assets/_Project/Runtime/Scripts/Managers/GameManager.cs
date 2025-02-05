@@ -11,6 +11,23 @@ namespace GMSpace
         public static SoundManager soundManager;
 
         // Game Manager local variables //
+        #region NarrativeIA
+        private bool _narrativeIAIsActive;
+        private int _narrativeIALevel;
+
+        //Accessor for ergonomy and possible debug purposes
+        public bool GetSetNarrativeIAIsActive
+        {
+            get => _narrativeIAIsActive;
+            set => _narrativeIAIsActive = value;
+        }
+        public int GetSetNarrativeIALevel
+        {
+            get => _narrativeIALevel;
+            set => _narrativeIALevel = value;
+        }
+        #endregion
+
         #region GameState
         private GAME_STATE gameState;
         private PROGRESSION _progression = new PROGRESSION(0, 0, 0);
@@ -19,8 +36,8 @@ namespace GMSpace
 
         public PROGRESSION GetProgression { get => _progression; }
         public PROGRESSION SetByForceProgression { set => _progression = value; }
-        public int GetSetProgressionDay 
-        { 
+        public int GetSetProgressionDay
+        {
             get => _progression.day;
             set
             {
@@ -33,8 +50,8 @@ namespace GMSpace
             }
         }
         public int SetByForceProgressionDay { set => _progression.day = value; }
-        public int GetSetProgressionInDay 
-        { 
+        public int GetSetProgressionInDay
+        {
             get => _progression.inDay;
             set
             {
@@ -45,36 +62,13 @@ namespace GMSpace
                 else Debug.Log("inDay wasn't changed : value is lower or equal to current inDay");
             }
         }
-        public int SetByForceProgressionInDay { set => _progression.inDay = value;  }
-        #endregion
-        #region NarrativeIA
-        private bool _narrativeIAIsActive;
-
-        //Accessor for ergonomy and possible debug purposes
-        public bool GetSetNarrativeIAIsActive
-        {
-            get => _narrativeIAIsActive;
-            set => _narrativeIAIsActive = value;
-        }
-        public int GetSetNarrativeIALevel
-        {
-            get => _progression.narrativeIALevel;
-            set
-            {
-                if (value > _progression.narrativeIALevel)
-                {
-                    _progression.narrativeIALevel = value;
-                }
-                else Debug.Log("IA Level wasn't changed : value is lower or equal to current IA Level");
-            }
-        }
-        public int SetByForceNarrativeIALevel { set => _progression.narrativeIALevel = value; }
+        public int SetByForceProgressionInDay { set => _progression.inDay = value; }
         #endregion
 
         #region Switchs
         private bool _isSwitchActive = false;
 
-        public bool switchshortCiruit 
+        public bool SwitchGetActive 
         {
             get => _isSwitchActive;
             set => _isSwitchActive = value;
