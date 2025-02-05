@@ -24,14 +24,14 @@ public class Map : MonoBehaviour
     private void OnEnable()
     {
         _mapState = MAP_ACTIVE.MAP;
-        DirectionalPad.OnKeyPressed += ReceiveInput;
+        //DirectionalPad.OnKeyPressed += ReceiveInput;
         OnTaskFinished += TaskFinished;
     }
 
     private void OnDisable()
     {
         _mapState = MAP_ACTIVE.CLOSED;
-        DirectionalPad.OnKeyPressed -= ReceiveInput;
+        //DirectionalPad.OnKeyPressed -= ReceiveInput;
     }
 
     // Start is called before the first frame update
@@ -39,6 +39,16 @@ public class Map : MonoBehaviour
     {
         _points.AddRange(FindObjectsOfType<PointOfInterest>());
         //UpdateSelectedPoint(_points[0]);
+    }
+
+    public void Opening()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Closing()
+    {
+        gameObject.SetActive(false);
     }
 
     private void UpdateSelectedPoint(PointOfInterest newPoint)
