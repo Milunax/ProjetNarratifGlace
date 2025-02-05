@@ -1,3 +1,4 @@
+using GMSpace;
 using System;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class KeyInput : MonoBehaviour
 
     public char Clicked()
     {
+
         return _keyChar;
     }
 }

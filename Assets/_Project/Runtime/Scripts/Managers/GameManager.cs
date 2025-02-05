@@ -1,4 +1,5 @@
 using UnityEngine;
+using NaughtyAttributes;
 
 namespace GMSpace
 {
@@ -7,6 +8,7 @@ namespace GMSpace
         // Managers references //
         public static GameManager Instance;
         public static PlayerInputs playerInputs;
+        public static SoundManager soundManager;
 
         // Game Manager local variables //
         #region GameState
@@ -175,14 +177,11 @@ namespace GMSpace
             }
 
             // Init Managers //
-            if (TryGetComponent<PlayerInputs>(out PlayerInputs inputComp))
-            {
-                playerInputs = inputComp;
-            }
-            else
-            { 
-                Debug.LogError("No PlayerInputs components was found in the GameManager", gameObject);
-            }
+            if (TryGetComponent<PlayerInputs>(out PlayerInputs inputComp)) playerInputs = inputComp;
+            else Debug.LogError("No PlayerInputs components was found in the GameManager", gameObject);
+
+            if (TryGetComponent<SoundManager>(out SoundManager sound)) soundManager = sound;
+            else Debug.LogError("No SoundManager components was found in the GameManager", gameObject);
         }
 
         private void Update()

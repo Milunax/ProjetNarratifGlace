@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using GMSpace;
 
 public class OtherButtons : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class OtherButtons : MonoBehaviour
 
     public CONTEXTUAL_INPUT_INFO Clicked()
     {
+
         return _keyInput;
     }
 }

@@ -22,12 +22,10 @@ public class PasswordManager : MonoBehaviour
         _keypad.OnKeyPressed += UpdatePassword;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         
     }
-
     private void OnDisable()
     {
         ResetTask();
@@ -111,7 +109,7 @@ public class PasswordManager : MonoBehaviour
 
     private void ResetTask()
     {
-        //remettre la task a son état de base
+        //remettre la task a son ï¿½tat de base
         _currentPasswordId = 0;
         _passwordCompletedCount = 0;
         foreach (var textInput in _textInputs)
