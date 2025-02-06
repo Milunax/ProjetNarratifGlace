@@ -1694,10 +1694,10 @@ MonoBehaviour:
         m_guid: 7a1f7b14-adfe-4a8f-983a-58d31b4392bd
         m_position:
           serializedVersion: 2
-          x: 808
-          y: 845.6
-          width: 264.8
-          height: 135.20001
+          x: 755
+          y: 843
+          width: 435
+          height: 161
         m_outputPortAmount: 2
         m_nodeConnections:
         - InputPort:
@@ -1720,7 +1720,7 @@ MonoBehaviour:
             PortIndex: 2
         TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDMultipleChoiceDialogueNode,
           LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        DialogueText: Dialogue
+        DialogueText: "Avez-vous des questions ? Je serais ravie d'y r\xE9pondre."
         InterlocutorSprite: {fileID: 0}
         BackgroundSprite: {fileID: 0}
         ChoiceDatas:
@@ -2858,10 +2858,10 @@ MonoBehaviour:
         m_guid: 93c9ae1a-5d14-4b31-8e87-4e39b61ba009
         m_position:
           serializedVersion: 2
-          x: 12230.4
-          y: -428
-          width: 220.7998
-          height: 112.79999
+          x: 12172
+          y: -411
+          width: 219
+          height: 115
         m_outputPortAmount: 1
         m_nodeConnections:
         - InputPort:
@@ -2886,10 +2886,10 @@ MonoBehaviour:
         m_guid: 379199a2-7c1c-460f-9b1d-0d524ddfd350
         m_position:
           serializedVersion: 2
-          x: 12543.2
-          y: -404
-          width: 150.40039
-          height: 113.599976
+          x: 12464
+          y: -411
+          width: 195
+          height: 115
         m_outputPortAmount: 1
         m_nodeConnections:
         - InputPort:

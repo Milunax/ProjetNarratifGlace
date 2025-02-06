@@ -160,7 +160,7 @@ public class ScreenDisplay : MonoBehaviour
         if (isInteractif) _activeDialogue = DIALOGUE_ACTIVE.DIALOGUE_INTERACTIVE;
         else _activeDialogue = DIALOGUE_ACTIVE.DIALOGUE_NO_INTERACTIVE;
 
-        //_dialogueController.Opening();
+        _dialogueBox.Opening();
     }
     public void CloseDialogue()
     {
@@ -173,7 +173,7 @@ public class ScreenDisplay : MonoBehaviour
 
         _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
 
-        //_dialogueController.Closing();
+        _dialogueBox.Closing();
     }
     public void ChangeDialogueState(DIALOGUE_ACTIVE state)
     {
