@@ -208,6 +208,54 @@ public class SoundManager : MonoBehaviour
         }
         else return false;
     }
+    public bool PlayAudio(AudioClip clip, float pitch = 0f, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
+    {
+        if (_audioList.Count < 29 && clip != null) // 32 sounds limit - 3 permanent sounds
+        {
+            AudioSource audio = gameObject.AddComponent<AudioSource>();
+            audio.clip = clip;
+            audio.loop = false;
+
+            AUDIO_PROPERTIES properties = GetAudioProperties(configuration);
+            audio.volume = properties.volume;
+            audio.pitch = properties.pitch + pitch;
+            audio.panStereo = properties.stereoPan;
+            audio.spatialBlend = properties.spacialBlend;
+            audio.reverbZoneMix = properties.reverbZoneMix;
+
+            audio.Play();
+
+            _anyAudioSource.Add(audio);
+            return true;
+        }
+        else return false;
+    }
+    public bool PlayAudio(string audioName, float pitch = 0f, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
+    {
+        if (_audioList.Count < 29) // 32 sounds limit - 3 permanent sounds
+        {
+            AudioSource audio = gameObject.AddComponent<AudioSource>();
+            AudioClip clip = GetAudioClip(audioName);
+            if (clip == null) return false;
+
+            audio.clip = clip;
+            audio.loop = false;
+
+            AUDIO_PROPERTIES properties = GetAudioProperties(configuration);
+            audio.volume = properties.volume;
+            audio.pitch = properties.pitch + pitch;
+            audio.panStereo = properties.stereoPan;
+            audio.spatialBlend = properties.spacialBlend;
+            audio.reverbZoneMix = properties.reverbZoneMix;
+
+            audio.Play();
+
+
+            _anyAudioSource.Add(audio);
+            return true;
+        }
+        else return false;
+    }
 
     public AudioSource PlayAudioLoop(AudioClip clip, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
     {
