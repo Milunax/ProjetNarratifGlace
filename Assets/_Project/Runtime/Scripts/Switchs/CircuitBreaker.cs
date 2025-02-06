@@ -1,122 +1,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using NaughtyAttributes;
-using TMPro;
+using DG.Tweening;
+
 
 public class CircuitBreaker : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private List<Switchs> _switchs = new List<Switchs>();
     [SerializeField] private List<Image> _ledList = new List<Image>();
-
-    [Header("Code")]
-    [SerializeField, ReadOnly] private string _code = "0977";
-    [SerializeField] private TextMeshProUGUI _textCode;
-    [SerializeField] private Image _imageCode;
-    private string _entryCode;
-    private bool _codeActive = false;
+    [SerializeField] private Switchs _selectedSwitch;
+    [SerializeField] private Image _selectedLED;
 
     [Header("Parameters")]
-    [SerializeField] private Color _selectedColor;
-    [SerializeField] private Color _blockedColor;
-    [SerializeField] private Color _defaultColor;
+    [SerializeField] Color _selectedColor;
+    [SerializeField] Color _defaultColor;
 
-    private int _cursor = 0;
+    public Switchs selectedSwitch { get {return _selectedSwitch;} private set {_selectedSwitch = value;} }
+    public Image selectedLED { get {return _selectedLED;} private set {_selectedLED = value;} }
 
     void OnEnable()
     {
-        DirectionalPad.OnKeyPressed += ChangeSwitchSelection;
-        Keypad.OnKeyPressed += CheckCode;
+        DirectionalPad.OnKeyPressed += MoveBetweenSwitchs;
     }
+
     void OnDisable()
     {
-        DirectionalPad.OnKeyPressed -= ChangeSwitchSelection;
-        Keypad.OnKeyPressed -= CheckCode;
+        DirectionalPad.OnKeyPressed -= MoveBetweenSwitchs;
     }
 
-    private void Start()
+    private void MoveBetweenSwitchs(DIRECTIONAL_PAD_INFO switchInfo)
     {
-        _cursor = 0;
+        int idPreviousSwitch = _switchs.IndexOf(selectedSwitch);
+        int idNextSwitch = _switchs.IndexOf(selectedSwitch);
+        int idPreviousLED = _ledList.IndexOf(selectedLED);
+        int idNextLED = _ledList.IndexOf(selectedLED);
 
-        _imageCode.gameObject.SetActive(false);
-        _textCode.gameObject.SetActive(false);
-        _codeActive = false;
-}
-
-    private void ChangeSwitchSelection(DIRECTIONAL_PAD_INFO info)
-    {
-        if (_codeActive) return;
-
-        _ledList[_cursor].material.color = _defaultColor;
-
-        switch (info)
+        switch (switchInfo)
         {
             case DIRECTIONAL_PAD_INFO.LEFT:
+                int curentSwitch = idPreviousSwitch - 1;
+                curentSwitch = curentSwitch >= _switchs.Count ? 0 : curentSwitch < 0 ? _switchs.Count - 1 : curentSwitch;
+                selectedSwitch = _switchs[curentSwitch];
+                //Debug.Log(idPreviousSwitch);
+
+                int currentLED = idPreviousLED - 1;
+                currentLED = currentLED >= _ledList.Count ? 0 : currentLED < 0 ? _ledList.Count - 1 : currentLED;
+                selectedLED = _ledList[currentLED];
+                //Debug.Log(idPreviousLED);
+                if (selectedLED == _ledList[idPreviousLED])
                 {
-                    _cursor--;
-                    if (_cursor < 0) _cursor = _switchs.Count - 1;
-
-                    if (_switchs[_cursor].GetSetIsLocked) _ledList[_cursor].material.color = _blockedColor;
-                    else _ledList[_cursor].material.color = _selectedColor;
-
-                    break;
+                    _ledList[idPreviousLED].DOColor(_selectedColor, .25f);
                 }
+                else if(selectedLED != _ledList[idPreviousLED])
+                    _ledList[idPreviousLED].DOColor(_defaultColor, .25f);
+
+                break;
             case DIRECTIONAL_PAD_INFO.RIGHT:
-                {
-                    _cursor++;
-                    if (_cursor >= _switchs.Count) _cursor = 0;
+                idNextSwitch++;
+                idNextSwitch = idNextSwitch >= _switchs.Count ? 0 : idNextSwitch < 0 ? _switchs.Count - 1 : idNextSwitch;
+                selectedSwitch = _switchs[idNextSwitch];
+                //Debug.Log(idNextSwitch);
 
-                    if (_switchs[_cursor].GetSetIsLocked) _ledList[_cursor].material.color = _blockedColor;
-                    else _ledList[_cursor].material.color = _selectedColor;
-
-                    break;
-                }
-
-            case DIRECTIONAL_PAD_INFO.CONFIRM:
-                {
-                    if (!_switchs[_cursor].GetSetIsLocked) _switchs[_cursor].Toggle();
-                    else if (!_switchs[_cursor].GetSetIsLocked && _switchs[_cursor].GetSwitchType == SWITCHS.AI)
-                    {
-                        EnterCode();
-                    }
-
-                    break;
-                }
-    
-        }
-    }
-
-    private void EnterCode()
-    {
-        _codeActive = true;
-
-        _imageCode.gameObject.SetActive(true);
-        _textCode.gameObject.SetActive(true);
-
-        _entryCode = "";
-        _textCode.text = _entryCode;
-    }
-    private void CheckCode(char num)
-    {
-        if (!_codeActive) return;
-
-        _entryCode += num;
-        _textCode.text = _entryCode;
-
-        if (_entryCode.Length >= _code.Length)
-        {
-            if (_entryCode == _code)
-            {
-                _switchs[_cursor].GetSetIsLocked = false;
-                _ledList[_cursor].color = _selectedColor;
-            }
-
-            _imageCode.gameObject.SetActive(false);
-            _textCode.gameObject.SetActive(false);
-
-            _codeActive = false;
-            _entryCode = "";
+                idNextLED++;
+                idNextLED = idNextLED >= _ledList.Count ? 0 : idNextLED < 0 ? _ledList.Count - 1 : idNextLED;
+                _selectedLED.DOColor(_selectedColor, .25f);
+                selectedLED = _ledList[idNextLED];
+                //Debug.Log(idNextLED);
+                
+                break;
         }
     }
 

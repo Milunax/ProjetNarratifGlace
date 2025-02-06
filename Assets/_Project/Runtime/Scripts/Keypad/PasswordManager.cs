@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks.Sources;
@@ -15,6 +16,8 @@ public class PasswordManager : MonoBehaviour
     [SerializeField] private int _passwordToCompleteCount;
     [SerializeField] private int _passwordCompletedCount;
 
+    public static event Action<bool> OnPasswordEnd;
+
 
     private void OnEnable()
     {
@@ -22,8 +25,18 @@ public class PasswordManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        ResetTask();
         Keypad.OnKeyPressed -= UpdatePassword;
+    }
+
+    public void Opening()
+    {
+        ResetTask();
+        _taskContainer.SetActive(true);
+    }
+
+    public void Closing()
+    {
+        _taskContainer.SetActive(false);
     }
 
     public void AddTextToList(BaseKeypadText elementToAdd)
@@ -84,26 +97,22 @@ public class PasswordManager : MonoBehaviour
             if (CompareTexts(_textInputs[_currentPasswordId], _textPasswords[_currentPasswordId]))
             {
                 _currentPasswordId++;
-                //RemoveTextFromList(_textInputs[_currentPasswordId]);
-                //RemoveTextFromList(_textPasswords[_currentPasswordId]);
-
-                CheckForTaskEnd();
+                CheckForTaskEnd(true);
             }
         }
     }
 
-    private void CheckForTaskEnd()
+    private void CheckForTaskEnd(bool isFinished)
     {
         if(_passwordCompletedCount >= _passwordToCompleteCount)
         {
-            FindObjectOfType<Map>().TaskFinished(_taskContainer);   
-            ResetTask();
+            OnPasswordEnd?.Invoke(isFinished);
+            Closing();
         }
     }
 
     private void ResetTask()
     {
-        //remettre la task a son �tat de base
         _currentPasswordId = 0;
         _passwordCompletedCount = 0;
         foreach (var textInput in _textInputs)
