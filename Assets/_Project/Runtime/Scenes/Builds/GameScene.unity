@@ -6215,6 +6215,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2488494998396200791, guid: cd8bfefc4d886714e8f785c30da146ba, type: 3}
+      propertyPath: _ambianceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ff6863c40eb0f64483395e71c09ae01, type: 3}
+    - target: {fileID: 2488494998396200791, guid: cd8bfefc4d886714e8f785c30da146ba, type: 3}
       propertyPath: _ambiance.volume
       value: 0.5
       objectReference: {fileID: 0}
