@@ -1,5 +1,6 @@
 public enum SCREEN_ACTIVE
 {
+    MAIN_MENU = -1,
     SHUTDOWN = 0,
     BLACK_SCREEN = 1,
     MAP = 10,
