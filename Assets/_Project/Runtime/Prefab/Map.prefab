@@ -1174,6 +1174,7 @@ RectTransform:
   - {fileID: 3500980318069943448}
   - {fileID: 5451944989494045385}
   - {fileID: 1723333202629428329}
+  - {fileID: 4563578052928194654}
   m_Father: {fileID: 6036367845277302137}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1850,6 +1851,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+--- !u!1 &4856674587103300939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4563578052928194654}
+  - component: {fileID: 2081914332508465932}
+  m_Layer: 5
+  m_Name: Simon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4563578052928194654
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856674587103300939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8246967793961993025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2081914332508465932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856674587103300939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19bb174051278843917774c99c8bfcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _redSimon: {fileID: 0}
+  _yellowSimon: {fileID: 0}
+  _greenSimon: {fileID: 0}
+  _blueSimon: {fileID: 0}
+  _backGround: {fileID: 0}
 --- !u!1 &4968755267024129825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,7 +2019,7 @@ RectTransform:
   m_GameObject: {fileID: 5523916750785921367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 2.44882, y: 2.44882, z: 2.44882}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7556322772727204068}
@@ -1993,12 +2047,14 @@ MonoBehaviour:
   _player: {fileID: 8467775683309260560}
   _points: []
   _currentPoint: {fileID: 5019850520820573907}
-  _taskSimon: {fileID: 0}
+  _taskSimon: {fileID: 4856674587103300939}
   _taskSwitch: {fileID: 3219980117239452190}
   _taskPipes: {fileID: 0}
   _taskNumberCode: {fileID: 9099380493157738355}
   _taskNumberLogic: {fileID: 0}
   _taskWaves: {fileID: 1147872133020636099}
+  _background: {fileID: 0}
+  _tasks: {fileID: 0}
 --- !u!1 &6169329001824802356
 GameObject:
   m_ObjectHideFlags: 0

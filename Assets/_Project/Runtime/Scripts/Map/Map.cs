@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Map : MonoBehaviour
 {
-    public static event Action<GameObject> OnTaskFinished;
+    //public static event Action<GameObject> OnTaskFinished;
 
     [SerializeField] MAP_ACTIVE _mapState;
     [SerializeField] private Image _player;
@@ -14,10 +14,10 @@ public class Map : MonoBehaviour
 
 
     [Header("Tasks")]
-    [SerializeField] private GameObject _taskSimon;
+    [SerializeField] private SimonPatternBehaviour _taskSimon;
     [SerializeField] private GameObject _taskSwitch;
     [SerializeField] private GameObject _taskPipes;
-    [SerializeField] private GameObject _taskNumberCode;
+    [SerializeField] private PasswordManager _taskNumberCode;
     [SerializeField] private GameObject _taskNumberLogic;
     [SerializeField] private GameObject _taskWaves;
 
@@ -29,14 +29,16 @@ public class Map : MonoBehaviour
     {
         _mapState = MAP_ACTIVE.MAP;
         //DirectionalPad.OnKeyPressed += ReceiveInput;
-        OnTaskFinished += TaskFinished;
+        //OnTaskFinished += TaskFinished;
+        SimonPatternBehaviour.OnSimonEnd += TaskFinished;
+        PasswordManager.OnPasswordEnd += TaskFinished;
     }
 
     private void OnDisable()
     {
         _mapState = MAP_ACTIVE.CLOSED;
         //DirectionalPad.OnKeyPressed -= ReceiveInput;
-        OnTaskFinished -= TaskFinished;
+        //OnTaskFinished -= TaskFinished;
     }
 
     // Start is called before the first frame update
@@ -177,7 +179,7 @@ public class Map : MonoBehaviour
             switch (task)
             {
                 case MAP_ACTIVE.DOOR_SIMON:
-                    if (_taskSimon != null) _taskSimon.SetActive(true);
+                    if (_taskSimon != null) _taskSimon.Opening();
                     _mapState = MAP_ACTIVE.DOOR_SIMON;
                     break;
                 case MAP_ACTIVE.SWITCH:
@@ -189,7 +191,7 @@ public class Map : MonoBehaviour
                     _mapState = MAP_ACTIVE.PIPES;
                     break;
                 case MAP_ACTIVE.NUMBERS_CODE:
-                    if (_taskNumberCode != null) _taskNumberCode.SetActive(true);
+                    if (_taskNumberCode != null) _taskNumberCode.Opening();
                     _mapState = MAP_ACTIVE.NUMBERS_CODE;
                     break;
                 case MAP_ACTIVE.NUMBERS_LOGIC:
@@ -206,10 +208,9 @@ public class Map : MonoBehaviour
         }
     }
 
-    public void TaskFinished(GameObject objectToHide)
+    public void TaskFinished(bool isFinished)
     {
         _mapState = MAP_ACTIVE.MAP;
         _currentPoint.IsTaskCompleted = true;
-        objectToHide.SetActive(false);
     }
 }

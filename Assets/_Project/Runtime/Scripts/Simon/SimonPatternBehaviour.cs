@@ -26,6 +26,7 @@ public class SimonPatternBehaviour : MonoBehaviour
     {
         SimonPad.OnKeyPressed += AddInput;
         ContextualButtons.OnKeyPressed += BackSpaceSelection;
+        OnSimonEnd += Closing;
     }
     private void OnDisable()
     {
@@ -73,6 +74,15 @@ public class SimonPatternBehaviour : MonoBehaviour
         _blueSimon.color = Color.white;
     }
     public void Closing()
+    {
+        _redSimon.gameObject.SetActive(false);
+        _yellowSimon.gameObject.SetActive(false);
+        _greenSimon.gameObject.SetActive(false);
+        _blueSimon.gameObject.SetActive(false);
+        _backGround.gameObject.SetActive(false);
+    }
+
+    public void Closing(bool isFinished)
     {
         _redSimon.gameObject.SetActive(false);
         _yellowSimon.gameObject.SetActive(false);
