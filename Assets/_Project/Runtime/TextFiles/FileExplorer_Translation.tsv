@@ -1,0 +1,81 @@
+	French	English
+Audio_error	...Erreur du signal...	...Signal error...
+null		
+Text_ModeEmploi	Mode d'emploi	Instruction manual
+Text_ModeEmploi_1a	Les clés de séquences	The sequence keys
+Text_ModeEmploi_1b	Ce module sert à déverrouiller des portes pour accéder à certaines parties du complexe.	This module is used to unlock doors to access certain parts of the complex.
+Text_ModeEmploi_1c	Pour ouvrir les portes avec cet outil, il faut répéter l’ordre donné par la porte. 	To open doors with this tool, repeat the command given by the door. 
+Text_ModeEmploi_2a	Le D-pad	The D-pad
+Text_ModeEmploi_2b	Les flèches permettent de changer la sélection dans différents menus comme la carte ou l’explorateur de fichiers, et le bouton central sert à valider votre sélection.	The arrows are used to change your selection in various menus, such as the map or file explorer, and the central button is used to confirm your selection.
+Text_ModeEmploi_3a	L’Explorateur de fichiers	The File Explorer
+Text_ModeEmploi_3b	Ce bouton permet de passer de la carte à l’explorateur de fichiers.	This button switches from the map to the file explorer.
+Text_ModeEmploi_3c	Appuyer une nouvelle fois pour le fermer.	Press again to close it.
+Text_ModeEmploi_4a	Le Récepteur audio	The Audio receiver
+Text_ModeEmploi_4b	Cet écran visualise les sons sortants de votre appareil. C’est par ce moyen qu’ELS-4 vous contactera.	This screen displays the sounds coming from your device. This is how ELS-4 will contact you.
+Text_ModeEmploi_5a	La Molette	The Thumbwheel
+Text_ModeEmploi_5b	La molette sert à ajuster des signaux sinusoïdaux reçus par votre appareil.	The thumbwheel is used to adjust sinusoidal signals received by your device.
+Text_ModeEmploi_6a	Le Pavé numérique	The Keypad
+Text_ModeEmploi_6b	Il sert à effectuer certaines tâches qui nécessitent une suite de chiffres précise, il permet aussi de rentrer un code si besoin.	It is used to perform certain tasks requiring a precise sequence of digits, and also to enter a code if required.
+Text_ModeEmploi_7a	Les Diodes	The LEDs
+Text_ModeEmploi_7b	Elles symbolisent votre avancée dans vos tâches de la journée.	They symbolize your progress in the day's tasks.
+null		
+Text_LaCarte	La Carte	The Map
+Text_LaCarte_1	Votre moniteur dispose d'une carte interactive qui vous servira à vous déplacer au sein de la base. Si un problème survient, une pastille rouge clignotera sur l'endroit concerné. Vous pouvez vous déplacer avec les flèches directionnelles et valider l’endroit où vous souhaitez vous rendre avec le bouton central.	Your monitor features an interactive map that you can use to navigate around the base. If there's a problem, a red dot will flash on the location concerned. You can move around using the directional arrows, and validate the location you wish to go to using the central button.
+null		
+Text_FileExplorer	L’Explorateur de fichiers	The File Explorer
+Text_FileExplorer_1	Déplacez-vous de dossiers en dossiers et de fichiers en fichiers grâce aux flèches directionnelles et validez avec le bouton central ou la flèche de droite.	Use the arrow keys to move from folder to folder and from file to file, then press the central button or right arrow to confirm.
+Text_FileExplorer_2	Retournez au dossier ou fichier précédent grâce à la flèche de gauche.	Use the left arrow to return to the previous folder or file.
+Text_FileExplorer_3	Ce navigateur peut comporter différents types de fichiers et de dossiers.	This browser can contain different types of files and folders.
+Text_FileExplorer_4	L’accès à certains dossiers pourrait vous être refusé si vous n’avez pas l’accréditation nécessaire.	Access to certain files may be denied if you do not have the necessary accreditation.
+Text_FileExplorer_5	Il se peut que les données de certains fichiers soient corrompues, leur visibilité pourraient être désactivées jusqu’à leur restauration.	Some files may be corrupted, and their visibility may be disabled until they are restored.
+null		
+Folder_Logiciel	Logiciels	Softwares
+Folder_Moniteur	Moniteur	Monitor
+Folder_Entries	Entrées	Entries
+Folder_Security	Sécurité	Safety
+null		
+Text_AudioReceptor	Récepteur de signal	Signal receiver
+Text_AudioReceptor_1	Ce module permet de recevoir différents types de signaux.	This module can receive various types of signal.
+Text_AudioReceptor_2	Chaque signal à une fréquence qui lui est propre, vous devrez ajuster le signal de votre appareil pour qu’il phase avec le signal réceptionné, ainsi vous pourrez enfin y accéder.	Each signal has its own frequency, so you'll need to adjust your device's signal so that it's in phase with the received signal, so you can finally access it.
+Text_AudioReceptor_3	Pour modifier votre signal, veuillez vous référer à la documentation du mode d’emploi de la molette de votre appareil.	To modify your signal, please refer to the manual for your device's thumbwheel.
+null		
+Audio_Evacuation	Entrée du XX/XX/20XX	XX/XX/20XX Entry
+Audio_Evacuation_1	[Voix homme] "Base Zacharov D-23	[Male voice] “Base Zacharov D-23
+Audio_Evacuation_2	ici le centre de contrôle.	this is the control center.
+Audio_Evacuation_3	Nous avons détecté une série d'anomalie dans votre sec[INAUDIBLE]	We have detected a series of anomalies in your sec[INAUDIBLE]
+Audio_Evacuation_4	[INAUDIBLE]pas sécurisé.	[INAUDIBLE]not secured.
+Audio_Evacuation_5	Des phénomènes de [INAUDIBLE]de la mort ont été signalés.	There have been reports of death's[INAUDIBLE] phenomena.
+Audio_Evacuation_6	Procédez immédiatement au proto[INAUDIBLE]	Proceed immediately to proto[INAUDIBLE].
+Audio_Evacuation_7	Je répète.	Repeat.
+Audio_Evacuation_8	Base Zacharov D-23, évacua[INAUDIBLE]"	Base Zacharov D-23, évacua[INAUDIBLE]"
+Audio_Evacuation_9	[Fin de l'enregistrement]	[End of recording]
+null		
+Text_DeathTouch	LE TOUCHER DE LA MORT	DEATH'S TOUCH
+Text_DeathTouch_1	Le "Toucher de la Mort" est un phénomène naturel rare qui se produit dans les eaux froides des océans polaires. Il s'agit d'une structure de glace qui descend lentement vers le fond marin, gelant tout ce qu'elle touche sur son passage.	The “Death's Touch” is a rare natural phenomenon that occurs in the cold waters of the polar oceans. It consists of an ice structure that slowly sinks to the seabed, freezing everything it touches in its path.
+Text_DeathTouch_2a	Causes	Causes
+Text_DeathTouch_2b	Lorsque de l’eau salée très froide s'échappe des fissures d'une couche de glace flottante, elle est plus dense que l'eau environnante et commence à couler vers le fond. En se déplaçant, elle congèle l'eau alentour, formant un tube de glace semblable à un long doigt crochu qui grandit progressivement en direction du fond marin.	When very cold salt water escapes from the cracks in a floating ice sheet, it is denser than the surrounding water and begins to sink to the bottom. As it moves, it freezes the surrounding water, forming a tube of ice resembling a long hooked finger that gradually grows towards the seabed.
+Text_DeathTouch_3a	Conséquences	Effects
+Text_DeathTouch_3b	Le "Toucher de la Mort" peut piéger et congeler instantanément la faune, la flore, ainsi que toute matière entrant en contact avec. Ce processus crée des zones où la vie devient figée sous une épaisse couche de glace.	The “Death's Touch” can instantly trap and freeze fauna, flora and any material that comes into contact with them. This process creates zones where life becomes frozen under a thick layer of ice.
+Text_DeathTouch_4a	Présence et Risques	Presence and Risks
+Text_DeathTouch_4b	Ce phénomène peut survenir dans les eaux profondes de l'Antarctique et de l'Arctique. Bien qu'il ne représente pas un danger direct pour les plongeurs équipés, il est essentiel de connaître son existence pour savoir comment réagir en cas de présence dudit phénomène.	This phenomenon can occur in the deep waters of Antarctica and Arctic. Although it does not represent a direct danger to divers, it is essential to be aware of its existence so as to know how to react in the event of its presence.
+null		
+Text_SafetyProtocol	Protocole de sécurité	Safety protocol
+Text_SafetyProtocol_1a	EMPLACEMENT : Dôme principal, Base Zakharov D-23, niveau B-2	LOCATION: Main dome, Zakharov D-23 Base, level B-2
+Text_SafetyProtocol_1b	MISE À JOUR : 04/02/2025	UPDATE : 02/04/2025
+Text_SafetyProtocol_cut	___________________________	___________________________
+Text_SafetyProtocol_2a	1. ALERTE STRUCTURELLE	1. STRUCTURAL ALERT
+Text_SafetyProtocol_2b	En cas de fuite ou de brèche dans la structure :	In the event of a leak or breach in the infrastructure :
+Text_SafetyProtocol_2c	Détection automatique : Une alarme sonore et lumineuse signalera la zone compromise.	Automatic detection: An audible and luminous alarm will signal a compromised zone.
+Text_SafetyProtocol_2d	Procédure immédiate :	Immediate procedure:
+Text_SafetyProtocol_2e	•Si vous êtes dans la zone concernée, rejoignez le sas sécurisé le plus proche.	•If you are in the concerned area, go to the nearest secured airlock.
+Text_SafetyProtocol_2f	•Activez le verrouillage manuel du compartiment en utilisant le panneau de contrôle mural.	•Activate the manual compartment lock using the wall-mounted control panel.
+Text_SafetyProtocol_2g	•Signalez votre statut via le canal d’urgence.	•Report your status via the emergency channel.
+Text_SafetyProtocol_3a	2. EN CAS DE CYBERATTAQUE	2. IN THE EVENT OF A CYBER ATTACK
+Text_SafetyProtocol_3b	Une cyberattaque peut compromettre les systèmes informatiques de la base ainsi que d’ELS-4.	A cyber attack could compromise the base's computer systems as well as those of ELS-4.
+Text_SafetyProtocol_3c	Si une intrusion informatique est détectée :	If a hacking intrusion is detected :
+Text_SafetyProtocol_3d	•Ne tentez pas de redémarrer manuellement votre moniteur ou de toucher au système d’ELS-4.	•Do not attempt to restart your monitor manually or manipulate the ELS-4 system.
+Text_SafetyProtocol_3e	•Déconnectez immédiatement les appareils non essentiels du réseau interne.	•Immediately disconnect non-essential devices from the internal network.
+Text_SafetyProtocol_4	À L’INTENTION DU PERSONNEL AUTORISÉ : Les propriétaires de l’accréditation de niveau 6 doivent impérativement désactiver ELS-4 grâce à l’interrupteur situé à côté du disjoncteur (Code : 0977)	FOR AUTHORIZED PERSONNEL: Level 6 accreditation owners must deactivate ELS-4 using the switch next to the circuit breaker (Code: 0977)
+Text_SafetyProtocol_5a	CANAL D’URGENCE : 758-0983	EMERGENCY CHANNEL: 758-0983
+Text_SafetyProtocol_5b	POSTE MÉDICAL : Niveau A-1	MEDICAL STATION: Level A-1
+Text_SafetyProtocol_5c	TOUTE ALARME DOIT ÊTRE PRISE AU SÉRIEUX	ALL ALARMS MUST BE TAKEN SERIOUSLY

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6c721dfa45fec49b1b3306d61b14dc, type: 3}
+  m_Name: Audio_Evacuation
+  m_EditorClassIdentifier: 
+  fileName: Audio_Evacuation
+  isAccessible:
+    day: 0
+    inDay: 0
+    narrativeIALevel: 0
+  isVisible:
+    day: 0
+    inDay: 0
+    narrativeIALevel: 0
+  manualLock: 0
+  manualIsUnlock: 0
+  title: Audio_Evacuation
+  audio: {fileID: 8300000, guid: a9a78426dd8dfda4a8c1357c728634d2, type: 3}
+  transcriptions:
+  - timeCode: 0
+    transcription: Audio_Evacuation_1
+  - timeCode: 2.5
+    transcription: Audio_Evacuation_2
+  - timeCode: 4.5
+    transcription: Audio_Evacuation_3
+  - timeCode: 8
+    transcription: Audio_Evacuation_4
+  - timeCode: 11
+    transcription: Audio_Evacuation_5
+  - timeCode: 15.5
+    transcription: Audio_Evacuation_6
+  - timeCode: 18.5
+    transcription: Audio_Evacuation_7
+  - timeCode: 20
+    transcription: Audio_Evacuation_8
+  - timeCode: 25
+    transcription: Audio_Evacuation_9

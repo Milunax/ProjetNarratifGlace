@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &158422388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 263819095}
   - component: {fileID: 263819094}
   - component: {fileID: 263819098}
+  - component: {fileID: 263819099}
   m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
@@ -480,13 +481,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d045523236802458ebab8d69c5ac20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveImage: {fileID: 551786458}
-  _waveTarget: {fileID: 0}
-  _audio: {fileID: 0}
+  _waveCurrent: {fileID: 551786458}
+  _waveTarget: {fileID: 1602707678}
+  _audioWheel: {fileID: 8300000, guid: 10bc7138863a59c44ac1b5a3f762cfc9, type: 3}
+  _audioNoise: {fileID: 8300000, guid: 94762adb95fa2b542bc96ee1ebfeb2f9, type: 3}
   _minWheelVal: 0
   _maxWheelVal: 100
-  _multiplyFactor: 1
-  _scrolltext: {fileID: 1691253511}
+  _margin: 5
+  _multiplyFactor: 0.25
+--- !u!114 &263819099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263819093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b942266c402b49a80239f192e2100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &391851286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1399,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 391851287}
     m_Modifications:
+    - target: {fileID: 2488494998396200791, guid: cd8bfefc4d886714e8f785c30da146ba, type: 3}
+      propertyPath: _audioList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488494998396200791, guid: cd8bfefc4d886714e8f785c30da146ba, type: 3}
+      propertyPath: _audioList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 11f952bb19c829446b69c15667c6e9d3, type: 3}
+    - target: {fileID: 2488494998396200791, guid: cd8bfefc4d886714e8f785c30da146ba, type: 3}
+      propertyPath: _anyAudioSource.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5418427504624676049, guid: cd8bfefc4d886714e8f785c30da146ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3607111

@@ -4,6 +4,7 @@ using GMSpace;
 using UnityEngine.UI;
 using TMPro;
 using NaughtyAttributes;
+using LocalizationPackage;
 
 public class FileExplorerBase : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class FileExplorerBase : MonoBehaviour
     private RectTransform _rectTextContainer;
     [SerializeField] private GameObject _textLinePrefab;
     private float GetTextContainerSize { get => _rectTextContainer.sizeDelta.x; }
+    [SerializeField] private LocalizationComponent _localComponent;
     [SerializeField, ReadOnly] private FILE_EXPLORER_ACTIVE _currentScreen;
 
     [Header("Childs UI")]
     [SerializeField] private GameObject _background;
     [SerializeField] private GameObject _textFileUI;
     [SerializeField] private FileExplorerTextUI _textFileUIScript;
+    [SerializeField] private WheelBehaviour _audioFileUIScript;
 
     [Header("Display Paddings")]
     [SerializeField] private Vector2 _topLeftPadding;
@@ -70,10 +73,12 @@ public class FileExplorerBase : MonoBehaviour
         TryGetComponent<RectTransform>(out _rectTextContainer);
         SetupTextDisplayValues();
         _textFileUIScript.SetTextValues(_textSize, _topLeftPadding);
+        _audioFileUIScript.SetTextValues(_textSize);
 
         _background.SetActive(false);
         _textContainer.SetActive(false);
         _textFileUI.SetActive(false);
+        _audioFileUIScript.gameObject.SetActive(false);
     }
 
     public void Closing()
@@ -90,6 +95,7 @@ public class FileExplorerBase : MonoBehaviour
         _background.SetActive(false);
         _textContainer.SetActive(false);
         _textFileUI.SetActive(false);
+        _audioFileUIScript.gameObject.SetActive(false);
 
         _currentScreen = FILE_EXPLORER_ACTIVE.CLOSED;
     }
@@ -99,6 +105,7 @@ public class FileExplorerBase : MonoBehaviour
         _background.SetActive(true);
         _textContainer.SetActive(true);
         _textFileUI.SetActive(false);
+        _audioFileUIScript.gameObject.SetActive(false);
 
         _currentScreen = FILE_EXPLORER_ACTIVE.FILE_EXPLORER;
 
@@ -116,7 +123,8 @@ public class FileExplorerBase : MonoBehaviour
 
         foreach (FileExplorerDataSO item in listOfData)
         {
-            if (item.isVisible.day < GameManager.Instance.GetSetProgressionDay &&
+            if (item == null ||
+                item.isVisible.day < GameManager.Instance.GetSetProgressionDay &&
                 item.isVisible.inDay < GameManager.Instance.GetSetProgressionInDay &&
                 item.isVisible.narrativeIALevel < GameManager.Instance.GetSetNarrativeIALevel) continue; // if file/folder isn't visible
 
@@ -129,9 +137,13 @@ public class FileExplorerBase : MonoBehaviour
                 if (type == FILE_TYPE.FOLDER) // if folder
                 {
                     FileExplorerFolderSO folder = (FileExplorerFolderSO)item;
-                    foreach (FileExplorerDataSO file in folder.childs)
+                    for (int i = 0; i < folder.childs.Count; i++)
                     {
-                        if (file == null) folder.childs.Remove(file); // if file in folder is empty, remove it
+                        FileExplorerDataSO file = folder.childs[i];
+                        if (file == null ||
+                            file.isVisible.day < GameManager.Instance.GetSetProgressionDay &&
+                            file.isVisible.inDay < GameManager.Instance.GetSetProgressionInDay &&
+                            file.isVisible.narrativeIALevel < GameManager.Instance.GetSetNarrativeIALevel) folder.childs.RemoveAt(i); // if file in folder is empty, remove it
                     }
 
                     if (folder.childs.Count <= 0) { continue; } // if folder is empty, don't display
@@ -158,7 +170,7 @@ public class FileExplorerBase : MonoBehaviour
         _displayedData[0].textLine.GetSetCursor = true;
 
         string indicator = "PC";
-        if (_dataPath.Count < 3)
+        if (_dataPath.Count < 2)
         {
             foreach (string folder in _dataPath)
             {
@@ -208,7 +220,7 @@ public class FileExplorerBase : MonoBehaviour
 
         if (line.TryGetComponent<FileExplorerLine>(out itemData.textLine))
         {
-            itemData.textLine.SetupVisual(_rectTextContainer.sizeDelta.x, _textSize, itemData.data.fileName, itemData.type, itemData.isBlocked);
+            itemData.textLine.SetupVisual(_rectTextContainer.sizeDelta.x, _textSize, _localComponent.GetTextSafe(itemData.data.fileName), itemData.type, itemData.isBlocked);
             return true;
         }
         else
@@ -288,6 +300,27 @@ public class FileExplorerBase : MonoBehaviour
                     }
                     break;
                 }
+            case FILE_EXPLORER_ACTIVE.AUDIO:
+                {
+                    switch (padInfo)
+                    {
+                        case DIRECTIONAL_PAD_INFO.LEFT:
+                            {
+                                _audioFileUIScript.Closing();
+
+                                _textContainer.SetActive(true);
+                                _audioFileUIScript.gameObject.SetActive(false);
+
+                                _currentScreen = FILE_EXPLORER_ACTIVE.FILE_EXPLORER;
+                                break;
+                            }
+
+                        default:
+                            break;
+                    }
+
+                    break;
+                }
         }
 
     }
@@ -344,7 +377,7 @@ public class FileExplorerBase : MonoBehaviour
                     _textFileUI.SetActive(true);
 
                     FileExplorerFileTextSO textFile = (FileExplorerFileTextSO)_displayedData[_cursor].data;
-                    _textFileUIScript.SetInfos(textFile.title, textFile.description, textFile.image);
+                    _textFileUIScript.SetInfos(_localComponent.GetTextSafe(textFile.title), _localComponent.GetTextSafe(textFile.description), textFile.image);
 
                     _currentScreen = FILE_EXPLORER_ACTIVE.TEXT;
 
@@ -352,7 +385,15 @@ public class FileExplorerBase : MonoBehaviour
                 }
             case FILE_TYPE.FILE_AUDIO:
                 {
-                    Debug.Log("Open audio");
+                    _textContainer.SetActive(false);
+                    _audioFileUIScript.gameObject.SetActive(true);
+
+                    FileExplorerAudioFileSO audioFile = (FileExplorerAudioFileSO)_displayedData[_cursor].data;
+                    _audioFileUIScript.Opening();
+                    _audioFileUIScript.SetValues(audioFile.title, audioFile.transcriptions, audioFile.audio);
+
+                    _currentScreen = FILE_EXPLORER_ACTIVE.AUDIO;
+
                     break;
                 }
 
@@ -368,7 +409,7 @@ public class FileExplorerBase : MonoBehaviour
 
     private void OpenFolder()
     {
-        _dataPath.Add(_displayedData[_cursor].data.fileName);
+        _dataPath.Add(_localComponent.GetTextSafe(_displayedData[_cursor].data.fileName));
         FileExplorerFolderSO folder = (FileExplorerFolderSO)_displayedData[_cursor].data;
 
         SetDisplayData(folder.childs);

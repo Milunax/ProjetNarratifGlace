@@ -152,7 +152,7 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = 0;  i < _anyAudioSource.Count; i++)
         {
-            if (!_anyAudioSource[i].isPlaying && !_anyAudioSource[i].loop)
+            if (_anyAudioSource[i] == null || (!_anyAudioSource[i].isPlaying && !_anyAudioSource[i].loop))
             {
                 Destroy(_anyAudioSource[i]);
                 _anyAudioSource.RemoveAt(i);
@@ -258,6 +258,15 @@ public class SoundManager : MonoBehaviour
             return _anyAudioSource[_anyAudioSource.IndexOf(audio)];
         }
         else return null;
+    }
+    public void PauseAudioLoop(AudioSource source, bool pause)
+    {
+        int index = _anyAudioSource.IndexOf(source);
+        if (index >= 0 && _anyAudioSource[index].loop == true)
+        {
+            if (pause) _anyAudioSource[index].Pause();
+            else _anyAudioSource[index].UnPause();
+        }
     }
     public void StopAudioLoop(ref AudioSource source)
     {

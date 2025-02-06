@@ -73,10 +73,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LineThickness: 0.02
+    - _LineThickness: 0.1
     - _Metallic: 0
     - _Mode: 0
-    - _MovementSpeed: 7
+    - _MovementSpeed: 5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PhaseOffset2: 4.09
@@ -86,7 +86,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _Wave1Amplitude: 0.2
-    - _Wave1Frequency: 0.4
+    - _Wave1Frequency: 8.240003
     - _Wave1Phase: 5
     - _Wave2Amplitude: 0
     - _Wave2Frequency: 0
@@ -99,5 +99,5 @@ Material:
     - _BGColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LineColor: {r: 0.5251572, g: 0.6373802, b: 1, a: 0.8901961}
+    - _LineColor: {r: 0.20493317, g: 0, b: 1, a: 0.8901961}
   m_BuildTextureStacks: []

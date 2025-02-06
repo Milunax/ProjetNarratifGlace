@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93185aa239f7fa6499118a4e80e727f5, type: 3}
+  m_Name: Text_SafetyProtocol
+  m_EditorClassIdentifier: 
+  fileName: Text_SafetyProtocol
+  isAccessible:
+    day: 0
+    inDay: 0
+    narrativeIALevel: 0
+  isVisible:
+    day: 0
+    inDay: 0
+    narrativeIALevel: 0
+  manualLock: 0
+  manualIsUnlock: 0
+  title: Text_SafetyProtocol
+  description: Text_SafetyProtocol_1a && Text_SafetyProtocol_1b && && Text_SafetyProtocol_cut
+    && Text_SafetyProtocol_2a && Text_SafetyProtocol_2b && Text_SafetyProtocol_2c
+    && Text_SafetyProtocol_2d && Text_SafetyProtocol_2e && Text_SafetyProtocol_2f
+    && Text_SafetyProtocol_2g && && Text_SafetyProtocol_cut && Text_SafetyProtocol_3a
+    && Text_SafetyProtocol_3b && Text_SafetyProtocol_3c && Text_SafetyProtocol_3d
+    && Text_SafetyProtocol_3e && && Text_SafetyProtocol_4 && && Text_SafetyProtocol_cut
+    && Text_SafetyProtocol_5a && Text_SafetyProtocol_5b && Text_SafetyProtocol_5c
+  image: {fileID: 0}

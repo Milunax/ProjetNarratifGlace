@@ -12,9 +12,9 @@ public class LocalizationComponent : MonoBehaviour
 {
     [SerializeField] TextAsset TSVFile;
 
-    [SerializeField] List<TextMeshProUGUI> TMPList;
-    [SerializeField] List<Text> TextList;
-    [SerializeField] List<TextMesh> TextMeshList;
+    [SerializeField] List<TextMeshProUGUI> TMPList = new List<TextMeshProUGUI>();
+    [SerializeField] List<Text> TextList = new List<Text>();
+    [SerializeField] List<TextMesh> TextMeshList = new List<TextMesh>();
 
     [SerializeField] List<KeyToText> TextsKeys = new List<KeyToText>();
 
@@ -81,7 +81,9 @@ public class LocalizationComponent : MonoBehaviour
             }
             else
             {
-                MapOfTexts.Add(CleanKey(columns[0]), columns);
+                string clean = CleanKey(columns[0]);
+                if (clean != null && clean != "" && clean != "null" && clean != "Null" && clean != "NULL")
+                    MapOfTexts.Add(clean, columns);
             }
         }
 

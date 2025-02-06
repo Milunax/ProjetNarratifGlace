@@ -1,7 +1,5 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class FileExplorerTextUI : MonoBehaviour
@@ -13,6 +11,9 @@ public class FileExplorerTextUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _mainText;
     [SerializeField] private Image _image;
     [SerializeField] private Image _logo;
+
+    private string _titleTag;
+    private string _mainTag;
 
     private Vector2 _scrollLimit;
     private int _nbLines = -1;

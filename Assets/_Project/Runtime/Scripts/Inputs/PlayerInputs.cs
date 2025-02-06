@@ -55,6 +55,7 @@ public class PlayerInputs : MonoBehaviour
     private void UpdateFingerdelta(InputAction.CallbackContext ctx)
     {
         _fingerDelta = ctx.ReadValue<Vector2>();
+        if (_fingerDelta.magnitude <= 1) _fingerDelta = Vector2.zero;
     }
 
     private void OnFingerSlideStarted(InputAction.CallbackContext ctx)
