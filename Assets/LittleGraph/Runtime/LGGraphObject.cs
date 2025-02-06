@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace LittleGraph.Runtime
@@ -9,11 +10,23 @@ namespace LittleGraph.Runtime
 
         private LGGraph m_graphInstance;
         public LGGraph GraphInstance => m_graphInstance;
+
+        [SerializeField] private bool isStartDelayed;
+        [SerializeField] private float delayTime;
+
         private void OnEnable()
         {
             // m_graphInstance = Instantiate(m_graph);
             // RegisterEvents();
             //ExecuteAsset();
+        }
+
+        private void Start()
+        {
+            if (isStartDelayed)
+            {
+                StartCoroutine(DelayedStartCoroutine());
+            }
         }
 
         public void Init()
@@ -101,6 +114,13 @@ namespace LittleGraph.Runtime
                 
                 ProcessAndMoveToNextNode(nextNode);
             }
+        }
+
+        private IEnumerator DelayedStartCoroutine()
+        {
+            yield return new WaitForSeconds(delayTime);
+
+            ExecuteAsset();
         }
     }
 }
