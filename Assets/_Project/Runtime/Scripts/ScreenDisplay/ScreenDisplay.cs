@@ -1,3 +1,4 @@
+using LittleDialogue.Runtime;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,8 @@ public class ScreenDisplay : MonoBehaviour
     [Space(10)]
     [Header("Screens")]
     [SerializeField] private FileExplorerBase _fileExplorer;
-    [SerializeField] private DialogueController _dialogueController;
+    //[SerializeField] private DialogueController _dialogueController;
+    [SerializeField] private DialogueBox _dialogueBox;
     [SerializeField] private Map _map;
 
 
@@ -54,7 +56,7 @@ public class ScreenDisplay : MonoBehaviour
 
     private void Start()
     {
-        DialogueEventSO.DialogueEvent += GraphEvent;
+        TriggerEvent.DialogueEvent += GraphEvent;
         _renderCamera.targetTexture.height = sizeInPixel;
         _renderCamera.targetTexture.width = sizeInPixel;
 
@@ -208,7 +210,7 @@ public class ScreenDisplay : MonoBehaviour
                 break;
             case SCREEN_ACTIVE.DIALOGUE:
                 {
-                    _dialogueController.ReceiveDirectionalInput(input);
+                    _dialogueBox.ReceiveInput((int)input);
                 }
                 break;
 
