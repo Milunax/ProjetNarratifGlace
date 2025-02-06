@@ -56,7 +56,7 @@ public class SimonPatternBehaviour : MonoBehaviour
                 break;
         }
 
-        GameManager.soundManager.PlayAudio("simon a pitch", pitch);
+        GameManager.soundManager.PlayAudioWithPitch("simon a pitch", pitch);
     }
 
     public void Opening()

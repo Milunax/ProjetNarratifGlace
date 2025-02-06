@@ -2,7 +2,9 @@ using UnityEngine;
 using LocalizationPackage;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.U2D;
+using System.Collections;
+using UnityEngine.Video;
+using GMSpace;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private LocalizationComponent _locals;
     [SerializeField] private ScreenDisplay _screenDisplay;
 
+    [Header("Intro")]
+    [SerializeField] private VideoPlayer _video;
+    
     [Header("UI Elements")]
     [SerializeField] private Image _imagePlay;
     [SerializeField] private Image _imageQuit;
@@ -79,7 +84,7 @@ public class MainMenu : MonoBehaviour
                         _cursor = 0;
                         _imageQuit.sprite = _spriteSelected;
                     }
-                    else if (infos == DIRECTIONAL_PAD_INFO.CONFIRM) PlayGame();
+                    else if (infos == DIRECTIONAL_PAD_INFO.CONFIRM) StartCoroutine(PlayGame());
                     
                     break;
                 }
@@ -94,32 +99,54 @@ public class MainMenu : MonoBehaviour
                     {
                         _imageEnglish.sprite = _spriteUnselected;
                         _imageFrench.sprite = _spriteUnselected;
-                        _cursor = 0;
+                        _cursor = 1;
                         _imagePlay.sprite = _spriteSelected;
                     }
 
                     break;
                 }
         }
+
+        Debug.Log(_cursor);
     }
 
     private void Start()
     {
+        _imagePlay.gameObject.SetActive(true);
+        _imageQuit.gameObject.SetActive(true);
+        _imageFrench.gameObject.SetActive(true);
+        _imageEnglish.gameObject.SetActive(true);
+        _video.gameObject.SetActive(false);
+
         _imageQuit.sprite = _spriteUnselected;
         _imagePlay.sprite = _spriteSelected;
         _imageEnglish.sprite = _spriteUnselected;
         _imageFrench.sprite = _spriteUnselected;
 
         _cursor = 1;
+
+        GameManager.soundManager.PlayAmbianceSound("ambiant_submarine");
     }
 
-    public void PlayGame()
+    public IEnumerator PlayGame()
     {
-        //_screenDisplay.Start
+        _imagePlay.gameObject.SetActive(false);
+        _imageQuit.gameObject.SetActive(false);
+        _imageFrench.gameObject.SetActive(false);
+        _imageEnglish.gameObject.SetActive(false);
+        _video.gameObject.SetActive(true);
+
+        _video.Play();
+        yield return new WaitForSecondsRealtime((float)_video.clip.length);
+        _video.gameObject.SetActive(false);
+        GameManager.soundManager.PlayAmbianceSound("screen sound");
     }
     public void QuitGame()
     {
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     public void SwitchLanguage()

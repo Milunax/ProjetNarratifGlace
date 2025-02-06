@@ -437,7 +437,7 @@ MonoBehaviour:
     spacialBlend: 0
     reverbZoneMix: 1
   _ambiance:
-    volume: 1
+    volume: 0.5
     pitch: 1
     stereoPan: 0
     spacialBlend: 0
@@ -466,7 +466,16 @@ MonoBehaviour:
     stereoPan: 0
     spacialBlend: 0
     reverbZoneMix: 1
-  _audioList: []
+  _audioList:
+  - {fileID: 8300000, guid: 557fcf66c42b7994089f85f8a1c80613, type: 3}
+  - {fileID: 8300000, guid: 209cd9cdd90c74e44ae71849951feee7, type: 3}
+  - {fileID: 8300000, guid: 23bf1ec222d7a2341ade207365bcd38a, type: 3}
+  - {fileID: 8300000, guid: a6cf40095f97d704ebec805de2103c35, type: 3}
+  - {fileID: 8300000, guid: 96308a56d2b8c14459483291dd92294f, type: 3}
+  - {fileID: 8300000, guid: 47718e5fe1bf2d944bba44439f189b74, type: 3}
+  - {fileID: 8300000, guid: dbf8bfe1151dc1d4a8229633dda2a6b1, type: 3}
+  - {fileID: 8300000, guid: 1ff6863c40eb0f64483395e71c09ae01, type: 3}
+  - {fileID: 8300000, guid: 3e3db356a99ee3640bf5ff86427373af, type: 3}
   audioChild: {fileID: 121659764687433125}
   _ambianceAudioSource: {fileID: 8009698832038574371}
   _musicAudioSource: {fileID: 1172545640700737366}

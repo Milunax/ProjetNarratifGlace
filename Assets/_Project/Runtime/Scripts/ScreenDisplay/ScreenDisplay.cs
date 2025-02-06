@@ -20,8 +20,8 @@ public class ScreenDisplay : MonoBehaviour
     [SerializeField] private int sizeInPixel = 1024;
 
     [Header("Status")]
-    [SerializeField] private SCREEN_ACTIVE _activeScreen = SCREEN_ACTIVE.MAP;
-    [SerializeField, ReadOnly] private MAP_ACTIVE _activeMap = MAP_ACTIVE.MAP;
+    [SerializeField] private SCREEN_ACTIVE _activeScreen = SCREEN_ACTIVE.MAIN_MENU;
+    [SerializeField, ReadOnly] private MAP_ACTIVE _activeMap = MAP_ACTIVE.CLOSED;
     [SerializeField, ReadOnly] private FILE_EXPLORER_ACTIVE _activeFileExplorer = FILE_EXPLORER_ACTIVE.CLOSED;
     [SerializeField, ReadOnly] private DIALOGUE_ACTIVE _activeDialogue = DIALOGUE_ACTIVE.CLOSED;
 
@@ -61,8 +61,10 @@ public class ScreenDisplay : MonoBehaviour
         _rectScreens.localScale = new Vector2(sizeInPixel / 256, sizeInPixel / 256);
 
         CloseDialogue();
-        CloseMap();
         CloseFileExplorer();
+        CloseMap();
+
+        _activeScreen = SCREEN_ACTIVE.MAIN_MENU;
     }
 
     private void GraphEvent(string tag, bool isDialogueInteractive)

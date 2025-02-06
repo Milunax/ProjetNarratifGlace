@@ -26,10 +26,8 @@ public class SimonPad : MonoBehaviour
         var goDetected = GameManager.playerInputs.Detection();
         foreach (SimonButtons button in _buttonsList)
         {
-            Debug.Log("FOR");
             if (goDetected == button.gameObject)
             {
-                Debug.Log("DETECTED");
                 if (goDetected.TryGetComponent(out SimonButtons foundComponent))
                 {
                     SIMON_PAD_INFO inputInfo = foundComponent.PressedInput();
