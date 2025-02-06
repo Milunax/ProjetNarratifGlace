@@ -2053,8 +2053,8 @@ MonoBehaviour:
   _taskNumberCode: {fileID: 9099380493157738355}
   _taskNumberLogic: {fileID: 0}
   _taskWaves: {fileID: 1147872133020636099}
-  _background: {fileID: 0}
-  _tasks: {fileID: 0}
+  _background: {fileID: 4149613717340487118}
+  _tasks: {fileID: 2894528644639462951}
 --- !u!1 &6169329001824802356
 GameObject:
   m_ObjectHideFlags: 0

@@ -62,6 +62,7 @@ public class SimonPatternBehaviour : MonoBehaviour
 
     public void Opening()
     {
+        gameObject.SetActive(true);
         _redSimon.gameObject.SetActive(true);
         _yellowSimon.gameObject.SetActive(true);
         _greenSimon.gameObject.SetActive(true);
@@ -72,9 +73,12 @@ public class SimonPatternBehaviour : MonoBehaviour
         _greenSimon.color = Color.white;
         _yellowSimon.color = Color.white;
         _blueSimon.color = Color.white;
+
+        CallSimonSuite(4);
     }
     public void Closing()
     {
+        gameObject.SetActive(false);
         _redSimon.gameObject.SetActive(false);
         _yellowSimon.gameObject.SetActive(false);
         _greenSimon.gameObject.SetActive(false);

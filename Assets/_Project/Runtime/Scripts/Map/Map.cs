@@ -83,84 +83,84 @@ public class Map : MonoBehaviour
             case DIRECTIONAL_PAD_INFO.UP:
                 if (_currentPoint.DoorUp != null)
                 {
-                    Debug.Log("1");
+                    //Debug.Log("1");
                     if (_currentPoint.DoorUp.IsOpen)
                     {
-                        Debug.Log("3");
+                        //Debug.Log("3");
                         UpdateSelectedPoint(_currentPoint.Up);
                     }
                     else
                     {
-                        Debug.Log("Open Simon");
+                        //Debug.Log("Open Simon");
                         OpenTask(MAP_ACTIVE.DOOR_SIMON);
                     }
                 }
                 else
                 {
-                    Debug.Log("2");
+                    //Debug.Log("2");
                     UpdateSelectedPoint(_currentPoint.Up);
                 }
                 break;
             case DIRECTIONAL_PAD_INFO.DOWN:
                     if (_currentPoint.DoorDown != null)
                     {
-                        Debug.Log("1");
+                        //Debug.Log("1");
                         if (_currentPoint.DoorDown.IsOpen)
                         {
-                                Debug.Log("3");
+                                //Debug.Log("3");
                                 UpdateSelectedPoint(_currentPoint.Down);
                         }
                         else
                         {
-                            Debug.Log("Open Simon");
+                            //Debug.Log("Open Simon");
                             OpenTask(MAP_ACTIVE.DOOR_SIMON);
                         }
                     }
                     else
                     {
-                        Debug.Log("2");
+                        //Debug.Log("2");
                         UpdateSelectedPoint(_currentPoint.Down);
                     }
                 break;
             case DIRECTIONAL_PAD_INFO.RIGHT:
                 if (_currentPoint.DoorRight != null)
                 {
-                    Debug.Log("1");
+                    //Debug.Log("1");
                     if (_currentPoint.DoorRight.IsOpen)
                     {
-                        Debug.Log("3");
+                        //Debug.Log("3");
                         UpdateSelectedPoint(_currentPoint.Right);
                     }
                     else
                     {
-                        Debug.Log("Open Simon");
+                        //Debug.Log("Open Simon");
                         OpenTask(MAP_ACTIVE.DOOR_SIMON);
                     }
                 }
                 else
                 {
-                    Debug.Log("2");
+                    //Debug.Log("2");
                     UpdateSelectedPoint(_currentPoint.Right);
                 }
                 break;
             case DIRECTIONAL_PAD_INFO.LEFT:
                 if (_currentPoint.DoorLeft != null)
                 {
-                    Debug.Log("1");
+                    //Debug.Log("1");
                     if (_currentPoint.DoorLeft.IsOpen)
                     {
-                        Debug.Log("3");
+                        //Debug.Log("3");
                         UpdateSelectedPoint(_currentPoint.Left);
                     }
                     else
                     {
-                        Debug.Log("Open Simon");
+                        //Debug.Log("Open Simon");
                         OpenTask(MAP_ACTIVE.DOOR_SIMON);
                     }
                 }
                 else
                 {
-                    Debug.Log("2");
+                    //Debug.Log("2");
                     UpdateSelectedPoint(_currentPoint.Left);
                 }
                 break;
