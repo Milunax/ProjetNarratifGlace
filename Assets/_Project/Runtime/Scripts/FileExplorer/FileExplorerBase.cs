@@ -270,6 +270,7 @@ public class FileExplorerBase : MonoBehaviour
                             }
 
                         default:
+                            BlockedFile();
                             break;
 
                     }
@@ -296,6 +297,7 @@ public class FileExplorerBase : MonoBehaviour
                             }
 
                         default:
+                            BlockedFile();
                             break;
                     }
                     break;
@@ -316,6 +318,7 @@ public class FileExplorerBase : MonoBehaviour
                             }
 
                         default:
+                            BlockedFile();
                             break;
                     }
 
@@ -375,6 +378,7 @@ public class FileExplorerBase : MonoBehaviour
                 {
                     _textContainer.SetActive(false);
                     _textFileUI.SetActive(true);
+                    GameManager.soundManager.PlayAudio("opening folder");
 
                     FileExplorerFileTextSO textFile = (FileExplorerFileTextSO)_displayedData[_cursor].data;
                     _textFileUIScript.SetInfos(_localComponent.GetTextSafe(textFile.title), _localComponent.GetTextSafe(textFile.description), textFile.image);
@@ -387,6 +391,7 @@ public class FileExplorerBase : MonoBehaviour
                 {
                     _textContainer.SetActive(false);
                     _audioFileUIScript.gameObject.SetActive(true);
+                    GameManager.soundManager.PlayAudio("opening folder");
 
                     FileExplorerAudioFileSO audioFile = (FileExplorerAudioFileSO)_displayedData[_cursor].data;
                     _audioFileUIScript.Opening();
@@ -404,11 +409,13 @@ public class FileExplorerBase : MonoBehaviour
     }
     private void BlockedFile()
     {
-        Debug.Log("File is blocked");
+        GameManager.soundManager.PlayAudio("denied", SoundManager.AUDIO_CATEGORY.SFX, 0.05f);
     }
 
     private void OpenFolder()
     {
+        GameManager.soundManager.PlayAudio("opening folder");
+
         _dataPath.Add(_localComponent.GetTextSafe(_displayedData[_cursor].data.fileName));
         FileExplorerFolderSO folder = (FileExplorerFolderSO)_displayedData[_cursor].data;
 

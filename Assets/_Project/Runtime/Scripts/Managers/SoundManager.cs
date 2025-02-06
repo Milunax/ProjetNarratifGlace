@@ -208,7 +208,7 @@ public class SoundManager : MonoBehaviour
         }
         else return false;
     }
-    public bool PlayAudio(AudioClip clip, float pitch = 0f, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
+    public bool PlayAudioWithPitch(AudioClip clip, float pitch = 0f, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
     {
         if (_audioList.Count < 29 && clip != null) // 32 sounds limit - 3 permanent sounds
         {
@@ -230,7 +230,7 @@ public class SoundManager : MonoBehaviour
         }
         else return false;
     }
-    public bool PlayAudio(string audioName, float pitch = 0f, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
+    public bool PlayAudioWithPitch(string audioName, float pitch = 0f, AUDIO_CATEGORY configuration = AUDIO_CATEGORY.NONE)
     {
         if (_audioList.Count < 29) // 32 sounds limit - 3 permanent sounds
         {
