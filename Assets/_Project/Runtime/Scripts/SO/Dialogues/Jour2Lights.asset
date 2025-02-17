@@ -18,10 +18,8 @@ MonoBehaviour:
   - rid: 744134227076055052
   - rid: 744134227076055054
   - rid: 744134227076055056
-  - rid: 744134227076055058
   - rid: 744134227076055059
   - rid: 744134227076055060
-  - rid: 744134227076055061
   - rid: 744134227076055062
   - rid: 744134227076055063
   m_connections:
@@ -50,12 +48,6 @@ MonoBehaviour:
       NodeId: 5216dd53-1b53-417d-a1c1-0bf50d7f83d5
       PortIndex: 1
   - InputPort:
-      NodeId: eaf77caf-e1ef-4a1a-9c46-902857fb6af0
-      PortIndex: 0
-    OutputPort:
-      NodeId: 704c7281-3a46-4991-b3d3-3631d922a288
-      PortIndex: 1
-  - InputPort:
       NodeId: 23a47a79-09af-4947-995f-69f5dc2c6eb8
       PortIndex: 0
     OutputPort:
@@ -66,24 +58,18 @@ MonoBehaviour:
       PortIndex: 0
     OutputPort:
       NodeId: 23a47a79-09af-4947-995f-69f5dc2c6eb8
-      PortIndex: 1
-  - InputPort:
-      NodeId: bf34fdc4-7a32-4233-8838-f125d2fb0393
-      PortIndex: 0
-    OutputPort:
-      NodeId: 3723709f-09f1-4042-ae82-3845f8cbc8dd
-      PortIndex: 1
-  - InputPort:
-      NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
-      PortIndex: 0
-    OutputPort:
-      NodeId: bf34fdc4-7a32-4233-8838-f125d2fb0393
       PortIndex: 1
   - InputPort:
       NodeId: 908a2eef-c345-40b0-ae40-cb89db499547
       PortIndex: 0
     OutputPort:
       NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
+      PortIndex: 1
+  - InputPort:
+      NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
+      PortIndex: 0
+    OutputPort:
+      NodeId: 3723709f-09f1-4042-ae82-3845f8cbc8dd
       PortIndex: 1
   references:
     version: 2
@@ -211,12 +197,6 @@ MonoBehaviour:
             NodeId: 5216dd53-1b53-417d-a1c1-0bf50d7f83d5
             PortIndex: 1
         - InputPort:
-            NodeId: eaf77caf-e1ef-4a1a-9c46-902857fb6af0
-            PortIndex: 0
-          OutputPort:
-            NodeId: 704c7281-3a46-4991-b3d3-3631d922a288
-            PortIndex: 1
-        - InputPort:
             NodeId: 23a47a79-09af-4947-995f-69f5dc2c6eb8
             PortIndex: 0
           OutputPort:
@@ -232,38 +212,15 @@ MonoBehaviour:
         - OutputIndex: 1
           ChoiceText: "Pourquoi je ne peux pas acc\xE9der \xE0 l'interrupteur de
             droite ?"
-    - rid: 744134227076055058
-      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
-      data:
-        m_guid: eaf77caf-e1ef-4a1a-9c46-902857fb6af0
-        m_position:
-          serializedVersion: 2
-          x: 1711.3043
-          y: 357.2174
-          width: 0
-          height: 0
-        m_outputPortAmount: 1
-        m_nodeConnections:
-        - InputPort:
-            NodeId: eaf77caf-e1ef-4a1a-9c46-902857fb6af0
-            PortIndex: 0
-          OutputPort:
-            NodeId: 704c7281-3a46-4991-b3d3-3631d922a288
-            PortIndex: 1
-        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
-          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        DialogueText: Dialogue
-        InterlocutorSprite: {fileID: 0}
-        BackgroundSprite: {fileID: 0}
     - rid: 744134227076055059
       type: {class: LDMultipleChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
       data:
         m_guid: 23a47a79-09af-4947-995f-69f5dc2c6eb8
         m_position:
           serializedVersion: 2
-          x: 1704.7999
-          y: 360.8
-          width: 264.80005
+          x: 1657.6
+          y: 353.59998
+          width: 486.40002
           height: 135.20001
         m_outputPortAmount: 1
         m_nodeConnections:
@@ -306,7 +263,7 @@ MonoBehaviour:
             NodeId: 23a47a79-09af-4947-995f-69f5dc2c6eb8
             PortIndex: 1
         - InputPort:
-            NodeId: bf34fdc4-7a32-4233-8838-f125d2fb0393
+            NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
             PortIndex: 0
           OutputPort:
             NodeId: 3723709f-09f1-4042-ae82-3845f8cbc8dd
@@ -316,59 +273,29 @@ MonoBehaviour:
         DialogueText: "Je regrette, mais vous ne faites pas partie du personnel autoris\xE9. "
         InterlocutorSprite: {fileID: 0}
         BackgroundSprite: {fileID: 0}
-    - rid: 744134227076055061
-      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
-      data:
-        m_guid: bf34fdc4-7a32-4233-8838-f125d2fb0393
-        m_position:
-          serializedVersion: 2
-          x: 2707.4783
-          y: 353.73914
-          width: 0
-          height: 0
-        m_outputPortAmount: 1
-        m_nodeConnections:
-        - InputPort:
-            NodeId: bf34fdc4-7a32-4233-8838-f125d2fb0393
-            PortIndex: 0
-          OutputPort:
-            NodeId: 3723709f-09f1-4042-ae82-3845f8cbc8dd
-            PortIndex: 1
-        - InputPort:
-            NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
-            PortIndex: 0
-          OutputPort:
-            NodeId: bf34fdc4-7a32-4233-8838-f125d2fb0393
-            PortIndex: 1
-        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
-          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        DialogueText: "Les fonctions de cet interrupteur concernent la s\xE9curit\xE9
-          int\xE9rieure de la base. "
-        InterlocutorSprite: {fileID: 0}
-        BackgroundSprite: {fileID: 0}
     - rid: 744134227076055062
       type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
       data:
         m_guid: 0c794802-0afd-4eaf-aaa8-051a743e4f44
         m_position:
           serializedVersion: 2
-          x: 3340
-          y: 340
-          width: 150.3999
-          height: 112.79999
+          x: 2740.8
+          y: 328.8
+          width: 195.19995
+          height: 114.399994
         m_outputPortAmount: 1
         m_nodeConnections:
-        - InputPort:
-            NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
-            PortIndex: 0
-          OutputPort:
-            NodeId: bf34fdc4-7a32-4233-8838-f125d2fb0393
-            PortIndex: 1
         - InputPort:
             NodeId: 908a2eef-c345-40b0-ae40-cb89db499547
             PortIndex: 0
           OutputPort:
             NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
+            PortIndex: 1
+        - InputPort:
+            NodeId: 0c794802-0afd-4eaf-aaa8-051a743e4f44
+            PortIndex: 0
+          OutputPort:
+            NodeId: 3723709f-09f1-4042-ae82-3845f8cbc8dd
             PortIndex: 1
         TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
@@ -380,10 +307,10 @@ MonoBehaviour:
         m_guid: 908a2eef-c345-40b0-ae40-cb89db499547
         m_position:
           serializedVersion: 2
-          x: 3630.6086
-          y: 362.7826
-          width: 0
-          height: 0
+          x: 3032
+          y: 351.19998
+          width: 195.19995
+          height: 114.399994
         m_outputPortAmount: 1
         m_nodeConnections:
         - InputPort:
