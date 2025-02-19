@@ -30,6 +30,10 @@ MonoBehaviour:
   - rid: 744134471280230433
   - rid: 744134471280230434
   - rid: 744134471280230435
+  - rid: 744134520074928165
+  - rid: 744134520074928167
+  - rid: 744134520074928168
+  - rid: 744134520074928169
   m_connections:
   - InputPort:
       NodeId: a532ab26-8bec-43ab-b941-c320886efdef
@@ -126,6 +130,30 @@ MonoBehaviour:
       PortIndex: 0
     OutputPort:
       NodeId: 2946e4d4-8928-43d1-83a8-40822395f523
+      PortIndex: 1
+  - InputPort:
+      NodeId: dc45e9d0-4a18-40f6-8e8c-5686ee5b2fc8
+      PortIndex: 0
+    OutputPort:
+      NodeId: 7e2dd12b-7857-4c33-af89-6fd8993490fb
+      PortIndex: 1
+  - InputPort:
+      NodeId: 9f1af0b7-db8c-4d0c-963d-4fa21ff65598
+      PortIndex: 0
+    OutputPort:
+      NodeId: dc45e9d0-4a18-40f6-8e8c-5686ee5b2fc8
+      PortIndex: 1
+  - InputPort:
+      NodeId: 33becca7-e33e-4f6d-abb6-b5378a5b577a
+      PortIndex: 0
+    OutputPort:
+      NodeId: 123c620c-1fdc-4ea0-817c-664cf92d6a3c
+      PortIndex: 1
+  - InputPort:
+      NodeId: dd0d9a66-718e-480a-a9ec-8a0a1d060995
+      PortIndex: 0
+    OutputPort:
+      NodeId: 33becca7-e33e-4f6d-abb6-b5378a5b577a
       PortIndex: 1
   references:
     version: 2
@@ -488,10 +516,10 @@ MonoBehaviour:
         m_guid: 7e2dd12b-7857-4c33-af89-6fd8993490fb
         m_position:
           serializedVersion: 2
-          x: 4698.4004
-          y: 159.2
+          x: 4717.6
+          y: 158.40001
           width: 366.3999
-          height: 135.20001
+          height: 135.19998
         m_outputPortAmount: 1
         m_nodeConnections:
         - InputPort:
@@ -499,6 +527,12 @@ MonoBehaviour:
             PortIndex: 0
           OutputPort:
             NodeId: 2336e3be-06c9-4406-877b-bc22b38fdc32
+            PortIndex: 1
+        - InputPort:
+            NodeId: dc45e9d0-4a18-40f6-8e8c-5686ee5b2fc8
+            PortIndex: 0
+          OutputPort:
+            NodeId: 7e2dd12b-7857-4c33-af89-6fd8993490fb
             PortIndex: 1
         TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
           LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -617,8 +651,114 @@ MonoBehaviour:
           OutputPort:
             NodeId: 2946e4d4-8928-43d1-83a8-40822395f523
             PortIndex: 1
+        - InputPort:
+            NodeId: 33becca7-e33e-4f6d-abb6-b5378a5b577a
+            PortIndex: 0
+          OutputPort:
+            NodeId: 123c620c-1fdc-4ea0-817c-664cf92d6a3c
+            PortIndex: 1
         TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
           LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         DialogueText: Vous pouvez donc regagner vos quartiers.
         InterlocutorSprite: {fileID: 0}
         BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928165
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: dc45e9d0-4a18-40f6-8e8c-5686ee5b2fc8
+        m_position:
+          serializedVersion: 2
+          x: 5168
+          y: 139.2
+          width: 220.7998
+          height: 112.80002
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: dc45e9d0-4a18-40f6-8e8c-5686ee5b2fc8
+            PortIndex: 0
+          OutputPort:
+            NodeId: 7e2dd12b-7857-4c33-af89-6fd8993490fb
+            PortIndex: 1
+        - InputPort:
+            NodeId: 9f1af0b7-db8c-4d0c-963d-4fa21ff65598
+            PortIndex: 0
+          OutputPort:
+            NodeId: dc45e9d0-4a18-40f6-8e8c-5686ee5b2fc8
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: CloseDialogue
+        IsDialogueInteractive: 0
+    - rid: 744134520074928167
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: 9f1af0b7-db8c-4d0c-963d-4fa21ff65598
+        m_position:
+          serializedVersion: 2
+          x: 5439.2
+          y: 147.2
+          width: 196.7998
+          height: 112.80002
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 9f1af0b7-db8c-4d0c-963d-4fa21ff65598
+            PortIndex: 0
+          OutputPort:
+            NodeId: dc45e9d0-4a18-40f6-8e8c-5686ee5b2fc8
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: OpenMap
+        IsDialogueInteractive: 0
+    - rid: 744134520074928168
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: 33becca7-e33e-4f6d-abb6-b5378a5b577a
+        m_position:
+          serializedVersion: 2
+          x: 6408
+          y: 366.4
+          width: 220.7998
+          height: 112.79999
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 33becca7-e33e-4f6d-abb6-b5378a5b577a
+            PortIndex: 0
+          OutputPort:
+            NodeId: 123c620c-1fdc-4ea0-817c-664cf92d6a3c
+            PortIndex: 1
+        - InputPort:
+            NodeId: dd0d9a66-718e-480a-a9ec-8a0a1d060995
+            PortIndex: 0
+          OutputPort:
+            NodeId: 33becca7-e33e-4f6d-abb6-b5378a5b577a
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: CloseDialogue
+        IsDialogueInteractive: 0
+    - rid: 744134520074928169
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: dd0d9a66-718e-480a-a9ec-8a0a1d060995
+        m_position:
+          serializedVersion: 2
+          x: 6687.2
+          y: 356.8
+          width: 196.7998
+          height: 112.79999
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: dd0d9a66-718e-480a-a9ec-8a0a1d060995
+            PortIndex: 0
+          OutputPort:
+            NodeId: 33becca7-e33e-4f6d-abb6-b5378a5b577a
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: OpenMap
+        IsDialogueInteractive: 0

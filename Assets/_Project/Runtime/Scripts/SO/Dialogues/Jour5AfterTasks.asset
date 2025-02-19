@@ -12,8 +12,680 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbab71b6b2dfbe540987d573ab53eb23, type: 3}
   m_Name: Jour5AfterTasks
   m_EditorClassIdentifier: 
-  m_nodes: []
-  m_connections: []
+  m_nodes:
+  - rid: 744134520074928128
+  - rid: 744134520074928129
+  - rid: 744134520074928130
+  - rid: 744134520074928131
+  - rid: 744134520074928132
+  - rid: 744134520074928133
+  - rid: 744134520074928135
+  - rid: 744134520074928136
+  - rid: 744134520074928137
+  - rid: 744134520074928138
+  - rid: 744134520074928139
+  - rid: 744134520074928140
+  - rid: 744134520074928141
+  - rid: 744134520074928142
+  - rid: 744134520074928143
+  - rid: 744134520074928144
+  - rid: 744134520074928145
+  - rid: 744134520074928146
+  - rid: 744134520074928147
+  m_connections:
+  - InputPort:
+      NodeId: 08a8ee28-0d37-4320-868f-500fa4828709
+      PortIndex: 0
+    OutputPort:
+      NodeId: b50b9965-2571-4e42-905a-e8e109cb772d
+      PortIndex: 0
+  - InputPort:
+      NodeId: 498f6cc7-0f8c-4556-b96d-02d6d70d9d82
+      PortIndex: 0
+    OutputPort:
+      NodeId: 08a8ee28-0d37-4320-868f-500fa4828709
+      PortIndex: 1
+  - InputPort:
+      NodeId: 300217ef-cb23-4801-9a09-efe177d0e287
+      PortIndex: 0
+    OutputPort:
+      NodeId: 498f6cc7-0f8c-4556-b96d-02d6d70d9d82
+      PortIndex: 1
+  - InputPort:
+      NodeId: 26dd2fd9-c7ae-4b6c-9e46-72b8329f0e01
+      PortIndex: 0
+    OutputPort:
+      NodeId: 300217ef-cb23-4801-9a09-efe177d0e287
+      PortIndex: 1
+  - InputPort:
+      NodeId: d4ac118c-cdd3-4408-9aff-95594143fe00
+      PortIndex: 0
+    OutputPort:
+      NodeId: 26dd2fd9-c7ae-4b6c-9e46-72b8329f0e01
+      PortIndex: 1
+  - InputPort:
+      NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+      PortIndex: 0
+    OutputPort:
+      NodeId: d4ac118c-cdd3-4408-9aff-95594143fe00
+      PortIndex: 1
+  - InputPort:
+      NodeId: 52f06ed5-2be3-4c7c-839e-fcb8db640ef7
+      PortIndex: 0
+    OutputPort:
+      NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+      PortIndex: 1
+  - InputPort:
+      NodeId: ba37c86c-7132-476a-9ecb-2c0b0913c797
+      PortIndex: 0
+    OutputPort:
+      NodeId: 52f06ed5-2be3-4c7c-839e-fcb8db640ef7
+      PortIndex: 1
+  - InputPort:
+      NodeId: 6ab63638-7e56-4e21-ad0c-81043a02e98a
+      PortIndex: 0
+    OutputPort:
+      NodeId: ba37c86c-7132-476a-9ecb-2c0b0913c797
+      PortIndex: 1
+  - InputPort:
+      NodeId: 57287f52-c3e3-4fcf-8d71-34cfa58390f1
+      PortIndex: 0
+    OutputPort:
+      NodeId: 6ab63638-7e56-4e21-ad0c-81043a02e98a
+      PortIndex: 1
+  - InputPort:
+      NodeId: f938a752-4b3e-4c58-af3e-77b5d3224311
+      PortIndex: 0
+    OutputPort:
+      NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+      PortIndex: 2
+  - InputPort:
+      NodeId: 48c07f1a-d670-4da7-8cd3-14098fcf97ff
+      PortIndex: 0
+    OutputPort:
+      NodeId: f938a752-4b3e-4c58-af3e-77b5d3224311
+      PortIndex: 1
+  - InputPort:
+      NodeId: da146ba1-7dcc-4f56-84e7-e314623e68d5
+      PortIndex: 0
+    OutputPort:
+      NodeId: 48c07f1a-d670-4da7-8cd3-14098fcf97ff
+      PortIndex: 1
+  - InputPort:
+      NodeId: c6163b1c-f48c-4deb-8214-e5dd0e709a4b
+      PortIndex: 0
+    OutputPort:
+      NodeId: da146ba1-7dcc-4f56-84e7-e314623e68d5
+      PortIndex: 1
+  - InputPort:
+      NodeId: a44f8da9-5995-4bc6-a5fb-0482513a414f
+      PortIndex: 0
+    OutputPort:
+      NodeId: c6163b1c-f48c-4deb-8214-e5dd0e709a4b
+      PortIndex: 1
+  - InputPort:
+      NodeId: 2876a802-cca3-4f57-8fff-7071099ce3bf
+      PortIndex: 0
+    OutputPort:
+      NodeId: a44f8da9-5995-4bc6-a5fb-0482513a414f
+      PortIndex: 1
+  - InputPort:
+      NodeId: b8e53d8e-f686-46bf-b636-5ebc46393322
+      PortIndex: 0
+    OutputPort:
+      NodeId: 2876a802-cca3-4f57-8fff-7071099ce3bf
+      PortIndex: 1
+  - InputPort:
+      NodeId: db541e51-d2ff-4767-b6a4-ebdc15f7301d
+      PortIndex: 0
+    OutputPort:
+      NodeId: 57287f52-c3e3-4fcf-8d71-34cfa58390f1
+      PortIndex: 1
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 744134520074928128
+      type: {class: LGStartNode, ns: LittleGraph.Runtime.Types, asm: LittleGraph.Runtime}
+      data:
+        m_guid: b50b9965-2571-4e42-905a-e8e109cb772d
+        m_position:
+          serializedVersion: 2
+          x: 306.4
+          y: 146.00002
+          width: 0
+          height: 0
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 08a8ee28-0d37-4320-868f-500fa4828709
+            PortIndex: 0
+          OutputPort:
+            NodeId: b50b9965-2571-4e42-905a-e8e109cb772d
+            PortIndex: 0
+        TypeName: LittleGraph.Runtime.Types.LGStartNode, LittleGraph.Runtime, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    - rid: 744134520074928129
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: 08a8ee28-0d37-4320-868f-500fa4828709
+        m_position:
+          serializedVersion: 2
+          x: 400.8
+          y: 142.40001
+          width: 198.40002
+          height: 112.79999
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 08a8ee28-0d37-4320-868f-500fa4828709
+            PortIndex: 0
+          OutputPort:
+            NodeId: b50b9965-2571-4e42-905a-e8e109cb772d
+            PortIndex: 0
+        - InputPort:
+            NodeId: 498f6cc7-0f8c-4556-b96d-02d6d70d9d82
+            PortIndex: 0
+          OutputPort:
+            NodeId: 08a8ee28-0d37-4320-868f-500fa4828709
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: CloseMap
+        IsDialogueInteractive: 0
+    - rid: 744134520074928130
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: 498f6cc7-0f8c-4556-b96d-02d6d70d9d82
+        m_position:
+          serializedVersion: 2
+          x: 634.4
+          y: 141.6
+          width: 236
+          height: 112.8
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 498f6cc7-0f8c-4556-b96d-02d6d70d9d82
+            PortIndex: 0
+          OutputPort:
+            NodeId: 08a8ee28-0d37-4320-868f-500fa4828709
+            PortIndex: 1
+        - InputPort:
+            NodeId: 300217ef-cb23-4801-9a09-efe177d0e287
+            PortIndex: 0
+          OutputPort:
+            NodeId: 498f6cc7-0f8c-4556-b96d-02d6d70d9d82
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: CloseFileExplorer
+        IsDialogueInteractive: 0
+    - rid: 744134520074928131
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: 300217ef-cb23-4801-9a09-efe177d0e287
+        m_position:
+          serializedVersion: 2
+          x: 902.4
+          y: 144
+          width: 219.19995
+          height: 112.8
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 300217ef-cb23-4801-9a09-efe177d0e287
+            PortIndex: 0
+          OutputPort:
+            NodeId: 498f6cc7-0f8c-4556-b96d-02d6d70d9d82
+            PortIndex: 1
+        - InputPort:
+            NodeId: 26dd2fd9-c7ae-4b6c-9e46-72b8329f0e01
+            PortIndex: 0
+          OutputPort:
+            NodeId: 300217ef-cb23-4801-9a09-efe177d0e287
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: OpenDialogue
+        IsDialogueInteractive: 0
+    - rid: 744134520074928132
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: 26dd2fd9-c7ae-4b6c-9e46-72b8329f0e01
+        m_position:
+          serializedVersion: 2
+          x: 1156.8
+          y: 120
+          width: 244.79993
+          height: 135.2
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 26dd2fd9-c7ae-4b6c-9e46-72b8329f0e01
+            PortIndex: 0
+          OutputPort:
+            NodeId: 300217ef-cb23-4801-9a09-efe177d0e287
+            PortIndex: 1
+        - InputPort:
+            NodeId: d4ac118c-cdd3-4408-9aff-95594143fe00
+            PortIndex: 0
+          OutputPort:
+            NodeId: 26dd2fd9-c7ae-4b6c-9e46-72b8329f0e01
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: ALERTE ! ALERTE !
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928133
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: d4ac118c-cdd3-4408-9aff-95594143fe00
+        m_position:
+          serializedVersion: 2
+          x: 1436
+          y: 113.600006
+          width: 386.40002
+          height: 135.2
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: d4ac118c-cdd3-4408-9aff-95594143fe00
+            PortIndex: 0
+          OutputPort:
+            NodeId: 26dd2fd9-c7ae-4b6c-9e46-72b8329f0e01
+            PortIndex: 1
+        - InputPort:
+            NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+            PortIndex: 0
+          OutputPort:
+            NodeId: d4ac118c-cdd3-4408-9aff-95594143fe00
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: 'Contact avec le Toucher de la Mort imminent. '
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928135
+      type: {class: LDMultipleChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: 26db39f0-325b-4095-94b7-b14e6009765c
+        m_position:
+          serializedVersion: 2
+          x: 1848.8
+          y: 108
+          width: 514.3999
+          height: 135.2
+        m_outputPortAmount: 2
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+            PortIndex: 0
+          OutputPort:
+            NodeId: d4ac118c-cdd3-4408-9aff-95594143fe00
+            PortIndex: 1
+        - InputPort:
+            NodeId: 52f06ed5-2be3-4c7c-839e-fcb8db640ef7
+            PortIndex: 0
+          OutputPort:
+            NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+            PortIndex: 1
+        - InputPort:
+            NodeId: f938a752-4b3e-4c58-af3e-77b5d3224311
+            PortIndex: 0
+          OutputPort:
+            NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+            PortIndex: 2
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDMultipleChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "La base commence \xE0 geler, il ne nous reste plus beaucoup
+          de temps\u2026 "
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+        ChoiceDatas:
+        - OutputIndex: 1
+          ChoiceText: "Et les t\xE2ches que je viens de faire elle servait \xE0 quoi
+            ?"
+        - OutputIndex: 2
+          ChoiceText: "Si \xE7a continue on va tous mourir !"
+    - rid: 744134520074928136
+      type: {class: LDMultipleChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: 52f06ed5-2be3-4c7c-839e-fcb8db640ef7
+        m_position:
+          serializedVersion: 2
+          x: 2448
+          y: 16
+          width: 264.80005
+          height: 135.2
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 52f06ed5-2be3-4c7c-839e-fcb8db640ef7
+            PortIndex: 0
+          OutputPort:
+            NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+            PortIndex: 1
+        - InputPort:
+            NodeId: ba37c86c-7132-476a-9ecb-2c0b0913c797
+            PortIndex: 0
+          OutputPort:
+            NodeId: 52f06ed5-2be3-4c7c-839e-fcb8db640ef7
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDMultipleChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "\xC0 augmenter vos chances de survie en ralentissant le toucher
+          de la mort."
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+        ChoiceDatas:
+        - OutputIndex: 1
+          ChoiceText: "Il faudrait plut\xF4t le stopper !"
+    - rid: 744134520074928137
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: ba37c86c-7132-476a-9ecb-2c0b0913c797
+        m_position:
+          serializedVersion: 2
+          x: 3032.8
+          y: 0
+          width: 427.19995
+          height: 135.2
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: ba37c86c-7132-476a-9ecb-2c0b0913c797
+            PortIndex: 0
+          OutputPort:
+            NodeId: 52f06ed5-2be3-4c7c-839e-fcb8db640ef7
+            PortIndex: 1
+        - InputPort:
+            NodeId: 6ab63638-7e56-4e21-ad0c-81043a02e98a
+            PortIndex: 0
+          OutputPort:
+            NodeId: ba37c86c-7132-476a-9ecb-2c0b0913c797
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "Pas d'inqui\xE9tude ! Dirigez-vous ici pour votre s\xE9curit\xE9,"
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928138
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: 6ab63638-7e56-4e21-ad0c-81043a02e98a
+        m_position:
+          serializedVersion: 2
+          x: 3533.6
+          y: 15.200001
+          width: 344.7998
+          height: 135.20001
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 6ab63638-7e56-4e21-ad0c-81043a02e98a
+            PortIndex: 0
+          OutputPort:
+            NodeId: ba37c86c-7132-476a-9ecb-2c0b0913c797
+            PortIndex: 1
+        - InputPort:
+            NodeId: 57287f52-c3e3-4fcf-8d71-34cfa58390f1
+            PortIndex: 0
+          OutputPort:
+            NodeId: 6ab63638-7e56-4e21-ad0c-81043a02e98a
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "le temps que j'analyse nos possibilit\xE9s. "
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928139
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: 57287f52-c3e3-4fcf-8d71-34cfa58390f1
+        m_position:
+          serializedVersion: 2
+          x: 3927.2
+          y: -10.400001
+          width: 220.80005
+          height: 112.799995
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 57287f52-c3e3-4fcf-8d71-34cfa58390f1
+            PortIndex: 0
+          OutputPort:
+            NodeId: 6ab63638-7e56-4e21-ad0c-81043a02e98a
+            PortIndex: 1
+        - InputPort:
+            NodeId: db541e51-d2ff-4767-b6a4-ebdc15f7301d
+            PortIndex: 0
+          OutputPort:
+            NodeId: 57287f52-c3e3-4fcf-8d71-34cfa58390f1
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: CloseDialogue
+        IsDialogueInteractive: 0
+    - rid: 744134520074928140
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: f938a752-4b3e-4c58-af3e-77b5d3224311
+        m_position:
+          serializedVersion: 2
+          x: 2495.9602
+          y: 199.18001
+          width: 0
+          height: 0
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: f938a752-4b3e-4c58-af3e-77b5d3224311
+            PortIndex: 0
+          OutputPort:
+            NodeId: 26db39f0-325b-4095-94b7-b14e6009765c
+            PortIndex: 2
+        - InputPort:
+            NodeId: 48c07f1a-d670-4da7-8cd3-14098fcf97ff
+            PortIndex: 0
+          OutputPort:
+            NodeId: f938a752-4b3e-4c58-af3e-77b5d3224311
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "Je ressens de la peur en vous mais soyez rassur\xE9. "
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928141
+      type: {class: LDMultipleChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: 48c07f1a-d670-4da7-8cd3-14098fcf97ff
+        m_position:
+          serializedVersion: 2
+          x: 2989.6
+          y: 213.6
+          width: 459.19995
+          height: 135.2
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 48c07f1a-d670-4da7-8cd3-14098fcf97ff
+            PortIndex: 0
+          OutputPort:
+            NodeId: f938a752-4b3e-4c58-af3e-77b5d3224311
+            PortIndex: 1
+        - InputPort:
+            NodeId: da146ba1-7dcc-4f56-84e7-e314623e68d5
+            PortIndex: 0
+          OutputPort:
+            NodeId: 48c07f1a-d670-4da7-8cd3-14098fcf97ff
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDMultipleChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "Si nous suivons le protocole \xE0 la lettre\u2026 *Inaudible*"
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+        ChoiceDatas:
+        - OutputIndex: 1
+          ChoiceText: Quoi encore ?
+    - rid: 744134520074928142
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: da146ba1-7dcc-4f56-84e7-e314623e68d5
+        m_position:
+          serializedVersion: 2
+          x: 3456.8
+          y: 206.40001
+          width: 637.59985
+          height: 135.19998
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: da146ba1-7dcc-4f56-84e7-e314623e68d5
+            PortIndex: 0
+          OutputPort:
+            NodeId: 48c07f1a-d670-4da7-8cd3-14098fcf97ff
+            PortIndex: 1
+        - InputPort:
+            NodeId: c6163b1c-f48c-4deb-8214-e5dd0e709a4b
+            PortIndex: 0
+          OutputPort:
+            NodeId: da146ba1-7dcc-4f56-84e7-e314623e68d5
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "Apr\xE8s analyse, le chemin indiqu\xE9 par le protocole est
+          devenu inaccessible \xE0 cause de la glace. "
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928143
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: c6163b1c-f48c-4deb-8214-e5dd0e709a4b
+        m_position:
+          serializedVersion: 2
+          x: 4111.2
+          y: 200
+          width: 436.7998
+          height: 135.2
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: c6163b1c-f48c-4deb-8214-e5dd0e709a4b
+            PortIndex: 0
+          OutputPort:
+            NodeId: da146ba1-7dcc-4f56-84e7-e314623e68d5
+            PortIndex: 1
+        - InputPort:
+            NodeId: a44f8da9-5995-4bc6-a5fb-0482513a414f
+            PortIndex: 0
+          OutputPort:
+            NodeId: c6163b1c-f48c-4deb-8214-e5dd0e709a4b
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "Heureusement, l'aile Ouest n'a pas encore \xE9t\xE9 affect\xE9e. "
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928144
+      type: {class: LDNoChoiceDialogueNode, ns: LittleDialogue.Runtime.LittleGraphAddOn, asm: LittleDialogue.Runtime}
+      data:
+        m_guid: a44f8da9-5995-4bc6-a5fb-0482513a414f
+        m_position:
+          serializedVersion: 2
+          x: 4650.6006
+          y: 206.54
+          width: 0
+          height: 0
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: a44f8da9-5995-4bc6-a5fb-0482513a414f
+            PortIndex: 0
+          OutputPort:
+            NodeId: c6163b1c-f48c-4deb-8214-e5dd0e709a4b
+            PortIndex: 1
+        - InputPort:
+            NodeId: 2876a802-cca3-4f57-8fff-7071099ce3bf
+            PortIndex: 0
+          OutputPort:
+            NodeId: a44f8da9-5995-4bc6-a5fb-0482513a414f
+            PortIndex: 1
+        TypeName: LittleDialogue.Runtime.LittleGraphAddOn.LDNoChoiceDialogueNode,
+          LittleDialogue.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        DialogueText: "Je vous indique l'endroit sur votre moniteur, d\xE9p\xEAchez
+          vous, il ne nous reste plus beaucoup de temps... "
+        InterlocutorSprite: {fileID: 0}
+        BackgroundSprite: {fileID: 0}
+    - rid: 744134520074928145
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: 2876a802-cca3-4f57-8fff-7071099ce3bf
+        m_position:
+          serializedVersion: 2
+          x: 5398.4
+          y: 194.40001
+          width: 220.8003
+          height: 112.79999
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: 2876a802-cca3-4f57-8fff-7071099ce3bf
+            PortIndex: 0
+          OutputPort:
+            NodeId: a44f8da9-5995-4bc6-a5fb-0482513a414f
+            PortIndex: 1
+        - InputPort:
+            NodeId: b8e53d8e-f686-46bf-b636-5ebc46393322
+            PortIndex: 0
+          OutputPort:
+            NodeId: 2876a802-cca3-4f57-8fff-7071099ce3bf
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: CloseDialogue
+        IsDialogueInteractive: 0
+    - rid: 744134520074928146
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: b8e53d8e-f686-46bf-b636-5ebc46393322
+        m_position:
+          serializedVersion: 2
+          x: 5646.4
+          y: 195.2
+          width: 196.8003
+          height: 113.600006
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: b8e53d8e-f686-46bf-b636-5ebc46393322
+            PortIndex: 0
+          OutputPort:
+            NodeId: 2876a802-cca3-4f57-8fff-7071099ce3bf
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: OpenMap
+        IsDialogueInteractive: 0
+    - rid: 744134520074928147
+      type: {class: TriggerEvent, ns: , asm: Assembly-CSharp}
+      data:
+        m_guid: db541e51-d2ff-4767-b6a4-ebdc15f7301d
+        m_position:
+          serializedVersion: 2
+          x: 4207.2
+          y: -24
+          width: 196.7998
+          height: 112.8
+        m_outputPortAmount: 1
+        m_nodeConnections:
+        - InputPort:
+            NodeId: db541e51-d2ff-4767-b6a4-ebdc15f7301d
+            PortIndex: 0
+          OutputPort:
+            NodeId: 57287f52-c3e3-4fcf-8d71-34cfa58390f1
+            PortIndex: 1
+        TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        eventTag: OpenMap
+        IsDialogueInteractive: 0
