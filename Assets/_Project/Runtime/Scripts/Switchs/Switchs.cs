@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
-using System.Runtime.InteropServices.WindowsRuntime;
-using GMSpace;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
-public class Switchs : MonoBehaviour, IPointerDownHandler
+public class Switchs : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] RectTransform _toggleIndicator;
@@ -17,44 +12,30 @@ public class Switchs : MonoBehaviour, IPointerDownHandler
     [SerializeField] Color _colorOff;
 
     [Header("Parameters")]
+    [SerializeField] private SWITCHS _type;
     [SerializeField] private bool _isSelectable = true;
-    [SerializeField] bool _isOn = true;
-    [SerializeField] bool _isLocked = false;
-    [SerializeField] float _tweenTime = .25f;
+    [SerializeField] private bool _isOn = true;
+    [SerializeField] private bool _isLocked = false;
+    [SerializeField] private float _tweenTime = .25f;
+
 
     private float _onY;
     private float _offY;
 
-    public bool IsOn { get => _isOn; }
+    public bool GetIsOn { get => _isOn; }
+    public SWITCHS GetSwitchType { get => _type; }
+    public bool GetSetIsLocked { get => _isLocked; set => _isLocked = value; }
     public delegate void ValueChanged(bool value);
     public event ValueChanged OnValueChanged;
-    public bool selection { get => _isSelectable; set => _isSelectable = value; }
 
-    void Start()
+    private void Start()
     {
-        GameManager.playerInputs.primaryTouch.action.started += OnFingerSlideStarted;
-
         _onY = _toggleIndicator.anchoredPosition.y;
         _offY = -_toggleIndicator.anchoredPosition.y;
     }
 
-    void OnDisable()
-    {
-        GameManager.playerInputs.primaryTouch.action.started -= OnFingerSlideStarted;
-    }
-
-    void OnFingerSlideStarted(InputAction.CallbackContext ctx)
-    {
-        GameObject temp = GameManager.playerInputs.Detection();
-        if (temp != null && temp == gameObject)
-        {
-            //Debug.Log("DD");
-            Toggle(_isOn);
-        }
-    }
-
     //---- Activation ----//
-    void Toggle(bool value)
+    public void Toggle()
     {
         if (_isLocked == false)
         {
@@ -69,7 +50,7 @@ public class Switchs : MonoBehaviour, IPointerDownHandler
     }
 
     //---- Color switching ----//
-    void ToggleColor(bool value)
+    private void ToggleColor(bool value)
     {
         if (value)
             _backgroundImg.DOColor(_colorOn, _tweenTime);
@@ -78,16 +59,11 @@ public class Switchs : MonoBehaviour, IPointerDownHandler
     }
 
     //---- Animation of the switches ----//
-    void MoveIndicator(bool value)
+    private void MoveIndicator(bool value)
     {
         if (value)
             _toggleIndicator.DOAnchorPosY(_onY, _tweenTime);
         else
             _toggleIndicator.DOAnchorPosY(_offY, _tweenTime);
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Toggle(_isOn);
     }
 }

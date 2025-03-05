@@ -55,6 +55,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _voiceIAAudioSource;
     [SerializeField] private List<AudioSource> _anyAudioSource = new List<AudioSource>();
 
+    [SerializeField] private AudioClip _ambianceClip;
+
     public AudioClip GetAudioClip(string audioName)
     {
         foreach (AudioClip audio in _audioList)
@@ -131,6 +133,8 @@ public class SoundManager : MonoBehaviour
         _voiceIAAudioSource.panStereo = properties.stereoPan;
         _voiceIAAudioSource.spatialBlend = properties.spacialBlend;
         _voiceIAAudioSource.reverbZoneMix = properties.reverbZoneMix;
+
+        PlayAudio(_ambianceClip, AUDIO_CATEGORY.AMBIANCE);
     }
 
     public void SetParentToCamera()

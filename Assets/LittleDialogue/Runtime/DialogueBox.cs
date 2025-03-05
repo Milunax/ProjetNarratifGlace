@@ -106,6 +106,16 @@ namespace LittleDialogue.Runtime
             m_dialogueBoxPanel.gameObject.SetActive(false);
         }
         
+        public void Opening()
+        {
+            m_dialogueBoxPanel.SetActive(true);
+        }
+
+        public void Closing()
+        {
+            m_dialogueBoxPanel.SetActive(false);
+        }
+
         public void UpdateText(string newText)
         {
             //Interrupt Text update

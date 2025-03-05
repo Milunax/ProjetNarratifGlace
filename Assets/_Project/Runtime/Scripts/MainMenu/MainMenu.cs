@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
     private void OnDisable()
     {
         LocalizationManager.OnRefresh -= Refresh;
-        DirectionalPad.OnKeyPressed -= Inputs;
+        //DirectionalPad.OnKeyPressed -= Inputs;
     }
 
     private void Refresh(SystemLanguage language)
@@ -84,7 +84,11 @@ public class MainMenu : MonoBehaviour
                         _cursor = 0;
                         _imageQuit.sprite = _spriteSelected;
                     }
-                    else if (infos == DIRECTIONAL_PAD_INFO.CONFIRM) StartCoroutine(PlayGame());
+                    else if (infos == DIRECTIONAL_PAD_INFO.CONFIRM)
+                    {
+                        StartCoroutine(PlayGame());
+                        DirectionalPad.OnKeyPressed -= Inputs;
+                    }
                     
                     break;
                 }
